@@ -1,86 +1,98 @@
 <!DOCTYPE html>
 <html>
-  
-  <head>
-    
-    <link rel="stylesheet" href="style.css" type="text/css">
 
-    <meta charset="utf-8">
+<head>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
   
-  </head>
-  
-  <body>
-    
-    <div id="container">
-      
-      <div id="tools_container">
-        
-        <button id="open_file_button">
-          <i class="bi-image"></i>
-        </button>
-        
-        <button id="save_file_button">
-          <i class="bi-save"></i>
-        </button>
-        
-        <button id="undo_button">
-          <i class="bi-arrow-counterclockwise"></i>
-        </button> 
-        
-        <button id="redo_button">
-          <i class="bi-arrow-clockwise"></i>
-        </button>
-        
-        <button id="freehand_draw_button">
-          <i class="bi-pencil"></i>
-        </button>
-        
-        <button id="line_button">
-          <i class="bi-dash"></i>
-        </button>
-        
-        <button id="rectangle_button">
-          <i class="bi-square"></i>
-        </button>
-        
-        <button id="filled_rectangle_button">
-          <i class="bi-square-fill"></i>
-        </button>
-        
-        <button id="circle_button">
-          <i class="bi-circle"></i>
-        </button>
-        
-        <button id="filled_circle_button">
-          <i class="bi-circle-fill"></i>
-        </button>
-        
-        <button id="stroke_color_button">
-          <i class="bi-eyedropper"></i>
-        </button>
-        
-        <button id="fill_color_button">
-          <i class="bi-paint-bucket"></i>
-        </button>
-        
-        <button id="text_button">
-          <i class="bi-fonts"></i>
-        </button>
-        
-      </div>
-      
-      <div id="canvas_container">
-      
-        <canvas id="drawing_canvas" width="950" height="950"></canvas>
-        
-        <canvas id="temporary_canvas" width="950" height="950"></canvas>
-        
-      </div>
-    
+
+</head>
+
+<body>
+
+  <div id="container">
+
+    <div id="tools_container">
+
+      <button id="open_file_button">
+        <i class="bi-image"></i>
+      </button>
+
+      <button id="save_file_button">
+        <i class="bi-save"></i>
+      </button>
+
+      <button id="undo_button">
+        <i class="bi-arrow-counterclockwise"></i>
+      </button>
+
+      <button id="redo_button">
+        <i class="bi-arrow-clockwise"></i>
+      </button>
+
+      <button id="freehand_draw_button">
+        <i class="bi-pencil"></i>
+      </button>
+
+      <button id="line_button">
+        <i class="bi-dash"></i>
+      </button>
+
+      <button id="rectangle_button">
+        <i class="bi-square"></i>
+      </button>
+
+      <button id="filled_rectangle_button">
+        <i class="bi-square-fill"></i>
+      </button>
+
+      <button id="circle_button">
+        <i class="bi-circle"></i>
+      </button>
+
+      <button id="filled_circle_button">
+        <i class="bi-circle-fill"></i>
+      </button>
+
+      <button id="stroke_color_button">
+        <i class="bi-eyedropper"></i>
+      </button>
+
+      <button id="fill_color_button">
+        <i class="bi-paint-bucket"></i>
+      </button>
+
+      <button id="text_button">
+        <i class="bi-fonts"></i>
+      </button>
+
     </div>
-  
-  </body> 
-  
+
+    <hr id="borderLine"/>
+
+    <div id="canvas_container">
+
+      <div class="resizable">
+        <div class="resizers">
+          <div class='resizer top-left'></div>
+          <div class='resizer top-right'></div>
+          <div class='resizer bottom-left'></div>
+          <div class='resizer bottom-right'></div>
+          <canvas id="drawing_canvas"></canvas>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+
+</body>
+
 </html>
+
+<script src="events.js"></script>
