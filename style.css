@@ -1,19 +1,70 @@
+body, html {
+  background: lightgrey;
+}
+
 button {
   display: block;
   font-size: 3rem;
 }
 
 #tools_container {
-  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#canvas_container {
-  position: absolute;
-  left: 95px;
-}
 
-canvas {
-  border: 5px solid black;
+/* canvas {
+  border: 1px solid black;
   
   position: absolute;
+} */
+
+.resizable {
+  background: white;
+  width: 800px;
+  height: 500px;
+  position: absolute;
+  margin-top: 20px;
+}
+
+.resizable .resizers{
+  width: 100%;
+  height: 100%;
+  border: 3px solid black;
+  box-sizing: border-box;
+}
+
+.resizable .resizers .resizer{
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid grey;
+  position: absolute;
+}
+
+.resizable .resizers .resizer.top-left {
+  left: -5px;
+  top: -5px;
+  cursor: nwse-resize;
+}
+.resizable .resizers .resizer.top-right {
+  right: -5px;
+  top: -5px;
+  cursor: nesw-resize;
+}
+.resizable .resizers .resizer.bottom-left {
+  left: -5px;
+  bottom: -5px;
+  cursor: nesw-resize;
+}
+.resizable .resizers .resizer.bottom-right {
+  right: -5px;
+  bottom: -5px;
+  cursor: nwse-resize;
+}
+#drawing_canvas{
+  width: 100%;
+  height: 100%;
 }
