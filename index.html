@@ -79,35 +79,35 @@
 
         <input id="size_field" value="1" maxlength="3" size="8"><br>
 
-        <button id="size_up_button" title="Size up">+</button>
-        <button id="size_down_button" title="Size down">-</button> 
+        <button onclick="makeSizeBigger()" id="size_up_button" title="Size up">+</button>
+        <button onclick="makeSizeSmaller()" id="size_down_button" title="Size down">-</button> 
 
         <hr class="dashed">
         
         <table>
           <tr>
-            <td><button id = "black" title="Black"></button></td>
-            <td><button id = "white" title="White"></button></td>
+            <td><button onclick="changeColor('black')" id = "black" title="Black"></button></td>
+            <td><button onclick="changeColor('white')" id = "white" title="White"></button></td>
           </tr>
         
           <tr>
-            <td><button id = "blue" title="Blue"></button></td>
-            <td><button id = "green" title="Green"></button></td>
+            <td><button onclick="changeColor('deepskyblue')" id = "blue" title="Blue"></button></td>
+            <td><button onclick="changeColor('lawngreen')" id = "green" title="Green"></button></td>
           </tr>
 
           <tr>
-            <td><button id = "red" title="Red"></button></td>
-            <td><button id = "yellow" title="Yellow"></button></td>
+            <td><button onclick="changeColor('red')" id = "red" title="Red"></button></td>
+            <td><button onclick="changeColor('yellow')" id = "yellow" title="Yellow"></button></td>
           </tr>
 
           <tr>
-            <td><button id = "purple" title="Purple"></button></td>
-            <td><button id = "orange" title="Orange"></button></td>
+            <td><button onclick="changeColor('darkviolet')" id = "purple" title="Purple"></button></td>
+            <td><button onclick="changeColor('orangered')" id = "orange" title="Orange"></button></td>
           </tr>
 
           <tr>
-            <td><button id = "aqua" title="Aqua"></button></td>
-            <td><button id = "pink" title="Pink"></button></td>
+            <td><button onclick="changeColor('aqua')" id = "aqua" title="Aqua"></button></td>
+            <td><button onclick="changeColor('deeppink')" id = "pink" title="Pink"></button></td>
           </tr>
 
         </table>
@@ -142,3 +142,4 @@
 </html>
 
 <script src="events.js"></script>
+<script src="toolevents.js"></script>
