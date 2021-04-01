@@ -186,3 +186,21 @@ p.frame {
 
 #size_field[type=number]{
 }
+
+input[type=text] {
+    width: 35%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.upload-btn {
+    margin-left: 20px;
+}
+.form-container {
+    display: flex;
+    margin-bottom: 10px;
+}
