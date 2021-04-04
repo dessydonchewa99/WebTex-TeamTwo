@@ -81,9 +81,13 @@ img {
   background-color: white;
 }
 
-hr.dashed {
-  border-top: 3px dashed grey;
+.vertical-line{
+  border-left: 2px solid grey;
+  margin-left: 30px;
+  margin-right: 30px;
+  height: 130px;
 }
+
 p.frame {
   border-style: outset;
   color: grey;
