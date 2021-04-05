@@ -1,91 +1,160 @@
 <!DOCTYPE html>
 <html>
-  
-  <head>
-    
-    <link rel="stylesheet" href="style.css" type="text/css">
 
-    <meta charset="utf-8">
+<head>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-  
-  </head>
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+  <meta charset="utf-8">  
+
+</head>
   
   <body>
     
     <div id="container">
-      <div class="form-container">
-        <input type="text" id="uploadFile" />
-        <button class="upload-btn" id="uploadButton">
-            <i class="bi bi-upload"></i>
-        </button>
-      </div>
+      
       <div id="tools_container">
-        
-        <button id="open_file_button">
-          <i class="bi-image"></i>
+
+        <button id="open_file_button" title="Open">
+          <img src="images/file.png" />
+        </button>
+
+        <button id="save_file_button" title="Save">
+          <img src="images/save.png" />
+        </button>
+
+        <button id="undo_button" title="Undo">
+          <img src="images/undo.png" />
+        </button>
+
+        <button id="redo_button" title="Redo">
+          <img src="images/redo.png" />
+        </button>
+
+        <button id="freehand_draw_button" title="Pencil">
+          <img src="images/pen.png" />
+        </button>
+
+        <button id="line_button" title="Line">
+          <img src="images/line.png" />
+        </button>
+
+        <button id="rectangle_button" title="Rectangle">
+          <img src="images/rectangle.png" />
         </button>
         
-        <button id="save_file_button">
-          <i class="bi-save"></i>
+        <button id="filled_rectangle_button" title="Filled rectangle">
+          <img src="images/rectangle2.jpeg" />
         </button>
         
-        <button id="undo_button">
-          <i class="bi-arrow-counterclockwise"></i>
-        </button> 
-        
-        <button id="redo_button">
-          <i class="bi-arrow-clockwise"></i>
+        <button id="circle_button" title="Circle">
+          <img src="images/circle.png" />
         </button>
         
-        <button id="freehand_draw_button">
-          <i class="bi-pencil"></i>
+        <button id="filled_circle_button" title="Filled circle">
+          <img src="images/circle2.jpg" />
         </button>
         
-        <button id="line_button">
-          <i class="bi-dash"></i>
+        <button id="stroke_color_button" title="Color picker">
+          <img src="images/color-picker.png" />
         </button>
         
-        <button id="rectangle_button">
-          <i class="bi-square"></i>
+        <button id="fill_color_button" title="Fill">
+          <img src="images/fill-color.png" />
+        </button>
+
+        <button id="airbrush_button" title="Airbrush">
+          <img src="images/airbrush.png" />
         </button>
         
-        <button id="filled_rectangle_button">
-          <i class="bi-square-fill"></i>
+        <button id="text_button" title="Text">
+          <img src="images/text.png" />
         </button>
-        
-        <button id="circle_button">
-          <i class="bi-circle"></i>
+
+        <button id="erase_button" title="Erase">
+          <img src="images/eraser.png" />
         </button>
+
+        <div class="vertical-line"></div>
+
+        <input id="size_field" value="1" maxlength="3" size="8" />
+
+        <button id="size_up_button" title="Size up">+</button>
+        <button id="size_down_button" title="Size down">-</button> 
+
+        <div class="vertical-line"></div>
         
-        <button id="filled_circle_button">
-          <i class="bi-circle-fill"></i>
-        </button>
+        <table>
+          <tr>
+            <td><button id = "black" title="Black"></button></td>
+            <td><button id = "white" title="White"></button></td>
+          </tr>
         
-        <button id="stroke_color_button">
-          <i class="bi-eyedropper"></i>
-        </button>
-        
-        <button id="fill_color_button">
-          <i class="bi-paint-bucket"></i>
-        </button>
-        
-        <button id="text_button">
-          <i class="bi-fonts"></i>
-        </button>
-        
+          <tr>
+            <td><button id = "blue" title="Blue"></button></td>
+            <td><button id = "green" title="Green"></button></td>
+          </tr>
+
+          <tr>
+            <td><button id = "red" title="Red"></button></td>
+            <td><button id = "yellow" title="Yellow"></button></td>
+          </tr>
+
+          <tr>
+            <td><button id = "purple" title="Purple"></button></td>
+            <td><button id = "orange" title="Orange"></button></td>
+          </tr>
+
+          <tr>
+            <td><button id = "aqua" title="Aqua"></button></td>
+            <td><button id = "pink" title="Pink"></button></td>
+          </tr>
+
+        </table>
+
+        <div class="frame">
+          <button id = "empty-color" title="Free color plot"></button>
+          <button id = "empty-color2" title="Free color plot"></button>
+        </div>
+
       </div>
       
+      <hr id="borderLine"/>
       <div id="canvas_container">
-      
-        <canvas id="drawing_canvas" width="950" height="950"></canvas>
-        
-        <canvas id="temporary_canvas" width="950" height="950"></canvas>
-        
+
+      <div class="resizable">
+        <div class="resizers">
+          <div class='resizer top-left'></div>
+          <div class='resizer top-right'></div>
+          <div class='resizer bottom-left'></div>
+          <div class='resizer bottom-right'></div>
+          <canvas id="drawing_canvas"></canvas>
+        </div>
       </div>
-    
+
+
     </div>
-  <script src="app.js"></script>
-  </body> 
+
+  </div>
+  <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Upload Image</h3>
+      <div class="form-container">
+        <input type="text" id="uploadFile" placeholder="Enter image url..." />
+        <button class="upload-btn" id="uploadButton">
+            Upload
+        </button>
+      </div>
+    </div>
+  
+  </div>
+
+    <script src="events.js"></script>
+    <script src="toolevents.js"></script>
+    <script src="app.js"></script>
+ </body> 
   
 </html>
