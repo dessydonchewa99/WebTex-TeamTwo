@@ -16,106 +16,106 @@
       <div id="tools_container">
 
         <button id="open_file_button" title="Open">
-          <img src="images/file.png">
+          <img src="images/file.png" />
         </button>
 
         <button id="save_file_button" title="Save">
-          <img src="images/save.png">
+          <img src="images/save.png" />
         </button>
 
         <button id="undo_button" title="Undo">
-          <img src="images/undo.png">
+          <img src="images/undo.png" />
         </button>
 
         <button id="redo_button" title="Redo">
-          <img src="images/redo.png">
+          <img src="images/redo.png" />
         </button>
 
         <button id="freehand_draw_button" title="Pencil">
-          <img src="images/pen.png">
+          <img src="images/pen.png" />
         </button>
 
         <button id="line_button" title="Line">
-          <img src="images/line.png">
+          <img src="images/line.png" />
         </button>
 
         <button id="rectangle_button" title="Rectangle">
-          <img src="images/rectangle.png">
+          <img src="images/rectangle.png" />
         </button>
         
         <button id="filled_rectangle_button" title="Filled rectangle">
-          <img src="images/rectangle2.jpeg">
+          <img src="images/rectangle2.jpeg" />
         </button>
         
         <button id="circle_button" title="Circle">
-          <img src="images/circle.png">
+          <img src="images/circle.png" />
         </button>
         
         <button id="filled_circle_button" title="Filled circle">
-          <img src="images/circle2.jpg">
+          <img src="images/circle2.jpg" />
         </button>
         
         <button id="stroke_color_button" title="Color picker">
-          <img src="images/color-picker.png">
+          <img src="images/color-picker.png" />
         </button>
         
         <button id="fill_color_button" title="Fill">
-          <img src="images/fill-color.png">
+          <img src="images/fill-color.png" />
         </button>
 
         <button id="airbrush_button" title="Airbrush">
-          <img src="images/airbrush.png">
+          <img src="images/airbrush.png" />
         </button>
         
         <button id="text_button" title="Text">
-          <img src="images/text.png">
+          <img src="images/text.png" />
         </button>
 
-        <button id="text_button" title="Text">
-          <img src="images/eraser.png">
+        <button id="erase_button" title="Erase">
+          <img src="images/eraser.png" />
         </button>
 
         <div class="vertical-line"></div>
 
-        <input id="size_field" value="1" maxlength="3" size="8"><br>
+        <input id="size_field" value="1" maxlength="3" size="8" />
 
-        <button onclick="makeSizeBigger()" id="size_up_button" title="Size up">+</button>
-        <button onclick="makeSizeSmaller()" id="size_down_button" title="Size down">-</button> 
+        <button id="size_up_button" title="Size up">+</button>
+        <button id="size_down_button" title="Size down">-</button> 
 
         <div class="vertical-line"></div>
         
         <table>
           <tr>
-            <td><button onclick="changeColor('black')" id = "black" title="Black"></button></td>
-            <td><button onclick="changeColor('white')" id = "white" title="White"></button></td>
+            <td><button id = "black" title="Black"></button></td>
+            <td><button id = "white" title="White"></button></td>
           </tr>
         
           <tr>
-            <td><button onclick="changeColor('deepskyblue')" id = "blue" title="Blue"></button></td>
-            <td><button onclick="changeColor('lawngreen')" id = "green" title="Green"></button></td>
+            <td><button id = "blue" title="Blue"></button></td>
+            <td><button id = "green" title="Green"></button></td>
           </tr>
 
           <tr>
-            <td><button onclick="changeColor('red')" id = "red" title="Red"></button></td>
-            <td><button onclick="changeColor('yellow')" id = "yellow" title="Yellow"></button></td>
+            <td><button id = "red" title="Red"></button></td>
+            <td><button id = "yellow" title="Yellow"></button></td>
           </tr>
 
           <tr>
-            <td><button onclick="changeColor('darkviolet')" id = "purple" title="Purple"></button></td>
-            <td><button onclick="changeColor('orangered')" id = "orange" title="Orange"></button></td>
+            <td><button id = "purple" title="Purple"></button></td>
+            <td><button id = "orange" title="Orange"></button></td>
           </tr>
 
           <tr>
-            <td><button onclick="changeColor('aqua')" id = "aqua" title="Aqua"></button></td>
-            <td><button onclick="changeColor('deeppink')" id = "pink" title="Pink"></button></td>
+            <td><button id = "aqua" title="Aqua"></button></td>
+            <td><button id = "pink" title="Pink"></button></td>
           </tr>
 
         </table>
 
-        <p class="frame">
+        <div class="frame">
           <button id = "empty-color" title="Free color plot"></button>
           <button id = "empty-color2" title="Free color plot"></button>
-        </p>
+        </div>
 
       </div>
       
@@ -155,6 +155,6 @@
     <script src="events.js"></script>
     <script src="toolevents.js"></script>
     <script src="app.js"></script>
-  </body> 
+ </body> 
   
 </html>

@@ -87,96 +87,64 @@ img {
   margin-right: 30px;
   height: 130px;
 }
+<<<<<<< HEAD
 
 p.frame {
+=======
+div.frame {
+>>>>>>> refactor code, add erase, add spray
   border-style: outset;
   color: grey;
 }
 
-
-#size_up_button , #size_down_button {
+#size_up_button, #size_down_button {
   display:inline-block;
   width: 28px;
   height: 28px;
   font-size: 1.15rem;
   padding: 0px;
 }
-
 #black {
   background: black; 
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
 }
 #white {
   background: white; 
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
 }
 #yellow {
   background: yellow; 
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
 }
 #red {
   background: red; 
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
 }
 #green {
   background: lawngreen; 
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
 }
 #blue {
   background: deepskyblue; 
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
 }
 #purple {
   background: darkviolet; 
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
 }
 #orange {
   background: orangered; 
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
 }
 #aqua {
   background: aqua; 
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
 }
 #pink {
   background: deeppink; 
+}
+#black, #white, #yellow, #red, #green, #blue, #purple, #orange, #aqua, #pink{
   width: 15px;
   height: 15px;
   border-radius: 50%;
 }
-
-#empty-color {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-}
-#empty-color2 {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-}
-#empty-color , #empty-color2 {
+#empty-color, #empty-color2 {
   display:inline-block;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
 }
-
 #column {
   float: left;
   width: 33.33%;
