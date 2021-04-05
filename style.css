@@ -87,12 +87,8 @@ img {
   margin-right: 30px;
   height: 130px;
 }
-<<<<<<< HEAD
 
-p.frame {
-=======
 div.frame {
->>>>>>> refactor code, add erase, add spray
   border-style: outset;
   color: grey;
 }

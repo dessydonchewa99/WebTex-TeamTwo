@@ -3,7 +3,7 @@ window.addEventListener('load', () => {
     resize(); 
     document.addEventListener('mousedown', drawingMode);
     document.addEventListener('mouseup', drawingBreak);
-    // document.addEventListener('mousemove', draw);
+    //document.addEventListener('mousemove', draw);
     document.addEventListener('mousemove', drawSpray);
     window.addEventListener('resize', resize);
 });
@@ -55,7 +55,6 @@ function drawingMode(event){
   drawing = true;
   movePosition(event);
 }
-var endX = 0, endY = 0;
 function drawingBreak(event){
   drawing = false;
 }
