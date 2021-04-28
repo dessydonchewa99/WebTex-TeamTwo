@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a0c5cf7-a896-48ee-8a5d-22a4e32a6d14" name="Default Changelist" comment="">
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/undo-redo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/events.js" beforeDir="false" afterPath="$PROJECT_DIR$/events.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toolevents.js" beforeDir="false" afterPath="$PROJECT_DIR$/toolevents.js" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,9 +48,13 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1617780914624</updated>
+<<<<<<< Updated upstream
       <workItem from="1617780916733" duration="2549000" />
       <workItem from="1617783925242" duration="351000" />
       <workItem from="1617784277265" duration="5850000" />
+=======
+      <workItem from="1617780916733" duration="2161000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
@@ -60,6 +71,9 @@
         </entry>
       </map>
     </option>
+<<<<<<< Updated upstream
     <option name="oldMeFiltersMigrated" value="true" />
+=======
+>>>>>>> Stashed changes
   </component>
 </project>

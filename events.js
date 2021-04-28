@@ -5,7 +5,7 @@ function makeResizableDiv(div) {
   const minimum_size = 200;
   const maxHeight = window.innerHeight;
   const maxWidth = window.innerWidth;
-  debugger;
+ // debugger;
   const line = document.getElementById('borderLine');
   const maxheightLine = line.getBoundingClientRect();
   let original_width = 0;
