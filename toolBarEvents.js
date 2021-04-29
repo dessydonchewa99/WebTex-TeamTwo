@@ -1,5 +1,7 @@
 const canvas = document.getElementById("drawing_canvas");
 const ctx = canvas.getContext("2d");
+const modal = document.getElementById("myModal");
+
 let coord = { x: 0, y: 0 };
 
 //free hand draw button
@@ -141,6 +143,38 @@ document.getElementById('aqua').addEventListener('click', function(e) {
 });
 document.getElementById('pink').addEventListener('click', function(e) {
   changeColor('deeppink');
+});
+
+document.getElementById('uploadButton').addEventListener('click', function(event) {
+
+
+    const currentWidth = Number(canvas.width);
+    const currentHeight = Number(canvas.height);
+
+    const image = new Image(currentWidth, currentHeight);
+    const file = document.getElementById('uploadFile');
+
+    image.src = file.value;
+    image.onload = function() {
+        ctx.drawImage(image, 0, 0, currentWidth, currentHeight);
+    }
+    modal.style.display = 'none';
+    file.value = '';
+});
+
+document.getElementById('open_file_button').addEventListener('click', function(e) {
+    modal.style.display = 'block';
+});
+
+document.getElementsByClassName('close')[0].addEventListener('click', function(e) {
+    modal.style.display = 'none';
+});
+
+document.getElementById('save_file_button').addEventListener('click', function(e) {
+    const link = document.createElement('a');
+    link.download = 'image.png';
+    link.href = ctx.toDataURL();
+    link.click();
 });
 
 window.addEventListener("resize", resize);
