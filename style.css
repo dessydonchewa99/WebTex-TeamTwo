@@ -166,6 +166,9 @@ img {
 #pink {
   background: deeppink; 
 }
+#empty-color {
+  background: white; 
+}
 #black, #white, #yellow, #red, #green, #blue, #purple, #orange, #aqua, #pink,#empty-color,#empty-color2{
   width: 15px;
   height: 15px;

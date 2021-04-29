@@ -144,6 +144,18 @@ document.getElementById('aqua').addEventListener('click', function(e) {
 document.getElementById('pink').addEventListener('click', function(e) {
   changeColor('deeppink');
 });
+//color picker functions
+document.getElementById('empty-color').addEventListener('click', function(e) {
+    picker();
+    console.log(1111)
+    console.log(document.getElementById('empty-color').style.background)
+    console.log(document.getElementById('color-input').value)
+    document.getElementById('empty-color').style.background = document.getElementById('color-input').value;
+    console.log(2222)
+    console.log(document.getElementById('empty-color').style.background)
+    console.log(document.getElementById('color-input').value)
+  });
+
 
 document.getElementById('uploadButton').addEventListener('click', function(event) {
 
@@ -177,6 +189,11 @@ document.getElementById('save_file_button').addEventListener('click', function(e
     link.click();
 });
 
+
+function picker(){
+    var col = document.getElementById('color-input').value;
+    changeColor(col);
+}
 window.addEventListener("resize", resize);
 
 resize();
