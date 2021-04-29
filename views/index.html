@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+
+  <meta charset="utf-8">  
+
+</head>
+  <body>
+  <div class="bg"></div>
+  <div class="bg bg2"></div>
+  <div class="bg bg3"></div>
+  <div id="logo">
+    My Cloud <strong>PAINT</strong><br>
+    DRAW YOUR FUTURE
+  </div>
+    <div id="container">
+      
+      <div id="tools_container">
+
+        <button id="open_file_button" title="Open">
+          <img src="images/file.png" />
+        </button>
+
+        <button id="save_file_button" title="Save">
+          <img src="images/save.png" />
+        </button>
+
+        <button id="undo_button" title="Undo">
+          <img src="images/undo.png" />
+        </button>
+
+        <button id="redo_button" title="Redo">
+          <img src="images/redo.png" />
+        </button>
+
+        <button id="freehand_draw_button" title="Pencil">
+          <img src="images/pen.png" />
+        </button>
+
+        <button id="line_button" title="Line">
+          <img src="images/line.png" />
+        </button>
+
+        <button id="rectangle_button" title="Rectangle">
+          <img src="images/rectangle.png" />
+        </button>
+        
+        <button id="filled_rectangle_button" title="Filled rectangle">
+          <img src="images/rectangle2.jpeg" />
+        </button>
+        
+        <button id="circle_button" title="Circle">
+          <img src="images/circle.png" />
+        </button>
+        
+        <button id="filled_circle_button" title="Filled circle">
+          <img src="images/circle2.jpg" />
+        </button>
+
+        <button id="stroke_color_button" title="Color picker" >
+          <img src="images/color-picker.png" />
+        </button>
+
+        
+        <button id="fill_color_button" title="Fill">
+          <img src="images/fill-color.png" />
+        </button>
+
+        <button id="airbrush_button" title="Airbrush">
+          <img src="images/airbrush.png" />
+        </button>
+        
+        <button id="text_button" title="Text">
+          <img src="images/text.png" />
+        </button>
+
+        <button id="erase_button" title="Erase">
+          <img src="images/eraser.png" />
+        </button>
+
+        <div class="vertical-line"></div>
+
+        <input id="size_field" value="1" maxlength="3" size="8" />
+
+        <button id="size_up_button" title="Size up">+</button>
+        <button id="size_down_button" title="Size down">-</button> 
+
+        <div class="vertical-line"></div>
+        
+        <table>
+          <tr>
+            <td><button id = "black" title="Black"></button></td>
+            <td><button id = "white" title="White"></button></td>
+            <td><button id = "blue" title="Blue"></button></td>
+            <td><button id = "green" title="Green"></button></td>
+            <td><button id = "aqua" title="Aqua"></button></td>
+            <td><button id = "empty-color" title="Free color plot"></button></td>
+          </tr>
+
+          <tr>
+            <td><button id = "red" title="Red"></button></td>
+            <td><button id = "yellow" title="Yellow"></button></td>
+            <td><button id = "purple" title="Purple"></button></td>
+            <td><button id = "orange" title="Orange"></button></td>
+            <td><button id = "pink" title="Pink"></button></td>
+            <td> <button id = "empty-color2" title="Free color plot"></button></td>
+          </tr>
+        </table>
+      </div>
+      
+   <hr id="borderLine"/>
+      <div id="canvas_container">
+
+      <div class="resizable">
+        <div class="resizers">
+          <div class='resizer top-right'></div>
+          <div class='resizer bottom-left'></div>
+          <div class='resizer bottom-right'></div>
+          <canvas id="drawing_canvas"></canvas>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+  <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Upload Image</h3>
+      <div class="form-container">
+        <input type="text" id="uploadFile" placeholder="Enter image url..." />
+        <button class="upload-btn" id="uploadButton">
+            Upload
+        </button>
+      </div>
+    </div>
+  
+  </div>
+<footer>
+  SOFIA UNIVERSITY - INFORMATION SYSTEMS, COURSE 3
+  WEB TECHNOLOGIES <br>
+  Project by <br> Desislava - If - Petya - Boyan
+</footer>
+    <script src="js/events.js"></script>
+    <script src="js/toolBarEvents.js"></script>
+    <!-- <script src="rectangle.js"></script> -->
+    <!-- <script src="toolevents.js"></script> -->
+    <!-- <script src="app.js"></script> -->
+ </body> 
+  
+</html>
