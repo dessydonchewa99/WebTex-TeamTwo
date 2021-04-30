@@ -3,7 +3,10 @@ const ctx = canvas.getContext("2d");
 const modal = document.getElementById("myModal");
 
 let coord = { x: 0, y: 0 };
-
+function startDraw()
+{
+    document.getElementById('freehand_draw_button').click();
+}
 //free hand draw button
 document.getElementById('freehand_draw_button').addEventListener("click",function (r){
     removeListeners();
