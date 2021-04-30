@@ -7,8 +7,11 @@ const paintSchema = new Schema({
     },
     content:
     {
-        data: Buffer,
+        data: String,
         contentType: String
+    },
+    createdBy: { // Username
+        type: String
     }
 }, {timestamps: true});
 

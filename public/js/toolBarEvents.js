@@ -190,10 +190,18 @@ document.getElementsByClassName('close')[0].addEventListener('click', function(e
 });
 
 document.getElementById('save_file_button').addEventListener('click', function(e) {
-    const link = document.createElement('a');
-    link.download = 'image.png';
-    link.href = ctx.toDataURL();
-    link.click();
+    var dataUrl = canvas.toDataURL();
+
+    
+    fetch('/add-paint', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({imageUrl: dataUrl})
+    })
+    .then(res => res.json())
+    .then(data => console.log('Done'));
 });
 
 
