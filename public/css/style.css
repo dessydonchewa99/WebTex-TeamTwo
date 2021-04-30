@@ -211,6 +211,7 @@ input[type=text] {
 }
 .upload-btn {
     margin-left: 20px;
+  font-size: 20px;
 }
 .form-container {
     display: flex;
