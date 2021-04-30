@@ -1,6 +1,6 @@
 const canvas = document.getElementById("drawing_canvas");
 const ctx = canvas.getContext("2d");
-const modal = document.getElementById("myModal");
+const modal = document.getElementById("uploadModal");
 
 let coord = { x: 0.0, y: 0.0};
 
@@ -174,6 +174,8 @@ document.getElementById('uploadButton').addEventListener('click', function(event
     const file = document.getElementById('uploadFile');
 
     image.src = file.value;
+    image.crossOrigin = "anonymous";
+
     image.onload = function() {
         ctx.drawImage(image, 0, 0, currentWidth, currentHeight);
     }
@@ -189,19 +191,38 @@ document.getElementsByClassName('close')[0].addEventListener('click', function(e
     modal.style.display = 'none';
 });
 
+document.getElementsByClassName('close')[1].addEventListener('click', function(e) {
+    document.getElementById('saveModal').style.display = 'none';
+});
+
+document.getElementById('open_file_button').addEventListener('click', function(e) {
+    modal.style.display = 'block';
+});
+
 document.getElementById('save_file_button').addEventListener('click', function(e) {
-    var dataUrl = canvas.toDataURL();
+    const saveModal = document.getElementById('saveModal');
+
+    saveModal.style.display = 'block';
+    document.getElementById('saveButton').addEventListener('click', function(e) {
+        var fileName = document.getElementById('saveFile');
+
+        var dataUrl = canvas.toDataURL();
+    
+        fetch('/add-paint', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({imageUrl: dataUrl, fileName: fileName.value})
+        })
+        .then(res => res.json())
+        .then(data => console.log('Done'));
+
+        fileName.value = '';
+        saveModal.style.display = 'none';
+    });
 
     
-    fetch('/add-paint', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({imageUrl: dataUrl})
-    })
-    .then(res => res.json())
-    .then(data => console.log('Done'));
 });
 
 

@@ -8,7 +8,11 @@ const session = require('express-session');
 
 app.set('view engine', 'ejs');
 
-app.use(express.json());
+app.use(express.json({
+    limit: "50mb"
+}));
+
+
 const upload = multer();
 
 const dbUrl = 'mongodb+srv://admin:2BL2kSe8DJNNI52u@cluster0.f5ven.mongodb.net/cloudpaintdb?retryWrites=true&w=majority';
@@ -28,7 +32,7 @@ app.use(session({
 
 app.post('/add-paint', (req, res) => {
     const paint = new Paint({
-        title: 'Hello',
+        title: req.body["fileName"],
     })
 
     paint.content = {
@@ -45,12 +49,14 @@ app.post('/add-paint', (req, res) => {
         });
 });
 
-app.get('/show-paint', (req, res) => {
-    Paint.findOne({'title': 'Hello'}, 'title content', function(err, image) {
-        if(err) {
-            return console.log(err);
+app.get('/show-paint/:title', (req, res) => {
+    Paint.findOne({'title': req.params.title}, 'title content', function(err, image) {
+        if(image == null) {
+            res.redirect('/');
+            return;
         }
-        var img = Buffer.from(image.content.data, 'base64');
+        var base64Data = image.content.data.replace(/^data:image\/(png|jpeg|jpg);base64,/, '');
+        var img = Buffer.from(base64Data, 'base64');
 
         res.writeHead(200, {
             'Content-Type': 'image/png',
@@ -84,7 +90,7 @@ app.post('/register', upload.single(), (req, res) => {
         if(dbUser == null) {
             user.save()
                 .then((result) => {
-                    res.sendFile('./views/index.html', {root: __dirname});
+                    res.render('index');
                 })
                 .catch((err) => {
                     console.log(err);
