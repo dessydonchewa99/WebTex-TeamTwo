@@ -31,7 +31,9 @@ app.use(session({
 }));
 
 app.post('/add-paint', (req, res) => {
+    const guid = `${req.body["fileName"]}-${new Date().toISOString()}`;
     const paint = new Paint({
+        id: guid,
         title: req.body["fileName"],
     })
 

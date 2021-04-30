@@ -215,8 +215,16 @@ document.getElementById('save_file_button').addEventListener('click', function(e
             },
             body: JSON.stringify({imageUrl: dataUrl, fileName: fileName.value})
         })
-        .then(res => res.json())
-        .then(data => console.log('Done'));
+        .then(res => res.text())
+        .then(data => {
+            Swal.fire({
+                title: 'Success!',
+                text: 'You saved your painting successfully!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+              });
+        });
 
         fileName.value = '';
         saveModal.style.display = 'none';
