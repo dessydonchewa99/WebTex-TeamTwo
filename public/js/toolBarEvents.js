@@ -20,11 +20,11 @@ document.getElementById('freehand_draw_button').addEventListener("click",functio
 // line button
 document.getElementById('line_button').addEventListener("click",function (r){
     removeListeners();
-    canvas.addEventListener("mousedown", start)
+    canvas.addEventListener("mousedown", startStraightLine)
     {
         console.log("LINE BUTTON")
     }
-    canvas.addEventListener("mouseup", stop);
+    canvas.addEventListener("mouseup", stopStraightLine);
 })
 // non-filled rectangle
 document.getElementById('rectangle_button').addEventListener("click",function (r){
@@ -66,7 +66,7 @@ document.getElementById('filled_circle_button').addEventListener("click",functio
 })
 // erase drawing
 document.getElementById('erase_button').addEventListener("click",function (r){
-    //removeListeners();
+    removeListeners();
     changeColor('white');
     canvas.addEventListener("mousedown", startFreeHandLine)
     {
@@ -76,7 +76,7 @@ document.getElementById('erase_button').addEventListener("click",function (r){
 })
 // airbrush drawing
 document.getElementById('airbrush_button').addEventListener("click",function (r){
-    //removeListeners();
+    removeListeners();
     canvas.addEventListener("mousedown", startSpray)
     {
         console.log(" SPRAY BUTTON");
@@ -95,6 +95,9 @@ function removeListeners(){
 
     canvas.removeEventListener("mousedown", startFreeHandLine);
     canvas.removeEventListener("mouseup", stopFreeHandLine);
+
+    canvas.removeEventListener("mousedown", startStraightLine);
+    canvas.removeEventListener("mouseup", stopStraightLine);
 
     canvas.removeEventListener("mousedown", startRectangle);
     canvas.removeEventListener("mouseup", stopRectangle);
@@ -346,3 +349,18 @@ function addText(event){
 document.getElementById("#bottom").addEventListener('click',function (e){
     console.log("hi")
 })
+//line function
+function startStraightLine(event) {
+    document.addEventListener("mousemove", drawStraightLine);
+    reposition(event);
+}
+function stopStraightLine(event) {
+    reposition(event);
+    ctx.lineTo(coord.x, coord.y);
+    ctx.stroke();
+    document.removeEventListener("mousemove", drawStraightLine);
+}
+function drawStraightLine() {
+    ctx.beginPath();
+    ctx.moveTo(coord.x, coord.y);
+}
