@@ -2,7 +2,8 @@ const canvas = document.getElementById("drawing_canvas");
 const ctx = canvas.getContext("2d");
 const modal = document.getElementById("myModal");
 
-let coord = { x: 0, y: 0 };
+let coord = { x: 0.0, y: 0.0};
+
 function startDraw()
 {
     document.getElementById('freehand_draw_button').click();
@@ -104,9 +105,9 @@ function removeListeners(){
     canvas.removeEventListener("click", addText);
 }
 // sizes
-function updateSizeField() { 
+function updateSizeField() {
   var currentSize = ctx.lineWidth;
-  document.getElementById("size_field").value = currentSize;  
+  document.getElementById("size_field").value = currentSize;
 }
 document.getElementById('size_up_button').addEventListener('click', function(e){
     ctx.lineWidth = ctx.lineWidth + 1;
