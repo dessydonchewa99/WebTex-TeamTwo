@@ -194,7 +194,7 @@ function picker(){
     var col = document.getElementById('color-input').value;
     changeColor(col);
 }
-window.addEventListener("resize", resize);
+//window.addEventListener("resize", resize);
 
 resize();
 // free hand functions
