@@ -1,0 +1,23 @@
+{
+  "name": "webtex-teamtwo",
+  "version": "1.0.0",
+  "description": "<h2><b>Cloud paint</b> :art: </h2>",
+  "main": "entry.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dessydonchewa99/WebTex-TeamTwo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dessydonchewa99/WebTex-TeamTwo/issues"
+  },
+  "homepage": "https://github.com/dessydonchewa99/WebTex-TeamTwo#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.7"
+  }
+}
