@@ -7,95 +7,98 @@ let coord = { x: 0, y: 0 };
 //free hand draw button
 document.getElementById('freehand_draw_button').addEventListener("click",function (r){
     removeListeners();
-    document.addEventListener("mousedown", startFreeHandLine)
+    canvas.addEventListener("mousedown", startFreeHandLine)
     {
         console.log("FREE HAND BUTTON");
     }
-    document.addEventListener("mouseup", stopFreeHandLine);
+    canvas.addEventListener("mouseup", stopFreeHandLine);
 })
 // line button
 document.getElementById('line_button').addEventListener("click",function (r){
-    document.addEventListener("mousedown", start)
+    removeListeners();
+    canvas.addEventListener("mousedown", start)
     {
         console.log("LINE BUTTON")
     }
-    document.addEventListener("mouseup", stop);
+    canvas.addEventListener("mouseup", stop);
 })
 // non-filled rectangle
 document.getElementById('rectangle_button').addEventListener("click",function (r){
-    document.addEventListener("mousedown", start)
+    removeListeners();
+    canvas.addEventListener("mousedown", start)
     {
         console.log("RECTANGLE BUTTON")
     }
-    document.addEventListener("mouseup", stop);
+    canvas.addEventListener("mouseup", stop);
 })
 
 //filled rectangle
 document.getElementById('filled_rectangle_button').addEventListener("click",function (r){
     removeListeners();
-    document.addEventListener("mousedown", startRectangle)
+    canvas.addEventListener("mousedown", startRectangle)
     {
         console.log("FILLED RECTANGLE BUTTON")
     }
-    document.addEventListener("mouseup", stopRectangle);
+    canvas.addEventListener("mouseup", stopRectangle);
 })
 
 //non-filled circle
 document.getElementById('circle_button').addEventListener("click",function (r){
-    document.addEventListener("mousedown", start)
+    removeListeners();
+    canvas.addEventListener("mousedown", start)
     {
         console.log(" CIRCLE BUTTON")
     }
-    document.addEventListener("mouseup", stop);
+    canvas.addEventListener("mouseup", stop);
 })
 //filled circle
 document.getElementById('filled_circle_button').addEventListener("click",function (r){
     removeListeners();
-    document.addEventListener("mousedown", startCircle)
+    canvas.addEventListener("mousedown", startCircle)
     {
         console.log(" FILLED CIRCLE BUTTON");
     }
-    document.addEventListener("mouseup", stopCircle);
+    canvas.addEventListener("mouseup", stopCircle);
 })
 // erase drawing
 document.getElementById('erase_button').addEventListener("click",function (r){
-    removeListeners();
+    //removeListeners();
     changeColor('white');
-    document.addEventListener("mousedown", startFreeHandLine)
+    canvas.addEventListener("mousedown", startFreeHandLine)
     {
         console.log(" ERASE BUTTON");
     }
-    document.addEventListener("mouseup", stopFreeHandLine);
+    canvas.addEventListener("mouseup", stopFreeHandLine);
 })
 // airbrush drawing
 document.getElementById('airbrush_button').addEventListener("click",function (r){
-    removeListeners();
-    document.addEventListener("mousedown", startSpray)
+    //removeListeners();
+    canvas.addEventListener("mousedown", startSpray)
     {
         console.log(" SPRAY BUTTON");
     }
-    document.addEventListener("mouseup", stopSpray);
+    canvas.addEventListener("mouseup", stopSpray);
 })
 // text box
 document.getElementById('text_button').addEventListener("click",function (r){
     removeListeners();
     console.log(" TEXT BUTTON");
-    document.addEventListener("click", addText);
+    canvas.addEventListener("click", addText);
     addText();
 })
 // remove event listeners
 function removeListeners(){
 
-    document.removeEventListener("mousedown", startFreeHandLine);
-    document.removeEventListener("mouseup", stopFreeHandLine);
+    canvas.removeEventListener("mousedown", startFreeHandLine);
+    canvas.removeEventListener("mouseup", stopFreeHandLine);
 
-    document.removeEventListener("mousedown", startRectangle);
-    document.removeEventListener("mouseup", stopRectangle);
+    canvas.removeEventListener("mousedown", startRectangle);
+    canvas.removeEventListener("mouseup", stopRectangle);
 
-    document.removeEventListener("mousedown", startSpray);
-    document.removeEventListener("mouseup", stopSpray);
+    canvas.removeEventListener("mousedown", startSpray);
+    canvas.removeEventListener("mouseup", stopSpray);
 
-    document.removeEventListener("click", addText);
+    canvas.removeEventListener("click", addText);
 }
 // sizes
 function updateSizeField() { 
@@ -299,3 +302,6 @@ function addText(event){
     ctx.font = "30px Arial";
     ctx.strokeText("Hello", xText, yText);
 }
+document.getElementById("#bottom").addEventListener('click',function (e){
+    console.log("hi")
+})
