@@ -37,3 +37,7 @@ app.get('/', (req, res) => {
 app.get('/register', (req, res) => {
     res.sendFile('./views/register.html',  {root: __dirname});
 });
+
+app.get('/gallery', (req, res) => {
+    res.sendFile('./views/gallery.html',  {root: __dirname});
+});

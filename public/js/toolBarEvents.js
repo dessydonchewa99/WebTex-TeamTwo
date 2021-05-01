@@ -182,12 +182,12 @@ document.getElementsByClassName('close')[0].addEventListener('click', function(e
     modal.style.display = 'none';
 });
 
-document.getElementById('save_file_button').addEventListener('click', function(e) {
-    const link = document.createElement('a');
-    link.download = 'image.png';
-    link.href = ctx.toDataURL();
-    link.click();
-});
+// document.getElementById('save_file_button').addEventListener('click', function(e) {
+//     const link = document.createElement('a');
+//     link.download = 'image.png';
+//     link.href = ctx.toDataURL();
+//     link.click();
+// });
 
 
 function picker(){

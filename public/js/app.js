@@ -7,8 +7,8 @@ document.getElementById('uploadButton').addEventListener('click', function(event
 
     const currentWidth = Number(ctx.width);
     const currentHeight = Number(ctx.height);
-
     const image = new Image(currentWidth, currentHeight);
+
     const file = document.getElementById('uploadFile');
 
     image.src = file.value;
@@ -27,9 +27,9 @@ document.getElementsByClassName('close')[0].addEventListener('click', function(e
     modal.style.display = 'none';
 });
 
-document.getElementById('save_file_button').addEventListener('click', function(e) {
-    const link = document.createElement('a');
-    link.download = 'image.png';
-    link.href = ctx.toDataURL();
-    link.click();
-});
+// document.getElementById('save_file_button').addEventListener('click', function(e) {
+//     const link = document.createElement('a');
+//     link.download = 'image.png';
+//     link.href = ctx.toDataURL();
+//     link.click();
+// });
