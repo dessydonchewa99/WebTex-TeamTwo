@@ -46,6 +46,10 @@ app.post('/add-paint', (req, res) => {
         contentType: "image/png"
     };
 
+    if(req.session.loggedin) {
+        paint.createdBy = req.session.username;
+    }
+
     paint.save()
         .then((result) => {
             res.send('Ok');
@@ -82,7 +86,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/register', (req, res) => {
-    res.sendFile('./views/register.html',  {root: __dirname});
+    res.render('register', {errorMessage: null});
 });
 
 app.post('/register', upload.single(), (req, res) => {
@@ -90,6 +94,11 @@ app.post('/register', upload.single(), (req, res) => {
     var user = new User({
         username: req.body["username"]
     });
+
+    if(req.body["password"] != req.body["confirmPassword"]) {
+        res.render('register', {errorMessage: "Passwords should match!"});
+        return;
+    }
     
     User.findOne({username: user.username}, 'username', function(err, dbUser) {
         
@@ -120,4 +129,11 @@ app.post('/login', upload.single(), (req, res) => {
             res.redirect('/');
         }
     });
+});
+
+app.get('/logout', (req, res) => {
+    req.session.loggedin = false;
+    req.session.username = null;
+
+    res.redirect('/');
 });

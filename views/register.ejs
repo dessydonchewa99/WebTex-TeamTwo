@@ -18,12 +18,22 @@
                     <i class="login__icon fas fa-lock"></i>
                     <input type="password" class="login__input" name="password" placeholder="Password">
                 </div>
+                <div class="login__field">
+                    <i class="login__icon fas fa-lock"></i>
+                    <input type="password" class="login__input" name="confirmPassword" placeholder="Confirm Password">
+                </div>
+
+                <% if(errorMessage) { %>
+                    <div class="validations"><%= errorMessage %></div>
+                <% } %>
+
                 <button class="button login__submit" type="submit" ><a> Register In Now</a>
                     <i class="button__icon fas fa-chevron-right"></i>
                 </button>
                 <button class="button login__submit" ><a href="/login"> Log In Now</a>
                     <i class="button__icon fas fa-chevron-right"></i>
                 </button>
+                
             </form>
             <div class="social-login">
                 <div class="social-icons">
@@ -41,5 +51,6 @@
         </div>
     </div>
 </div>
+
 </body>
 </html>
