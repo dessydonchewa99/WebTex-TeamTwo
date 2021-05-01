@@ -8,9 +8,6 @@ const userSchema = new Schema({
     password:
     {
         type: String
-    },
-    allowedPaintIds: {
-        type: Array
     }
 }, {timestamps: true});
 

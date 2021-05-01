@@ -160,7 +160,7 @@ app.get('/mygallery', (req, res) => {
         res.redirect('/login');
         return;
     }
-    Paint.find({'createdBy': req.params.username}, 'title content createdBy', function(err, result) {
+    Paint.find({'createdBy': req.session.username}, 'title content createdBy', function(err, result) {
         if(result == null) {
             res.render('mygallery');
             return;

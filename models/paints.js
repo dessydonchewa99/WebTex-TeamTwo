@@ -15,6 +15,12 @@ const paintSchema = new Schema({
     },
     createdBy: { // Username
         type: String
+    },
+    isPublic: {
+        type: Boolean
+    },
+    allowedUsers: {
+        type: Array
     }
 }, {timestamps: true});
 
