@@ -206,6 +206,20 @@ document.getElementById('save_file_button').addEventListener('click', function(e
     const saveModal = document.getElementById('saveModal');
 
     saveModal.style.display = 'block';
+    users = [
+        { label: 'if', value: '1'},
+        { label: 'desy', value: '2'},
+        { label: 'petya', value: '3' },
+        { label: 'boyan', value: '4'}
+      ];
+      VirtualSelect.init({
+        ele: '#users-select',
+        options: users,
+        multiple: true
+      });
+    
+
+
     document.getElementById('saveButton').addEventListener('click', function(e) {
         var fileName = document.getElementById('saveFile');
 
