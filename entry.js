@@ -154,3 +154,18 @@ app.get('/logout', (req, res) => {
 app.get('/gallery', (req, res) => {
     res.sendFile('./views/gallery.html',  {root: __dirname});
 });
+
+app.get('/mygallery', (req, res) => {
+    if(!req.session.loggedin) {
+        res.redirect('/login');
+        return;
+    }
+    Paint.find({'createdBy': req.params.username}, 'title content createdBy', function(err, result) {
+        if(result == null) {
+            res.render('mygallery');
+            return;
+        }
+
+        res.render('mygallery', {images: result});
+    });
+});
