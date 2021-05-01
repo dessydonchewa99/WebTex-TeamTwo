@@ -29,11 +29,11 @@ document.getElementById('line_button').addEventListener("click",function (r){
 // non-filled rectangle
 document.getElementById('rectangle_button').addEventListener("click",function (r){
     removeListeners();
-    canvas.addEventListener("mousedown", start)
+    canvas.addEventListener("mousedown", startNonFillRect)
     {
         console.log("RECTANGLE BUTTON")
     }
-    canvas.addEventListener("mouseup", stop);
+    canvas.addEventListener("mouseup", stopNonFillRect);
 })
 
 //filled rectangle
@@ -49,11 +49,11 @@ document.getElementById('filled_rectangle_button').addEventListener("click",func
 //non-filled circle
 document.getElementById('circle_button').addEventListener("click",function (r){
     removeListeners();
-    canvas.addEventListener("mousedown", start)
+    canvas.addEventListener("mousedown", startNonFillCircle)
     {
         console.log(" CIRCLE BUTTON")
     }
-    canvas.addEventListener("mouseup", stop);
+    canvas.addEventListener("mouseup", stopNonFillCircle);
 })
 //filled circle
 document.getElementById('filled_circle_button').addEventListener("click",function (r){
@@ -102,8 +102,17 @@ function removeListeners(){
     canvas.removeEventListener("mousedown", startRectangle);
     canvas.removeEventListener("mouseup", stopRectangle);
 
+    canvas.removeEventListener("mousedown", startNonFillRect);
+    canvas.removeEventListener("mouseup", stopNonFillRect);
+
     canvas.removeEventListener("mousedown", startSpray);
     canvas.removeEventListener("mouseup", stopSpray);
+
+    canvas.removeEventListener("mousedown", startCircle);
+    canvas.removeEventListener("mouseup", stopCircle);
+
+    canvas.removeEventListener("mousedown", startNonFillCircle);
+    canvas.removeEventListener("mouseup", stopNonFillCircle);
 
     canvas.removeEventListener("click", addText);
 }
@@ -284,53 +293,6 @@ function drawFreeHandLine(event) {
     ctx.lineTo(coord.x, coord.y);
     ctx.stroke();
 }
-// filled rectangle functions
-var color, 
-drawing = false,
-drawMode,
-tempX, 
-tempY,
-position;
-function startRectangle(event) {
-    document.addEventListener("mousemove", drawRectangle);
-    drawing = true;
-    drawMode = positionsRectangle(event);
-    ctx.fillStyle = ctx.strokeStyle;
-}
-function drawRectangle(event) {
-    if (drawing === true) {
-        position = positionsRectangle(event);
-        drawRectangleHelper(position);
-        ctx.fill();
-    }
-}
-function stopRectangle(event) {
-    drawing = false;
-    position = positionsRectangle(event);
-    drawRectangle(position);        
-    ctx.fill(); 
-    tempRectangle = {
-        x:tempX,
-        y:tempY,
-    };
-    document.removeEventListener("mousemove", drawRectangle);
-}
-function drawRectangleHelper(position) {
-    tempX = drawMode.x;
-    tempY = drawMode.y;
-            
-    ctx.beginPath();
-    ctx.rect(tempX, tempY, position.x, position.y);
-    ctx.closePath();
-}   
-function positionsRectangle(event) {
-    var x = event.clientX - canvas.getBoundingClientRect().left,
-        y = event.clientY - canvas.getBoundingClientRect().top;
-    return {
-        x: x, 
-        y: y
-    };
-}
 // spray functions
 function startSpray(event) {
     document.addEventListener("mousemove", drawSpray);
@@ -377,4 +339,84 @@ function stopStraightLine(event) {
 function drawStraightLine() {
     ctx.beginPath();
     ctx.moveTo(coord.x, coord.y);
+}
+
+// --------- SHAPES ---------
+//CIRCLES
+//no filled circle functions
+var circleStartX, circleStartY;
+function startNonFillCircle(event){
+    document.addEventListener("mousemove", drawNonFillCircle);
+    ctx.moveTo(coord.x, coord.y);
+    reposition(event);
+    circleStartX = coord.x;
+    circleStartY = coord.y;
+}
+function stopNonFillCircle(event){
+    reposition(event);
+    ctx.arc(circleStartX, circleStartY, coord.x-circleStartX, 50, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.closePath();
+    document.removeEventListener("mousemove", drawNonFillCircle);
+}
+function drawNonFillCircle(){
+    ctx.beginPath();
+}
+//filled circle functions
+function startCircle(event){
+    document.addEventListener("mousemove", drawCircle);
+    ctx.moveTo(coord.x, coord.y);
+    reposition(event);
+    circleStartX = coord.x;
+    circleStartY = coord.y;
+    
+}
+function stopCircle(event){
+    reposition(event);
+    ctx.fillStyle = ctx.strokeStyle;
+    ctx.arc(circleStartX, circleStartY, coord.x-circleStartX, 50, 0, 2 * Math.PI);
+    //ctx.stroke();
+    ctx.closePath();
+    ctx.fill();
+    document.removeEventListener("mousemove", drawCircle);
+}
+function drawCircle(){
+    ctx.beginPath();
+    ctx.moveTo(coord.x, coord.y);
+}
+
+//RECTANGLES
+//no filled rectangle functions
+var rectStartX, rectStartY;
+function startNonFillRect(event){
+    document.addEventListener("mousemove", drawNonFillRect);
+    ctx.moveTo(coord.x, coord.y);
+    reposition(event);
+    rectStartX = coord.x;
+    rectStartY = coord.y;
+}
+function stopNonFillRect(event){
+    reposition(event);
+    ctx.strokeRect(rectStartX, rectStartY, coord.x-rectStartX, coord.y-rectStartY);
+    document.removeEventListener("mousemove", drawNonFillRect);
+}
+function drawNonFillRect(){
+    ctx.moveTo(coord.x, coord.y);
+}
+// filled rectangle functions
+function startRectangle(event) {
+    document.addEventListener("mousemove", drawRectangle);
+    ctx.moveTo(coord.x, coord.y);
+    reposition(event);
+    rectStartX = coord.x;
+    rectStartY = coord.y;
+}
+function drawRectangle() {
+    ctx.moveTo(coord.x, coord.y);
+}
+function stopRectangle(event) {
+    reposition(event);
+    ctx.fillStyle = ctx.strokeStyle;
+    ctx.fillRect(rectStartX, rectStartY, coord.x-rectStartX, coord.y-rectStartY);
+    document.removeEventListener("mousemove", drawRectangle);
 }
