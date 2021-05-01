@@ -3,8 +3,12 @@ const mongoose = require('mongoose');
 const Paint = require('./models/paints');
 const User = require('./models/users');
 const multer = require('multer');
-const app = express();
 const session = require('express-session');
+const crypto = require('crypto');
+
+
+
+const app = express();
 
 app.set('view engine', 'ejs');
 
@@ -73,6 +77,7 @@ app.get('/login', (req, res) => {
 });
 
 app.get('/', (req, res) => {
+
     res.render('index', {username: req.session.username});
 });
 
@@ -83,16 +88,19 @@ app.get('/register', (req, res) => {
 app.post('/register', upload.single(), (req, res) => {
     const formData = req.body;
     var user = new User({
-        username: req.body["username"],
-        password: req.body["password"]
+        username: req.body["username"]
     });
     
     User.findOne({username: user.username}, 'username', function(err, dbUser) {
         
         if(dbUser == null) {
+
+            user.password = crypto.createHash('sha256').update(req.body["password"]).digest('base64');
+
             user.save()
                 .then((result) => {
-                    res.render('index');
+                    
+                    res.redirect('/')
                 })
                 .catch((err) => {
                     console.log(err);
@@ -102,7 +110,10 @@ app.post('/register', upload.single(), (req, res) => {
 });
 
 app.post('/login', upload.single(), (req, res) => {
-    User.findOne({username: req.body["username"], password: req.body["password"]}, 'username', function(err, dbUser) {
+
+    const hashedPassword = crypto.createHash('sha256').update(req.body["password"]).digest('base64');
+
+    User.findOne({username: req.body["username"], password: hashedPassword}, 'username', function(err, dbUser) {
         if (dbUser != null) {
             req.session.loggedin = true;
             req.session.username = dbUser.username;
