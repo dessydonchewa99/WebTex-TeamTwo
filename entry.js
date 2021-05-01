@@ -140,8 +140,11 @@ app.post('/login', upload.single(), (req, res) => {
             req.session.loggedin = true;
             req.session.username = dbUser.username;
             res.redirect('/');
+            return;
         }
+        res.redirect('/login');
     });
+    
 });
 
 app.get('/logout', (req, res) => {
@@ -160,7 +163,7 @@ app.get('/mygallery', (req, res) => {
         res.redirect('/login');
         return;
     }
-    Paint.find({'createdBy': req.session.username}, 'title content createdBy', function(err, result) {
+    Paint.find({'createdBy': req.session.username}, 'id title content createdBy', function(err, result) {
         if(result == null) {
             res.render('mygallery');
             return;
