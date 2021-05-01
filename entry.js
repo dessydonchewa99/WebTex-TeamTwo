@@ -77,15 +77,28 @@ app.get('/show-paint/:title', (req, res) => {
 })
 
 app.get('/login', (req, res) => {
+    if(req.session.loggedin) {
+        res.redirect('/');
+        return;
+    }
+    
     res.sendFile('./views/login.html',  {root: __dirname});
 });
 
 app.get('/', (req, res) => {
-
+    if(!req.session.loggedin) {
+        res.redirect('/login');
+        return;
+    }
     res.render('index', {username: req.session.username});
 });
 
 app.get('/register', (req, res) => {
+    if(req.session.loggedin) {
+        res.redirect('/');
+        return;
+    }
+
     res.render('register', {errorMessage: null});
 });
 
