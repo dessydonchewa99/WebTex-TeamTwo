@@ -1,106 +1,116 @@
 const canvas = document.getElementById("drawing_canvas");
 const ctx = canvas.getContext("2d");
-const modal = document.getElementById("myModal");
+const modal = document.getElementById("uploadModal");
 
-let coord = { x: 0, y: 0 };
+let coord = { x: 0.0, y: 0.0};
 
+function startDraw()
+{
+    document.getElementById('freehand_draw_button').click();
+}
 //free hand draw button
 document.getElementById('freehand_draw_button').addEventListener("click",function (r){
     removeListeners();
-    document.addEventListener("mousedown", startFreeHandLine)
+    canvas.addEventListener("mousedown", startFreeHandLine)
     {
         console.log("FREE HAND BUTTON");
     }
-    document.addEventListener("mouseup", stopFreeHandLine);
+    canvas.addEventListener("mouseup", stopFreeHandLine);
 })
 // line button
 document.getElementById('line_button').addEventListener("click",function (r){
-    document.addEventListener("mousedown", start)
+    removeListeners();
+    canvas.addEventListener("mousedown", startStraightLine)
     {
         console.log("LINE BUTTON")
     }
-    document.addEventListener("mouseup", stop);
+    canvas.addEventListener("mouseup", stopStraightLine);
 })
 // non-filled rectangle
 document.getElementById('rectangle_button').addEventListener("click",function (r){
-    document.addEventListener("mousedown", start)
+    removeListeners();
+    canvas.addEventListener("mousedown", start)
     {
         console.log("RECTANGLE BUTTON")
     }
-    document.addEventListener("mouseup", stop);
+    canvas.addEventListener("mouseup", stop);
 })
 
 //filled rectangle
 document.getElementById('filled_rectangle_button').addEventListener("click",function (r){
     removeListeners();
-    document.addEventListener("mousedown", startRectangle)
+    canvas.addEventListener("mousedown", startRectangle)
     {
         console.log("FILLED RECTANGLE BUTTON")
     }
-    document.addEventListener("mouseup", stopRectangle);
+    canvas.addEventListener("mouseup", stopRectangle);
 })
 
 //non-filled circle
 document.getElementById('circle_button').addEventListener("click",function (r){
-    document.addEventListener("mousedown", start)
+    removeListeners();
+    canvas.addEventListener("mousedown", start)
     {
         console.log(" CIRCLE BUTTON")
     }
-    document.addEventListener("mouseup", stop);
+    canvas.addEventListener("mouseup", stop);
 })
 //filled circle
 document.getElementById('filled_circle_button').addEventListener("click",function (r){
     removeListeners();
-    document.addEventListener("mousedown", startCircle)
+    canvas.addEventListener("mousedown", startCircle)
     {
         console.log(" FILLED CIRCLE BUTTON");
     }
-    document.addEventListener("mouseup", stopCircle);
+    canvas.addEventListener("mouseup", stopCircle);
 })
 // erase drawing
 document.getElementById('erase_button').addEventListener("click",function (r){
     removeListeners();
     changeColor('white');
-    document.addEventListener("mousedown", startFreeHandLine)
+    canvas.addEventListener("mousedown", startFreeHandLine)
     {
         console.log(" ERASE BUTTON");
     }
-    document.addEventListener("mouseup", stopFreeHandLine);
+    canvas.addEventListener("mouseup", stopFreeHandLine);
 })
 // airbrush drawing
 document.getElementById('airbrush_button').addEventListener("click",function (r){
     removeListeners();
-    document.addEventListener("mousedown", startSpray)
+    canvas.addEventListener("mousedown", startSpray)
     {
         console.log(" SPRAY BUTTON");
     }
-    document.addEventListener("mouseup", stopSpray);
+    canvas.addEventListener("mouseup", stopSpray);
 })
 // text box
 document.getElementById('text_button').addEventListener("click",function (r){
     removeListeners();
     console.log(" TEXT BUTTON");
-    document.addEventListener("click", addText);
+    canvas.addEventListener("click", addText);
     addText();
 })
 // remove event listeners
 function removeListeners(){
 
-    document.removeEventListener("mousedown", startFreeHandLine);
-    document.removeEventListener("mouseup", stopFreeHandLine);
+    canvas.removeEventListener("mousedown", startFreeHandLine);
+    canvas.removeEventListener("mouseup", stopFreeHandLine);
 
-    document.removeEventListener("mousedown", startRectangle);
-    document.removeEventListener("mouseup", stopRectangle);
+    canvas.removeEventListener("mousedown", startStraightLine);
+    canvas.removeEventListener("mouseup", stopStraightLine);
 
-    document.removeEventListener("mousedown", startSpray);
-    document.removeEventListener("mouseup", stopSpray);
+    canvas.removeEventListener("mousedown", startRectangle);
+    canvas.removeEventListener("mouseup", stopRectangle);
 
-    document.removeEventListener("click", addText);
+    canvas.removeEventListener("mousedown", startSpray);
+    canvas.removeEventListener("mouseup", stopSpray);
+
+    canvas.removeEventListener("click", addText);
 }
 // sizes
-function updateSizeField() { 
+function updateSizeField() {
   var currentSize = ctx.lineWidth;
-  document.getElementById("size_field").value = currentSize;  
+  document.getElementById("size_field").value = currentSize;
 }
 document.getElementById('size_up_button').addEventListener('click', function(e){
     ctx.lineWidth = ctx.lineWidth + 1;
@@ -167,6 +177,8 @@ document.getElementById('uploadButton').addEventListener('click', function(event
     const file = document.getElementById('uploadFile');
 
     image.src = file.value;
+    image.crossOrigin = "anonymous";
+
     image.onload = function() {
         ctx.drawImage(image, 0, 0, currentWidth, currentHeight);
     }
@@ -182,19 +194,54 @@ document.getElementsByClassName('close')[0].addEventListener('click', function(e
     modal.style.display = 'none';
 });
 
-// document.getElementById('save_file_button').addEventListener('click', function(e) {
-//     const link = document.createElement('a');
-//     link.download = 'image.png';
-//     link.href = ctx.toDataURL();
-//     link.click();
-// });
+document.getElementsByClassName('close')[1].addEventListener('click', function(e) {
+    document.getElementById('saveModal').style.display = 'none';
+});
+
+document.getElementById('open_file_button').addEventListener('click', function(e) {
+    modal.style.display = 'block';
+});
+
+document.getElementById('save_file_button').addEventListener('click', function(e) {
+    const saveModal = document.getElementById('saveModal');
+
+    saveModal.style.display = 'block';
+    document.getElementById('saveButton').addEventListener('click', function(e) {
+        var fileName = document.getElementById('saveFile');
+
+        var dataUrl = canvas.toDataURL();
+    
+        fetch('/add-paint', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({imageUrl: dataUrl, fileName: fileName.value})
+        })
+        .then(res => res.text())
+        .then(data => {
+            Swal.fire({
+                title: 'Success!',
+                text: 'You saved your painting successfully!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+              });
+        });
+
+        fileName.value = '';
+        saveModal.style.display = 'none';
+    });
+
+    
+});
 
 
 function picker(){
     var col = document.getElementById('color-input').value;
     changeColor(col);
 }
-window.addEventListener("resize", resize);
+//window.addEventListener("resize", resize);
 
 resize();
 // free hand functions
@@ -298,4 +345,22 @@ function addText(event){
     var yText = event.clientY;
     ctx.font = "30px Arial";
     ctx.strokeText("Hello", xText, yText);
+}
+document.getElementById("#bottom").addEventListener('click',function (e){
+    console.log("hi")
+})
+//line function
+function startStraightLine(event) {
+    document.addEventListener("mousemove", drawStraightLine);
+    reposition(event);
+}
+function stopStraightLine(event) {
+    reposition(event);
+    ctx.lineTo(coord.x, coord.y);
+    ctx.stroke();
+    document.removeEventListener("mousemove", drawStraightLine);
+}
+function drawStraightLine() {
+    ctx.beginPath();
+    ctx.moveTo(coord.x, coord.y);
 }

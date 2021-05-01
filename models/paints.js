@@ -2,13 +2,19 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const paintSchema = new Schema({
+    id: {
+        type: String
+    },
     title: {
         type: String
     },
     content:
     {
-        data: Buffer,
+        data: String,
         contentType: String
+    },
+    createdBy: { // Username
+        type: String
     }
 }, {timestamps: true});
 

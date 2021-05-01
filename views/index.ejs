@@ -3,15 +3,18 @@
 
 <head>
   <link rel="stylesheet" href="css/style.css" type="text/css">
-
+  <link rel="stylesheet" href="css/sweetalert2.min.css" type="text/css">
   <meta charset="utf-8">  
 
 </head>
-  <body>
+  <body onload="startDraw()">
   <div class="bg"></div>
   <div class="bg bg2"></div>
   <div class="bg bg3"></div>
   <div id="logo">
+    <% if(username != undefined) { %>
+      <h5>Hello <%= username %></h5>
+    <% } %>
     My Cloud <strong>PAINT</strong><br>
     DRAW YOUR FUTURE
   </div>
@@ -119,7 +122,7 @@
         <div class="resizers">
           <div class='resizer top-right'></div>
           <div class='resizer bottom-left'></div>
-          <div class='resizer bottom-right'></div>
+          <div class='resizer bottom-right' id ='#bottom'></div>
           <canvas id="drawing_canvas"></canvas>
         </div>
       </div>
@@ -128,7 +131,8 @@
     </div>
 
   </div>
-  <div id="myModal" class="modal">
+
+  <div id="uploadModal" class="modal">
 
     <!-- Modal content -->
     <div class="modal-content">
@@ -136,9 +140,21 @@
       <h3>Upload Image</h3>
       <div class="form-container">
         <input type="text" id="uploadFile" placeholder="Enter image url..." />
-        <button class="upload-btn" id="uploadButton">
-            Upload
-        </button>
+        <button class="upload-btn" id="uploadButton"> Upload </button>
+      </div>
+    </div>
+  
+  </div>
+
+  <div id="saveModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Save Image</h3>
+      <div class="form-container">
+        <input type="text" id="saveFile" placeholder="Enter Image Title.." />
+        <button class="upload-btn" id="saveButton"> Save </button>
       </div>
     </div>
   
@@ -168,6 +184,7 @@
   Project by <br> Desislava - If - Petya - Boyan
 </footer>
     <script src="js/events.js"></script>
+    <script src="js/sweetalert2.min.js"></script>
     <script src="js/toolBarEvents.js"></script>
     <script src="js/save-painting-events.js"></script>
     <!-- <script src="rectangle.js"></script> -->
