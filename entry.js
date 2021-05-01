@@ -153,3 +153,4 @@ app.get('/logout', (req, res) => {
 
 app.get('/gallery', (req, res) => {
     res.sendFile('./views/gallery.html',  {root: __dirname});
+});
