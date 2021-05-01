@@ -150,3 +150,6 @@ app.get('/logout', (req, res) => {
 
     res.redirect('/');
 });
+
+app.get('/gallery', (req, res) => {
+    res.sendFile('./views/gallery.html',  {root: __dirname});
