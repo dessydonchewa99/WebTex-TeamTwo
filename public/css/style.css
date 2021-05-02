@@ -169,7 +169,7 @@ img {
 #empty-color {
   background: white; 
 }
-#black, #white, #yellow, #red, #green, #blue, #purple, #orange, #aqua, #pink,#empty-color,#empty-color2{
+#black, #white, #yellow, #red, #green, #blue, #purple, #orange, #aqua, #pink,#empty-color{
   width: 15px;
   height: 15px;
   border-radius: 50%;
@@ -326,4 +326,19 @@ footer{
 #test-image {
   margin-left: 100px;
   margin-top: 100px;
+}
+input[type='color'] {
+  padding: 0;
+  width: 150%;
+  height: 150%;
+  margin: -25%;
+}
+
+.color-wrapper {
+  overflow: hidden;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  box-shadow: 1px 1px 3px 0px grey;
+  margin: 1em;
 }
