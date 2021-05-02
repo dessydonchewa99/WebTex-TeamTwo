@@ -119,3 +119,16 @@ function makeResizableDiv(div) {
 }
 
 makeResizableDiv('.resizable')
+
+//hide multi-select when radio is public
+
+function handle_change(radio) {
+  const multi_select = document.getElementById("users-select");
+  if(radio.value === "private")
+  {
+    multi_select.style.display = "block";
+  }
+  else{
+    multi_select.style.display = "none";
+  }
+}

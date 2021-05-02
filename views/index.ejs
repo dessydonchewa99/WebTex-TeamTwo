@@ -159,9 +159,9 @@
       <div class="form-container">
         <input type="text" id="saveFile" placeholder="Enter Image Title.." />
         <br />
-        <input type="radio" id="private" name="state" value="private">
+        <input type="radio" id="private" name="state" value="private" onchange="handle_change(this)" checked>
         <label for="private">Private</label><br/>
-        <input type="radio" id="public" name="state" value="public" checked>
+        <input type="radio" id="public" name="state" value="public" onchange="handle_change(this)">
         <label for="public">Public</label><br/>
         <div id="users-select"></div>
         <button class="upload-btn" id="saveButton"> Save </button>
@@ -169,25 +169,7 @@
     </div>
   
   </div>
-<!--
-  <div id="save-painting-modal" class="save-modal">
 
-    <div class="save-painting-modal-content">
-      <div class="modal-header">
-        <span id="close-save-modal" class="close">&times;</span>
-        <h2>Modal Header</h2>
-      </div>
-      <div class="modal-body">
-        <p>Име на картинка: </p>
-        <br/>
-        <input type="text" id="painting-name"/>
-        <br />
-        <button id="btn-save-painting">Запис</button>
-      </div>
-    </div>
-  
-  </div>
--->
 
 <footer>
   SOFIA UNIVERSITY - INFORMATION SYSTEMS, COURSE 3
@@ -197,7 +179,6 @@
     <script src="js/events.js"></script>
     <script src="js/sweetalert2.min.js"></script>
     <script src="js/toolBarEvents.js"></script>
-    <!-- <script src="js/save-painting-events.js"></script> -->
     <script src="js/virtual-select.min.js"></script>
     <!-- <script src="rectangle.js"></script> -->
     <!-- <script src="toolevents.js"></script> -->

@@ -172,3 +172,17 @@ app.get('/mygallery', (req, res) => {
         res.render('mygallery', {images: result});
     });
 });
+
+app.get("/users", function(req, res, next) {
+	try {
+        const users = User.find({}, {username: 1}, function (err, result) {
+            if(result == null) {
+                return;
+            }
+            res.send(result);
+        });
+        
+	} catch(err) {
+		next(err);
+	}
+});
