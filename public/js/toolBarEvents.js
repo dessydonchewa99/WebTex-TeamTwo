@@ -220,7 +220,7 @@ document.getElementById('save_file_button').addEventListener('click', function(e
 
         let users = new Array();
         json.forEach(user => {
-            users.push({label: user.username, value: user._id});
+            users.push({label: user.username, value: user.username});
         });
 
 
@@ -232,7 +232,15 @@ document.getElementById('save_file_button').addEventListener('click', function(e
     });
 
     document.getElementById('saveButton').addEventListener('click', function(e) {
-        var fileName = document.getElementById('saveFile');
+        var fileName = document.getElementById('saveFile').value;
+        var isPublic = document.getElementById("public").checked;
+        var allowedUsers = [];
+        if(isPublic === false)
+        {
+            allowedUsers = document.querySelector('#users-select').value;
+        }
+        console.log(allowedUsers);
+
 
         var dataUrl = canvas.toDataURL();
     
@@ -241,7 +249,7 @@ document.getElementById('save_file_button').addEventListener('click', function(e
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({imageUrl: dataUrl, fileName: fileName.value})
+            body: JSON.stringify({imageUrl: dataUrl, fileName: fileName, isPublic: isPublic, allowedUsers: allowedUsers})
         })
         .then(res => res.text())
         .then(data => {

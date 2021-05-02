@@ -39,6 +39,8 @@ app.post('/add-paint', (req, res) => {
     const paint = new Paint({
         id: guid,
         title: req.body["fileName"],
+        isPublic: req.body['isPublic'],
+        allowedUsers: req.body['allowedUsers']
     })
 
     paint.content = {
@@ -155,7 +157,18 @@ app.get('/logout', (req, res) => {
 });
 
 app.get('/gallery', (req, res) => {
-    res.sendFile('./views/gallery.html',  {root: __dirname});
+    if(!req.session.loggedin) {
+        res.redirect('/login');
+        return;
+    }
+    Paint.find({$or: [{'isPublic': true}, {'allowedUsers': req.session.username}]}, 'id title content createdBy', function(err, result) {
+        if(result == null) {
+            res.render('mygallery');
+            return;
+        }
+
+        res.render('mygallery', {images: result});
+    });
 });
 
 app.get('/mygallery', (req, res) => {
