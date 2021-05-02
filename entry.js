@@ -40,9 +40,9 @@ app.post('/add-paint', (req, res) => {
         id: guid,
         title: req.body["fileName"],
         isPublic: req.body["isPublic"],
-        allowedUsers: req.body["user-select"]
+        allowedUsers: req.body["allowedUsers"]
     });
-
+    
     paint.content = {
         data: req.body["imageUrl"],
         contentType: "image/png"
@@ -124,7 +124,7 @@ app.post('/register', upload.single(), (req, res) => {
             user.save()
                 .then((result) => {
                     
-                    res.redirect('/')
+                    res.redirect('/');
                 })
                 .catch((err) => {
                     console.log(err);
@@ -137,10 +137,12 @@ app.post('/login', upload.single(), (req, res) => {
 
     const hashedPassword = crypto.createHash('sha256').update(req.body["password"]).digest('base64');
 
-    User.findOne({username: req.body["username"], password: hashedPassword}, 'username', function(err, dbUser) {
+    User.findOne({username: req.body["username"], password: hashedPassword}, '_id username', function(err, dbUser) {
         if (dbUser != null) {
             req.session.loggedin = true;
             req.session.username = dbUser.username;
+            req.session.userId = dbUser._id;
+            
             res.redirect('/');
             return;
         }
@@ -152,7 +154,7 @@ app.post('/login', upload.single(), (req, res) => {
 app.get('/logout', (req, res) => {
     req.session.loggedin = false;
     req.session.username = null;
-
+    req.session.userId = null;
     res.redirect('/');
 });
 
@@ -187,4 +189,25 @@ app.get("/users", function(req, res, next) {
 	} catch(err) {
 		next(err);
 	}
+});
+
+app.get('/usergallery', (req, res) => {
+    if(!req.session.loggedin) {
+        res.redirect('/login');
+        return;
+    }
+    Paint.find({'createdBy': req.query.username}, 'id title content createdBy isPublic allowedUsers', function(err, result) {
+        if(result == null) {
+            res.render('mygallery');
+            return;
+        }
+        var allowedImages = [];
+        result.forEach(element => {
+            if(element.isPublic || element.allowedUsers.includes(req.session.userId)) {
+                allowedImages.push(element);
+            }
+        });
+
+        res.render('mygallery', {images: allowedImages});
+    });
 });
