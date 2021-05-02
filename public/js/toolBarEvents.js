@@ -235,13 +235,16 @@ document.getElementById('save_file_button').addEventListener('click', function(e
         var fileName = document.getElementById('saveFile');
 
         var dataUrl = canvas.toDataURL();
-    
+        var isPublic = !document.getElementById('private').checked;
+        var usersSelect = document.getElementById('users-select');
+        var allowedUserIds = usersSelect.getElementsByTagName('input')[0].value.split(',');
+        
         fetch('/add-paint', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({imageUrl: dataUrl, fileName: fileName.value})
+            body: JSON.stringify({imageUrl: dataUrl, fileName: fileName.value, isPublic: isPublic, allowedUsers: allowedUserIds})
         })
         .then(res => res.text())
         .then(data => {

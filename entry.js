@@ -39,7 +39,9 @@ app.post('/add-paint', (req, res) => {
     const paint = new Paint({
         id: guid,
         title: req.body["fileName"],
-    })
+        isPublic: req.body["isPublic"],
+        allowedUsers: req.body["user-select"]
+    });
 
     paint.content = {
         data: req.body["imageUrl"],
