@@ -243,7 +243,10 @@ document.getElementById('save_file_button').addEventListener('click', function(e
 
 
         var dataUrl = canvas.toDataURL();
-    
+        var isPublic = !document.getElementById('private').checked;
+        var usersSelect = document.getElementById('users-select');
+        var allowedUserIds = usersSelect.getElementsByTagName('input')[0].value.split(',');
+        
         fetch('/add-paint', {
             method: 'POST',
             headers: {
