@@ -90,6 +90,13 @@ document.getElementById('text_button').addEventListener("click",function (r){
     canvas.addEventListener("click", addText);
     addText();
 })
+document.getElementById('fill_color_button').addEventListener("click",function (r){
+    removeListeners();
+    console.log(" FILL BUTTON");
+    canvas.addEventListener("click", fillLastShape);
+    fillLastShape();
+    canvas.removeEventListener("click", fillLastShape);
+})
 // remove event listeners
 function removeListeners(){
 
@@ -355,6 +362,9 @@ function drawStraightLine() {
 }
 
 // --------- SHAPES ---------
+
+let lastShape = { coord1: 0.0, coord2: 0.0, coord3: 0.0, coord4: 0.0, strokestyle: 'black', shape: 'r', line: 0};
+
 //CIRCLES
 //no filled circle functions
 var circleStartX, circleStartY;
@@ -371,6 +381,7 @@ function stopNonFillCircle(event){
     ctx.stroke();
     ctx.closePath();
     document.removeEventListener("mousemove", drawNonFillCircle);
+    saveLastShape(circleStartX, circleStartY, coord.x-circleStartX, 0, ctx.strokeStyle, 'c', ctx.lineWidth);
 }
 function drawNonFillCircle(){
     ctx.beginPath();
@@ -392,6 +403,7 @@ function stopCircle(event){
     ctx.closePath();
     ctx.fill();
     document.removeEventListener("mousemove", drawCircle);
+    saveLastShape(circleStartX, circleStartY, coord.x-circleStartX, 0, ctx.strokeStyle, 'c', ctx.lineWidth);
 }
 function drawCircle(){
     ctx.beginPath();
@@ -412,6 +424,7 @@ function stopNonFillRect(event){
     reposition(event);
     ctx.strokeRect(rectStartX, rectStartY, coord.x-rectStartX, coord.y-rectStartY);
     document.removeEventListener("mousemove", drawNonFillRect);
+    saveLastShape(rectStartX, rectStartY, coord.x-rectStartX, coord.y-rectStartY, ctx.strokeStyle, 'r', ctx.lineWidth);
 }
 function drawNonFillRect(){
     ctx.moveTo(coord.x, coord.y);
@@ -432,4 +445,47 @@ function stopRectangle(event) {
     ctx.fillStyle = ctx.strokeStyle;
     ctx.fillRect(rectStartX, rectStartY, coord.x-rectStartX, coord.y-rectStartY);
     document.removeEventListener("mousemove", drawRectangle);
+    saveLastShape(rectStartX, rectStartY, coord.x-rectStartX, coord.y-rectStartY, ctx.strokeStyle, 'r', ctx.lineWidth);
+}
+
+// FILL LAST SHAPE FUNCTIONS
+var currWidth, currStyle;
+function fillLastShape(){
+    getCurrentStyles();
+    if(lastShape.shape === 'r'){
+        ctx.beginPath();
+        ctx.lineWidth = lastShape.line;
+        ctx.fillStyle = ctx.strokeStyle;
+        ctx.strokeStyle = lastShape.strokestyle;
+        ctx.fillRect(lastShape.coord1, lastShape.coord2, lastShape.coord3, lastShape.coord4);
+        ctx.stroke();
+        ctx.closePath();
+    } else {
+        ctx.beginPath();
+        ctx.lineWidth = lastShape.line;
+        ctx.fillStyle = ctx.strokeStyle;
+        ctx.strokeStyle = lastShape.strokestyle;
+        ctx.arc(lastShape.coord1, lastShape.coord2, lastShape.coord3, 50, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.stroke();
+        ctx.closePath();
+    }
+    resetCurrentStyles();
+}
+function saveLastShape(coord1, coord2, coord3, coord4, strokestyle, shape, line){
+    lastShape.coord1 = coord1;
+    lastShape.coord2 = coord2;
+    lastShape.coord3 = coord3;
+    lastShape.coord4 = coord4;
+    lastShape.strokestyle = strokestyle;
+    lastShape.shape = shape;
+    lastShape.line = line;
+}
+function getCurrentStyles(){
+    currWidth = ctx.lineWidth;
+    currStyle = ctx.strokeStyle;
+}
+function resetCurrentStyles(){
+    ctx.lineWidth = currWidth;
+    ctx.strokeStyle = currStyle;
 }
