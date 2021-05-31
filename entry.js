@@ -6,8 +6,6 @@ const multer = require('multer');
 const session = require('express-session');
 const crypto = require('crypto');
 
-
-
 const app = express();
 
 app.set('view engine', 'ejs');

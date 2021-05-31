@@ -21,11 +21,13 @@
     DRAW YOUR FUTURE
   </div>
 -->
-
     <div id="container">
       
       <div id="tools_container">
 
+        <button id="gallery_button" title="Open">
+          <img src="images/gallery.png" />
+        </button>
         <button id="open_file_button" title="Open">
           <img src="images/file.png" />
         </button>
@@ -65,12 +67,21 @@
         <button id="filled_circle_button" title="Filled circle">
           <img src="images/circle2.jpg" />
         </button>
-
-      <!--
-        <button id="stroke_color_button" title="Color picker" >
-          <img src="images/color-picker.png" />
+        <button id="triangle_button" title="triangle">
+          <img src="images/triangle.png" />
         </button>
-      -->
+        <button id="select_button" title="select">
+          <img src="images/select.png" />
+        </button>
+
+
+
+
+        <!--
+          <button id="stroke_color_button" title="Color picker" >
+            <img src="images/color-picker.png" />
+          </button>
+        -->
 
         
         <button id="fill_color_button" title="Fill">
@@ -129,7 +140,9 @@
           <div class='resizer top-right'></div>
           <div class='resizer bottom-left'></div>
           <div class='resizer bottom-right' id ='#bottom'></div>
-          <canvas id="drawing_canvas"></canvas>
+          <canvas id="drawing_canvas">
+          </canvas>
+
         </div>
       </div>
 

@@ -184,8 +184,6 @@ document.getElementById('empty-color').addEventListener('click', function(e) {
 
 
 document.getElementById('uploadButton').addEventListener('click', function(event) {
-
-
     const currentWidth = Number(canvas.width);
     const currentHeight = Number(canvas.height);
 
@@ -339,7 +337,7 @@ function drawSpray(event) {
 function addText(event){
     var xText = event.clientX;
     var yText = event.clientY;
-    ctx.font = "30px Arial";
+    ctx.font = "50px Arial";
     ctx.strokeText("Hello", xText, yText);
 }
 document.getElementById("#bottom").addEventListener('click',function (e){
@@ -447,7 +445,6 @@ function stopRectangle(event) {
     document.removeEventListener("mousemove", drawRectangle);
     saveLastShape(rectStartX, rectStartY, coord.x-rectStartX, coord.y-rectStartY, ctx.strokeStyle, 'r', ctx.lineWidth);
 }
-
 // FILL LAST SHAPE FUNCTIONS
 var currWidth, currStyle;
 function fillLastShape(){
