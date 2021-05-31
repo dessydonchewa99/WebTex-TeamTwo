@@ -18,7 +18,7 @@
         <div class="gallery" id="gallery">
 
             <% images.forEach(element => { %>
-                <img src="<%= element.content.data %>" data-id="<%= element.id %>" style="width: auto; height:100px;" />
+                <img src="<%= element.content.data %>" data-id="<%=element.id%>" style="width: auto; height:100px;" />
             <% }); %>
 
         </div>
@@ -31,11 +31,13 @@
 </footer>
 
 <!-- The Modal -->
+
 <div id="myModal" class="modal">
-   <span class="close">&times;</span>
-    <button id="save_on_computer">Save on my computer </button>
+    <a href="" id="edit-a" ><button id="edit_from_gallery" onclick="toEdit()">Edit </button></a>
+    <a href="" id="download-a" download=""><button id="save_on_computer" onclick="download()">Save on my computer </button></a>
     <button id="delete_from_gallery">Delete from gallery </button>
-  <img class="modal-content" id="img01">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01" data-id="">
 
 </div>
   <script src="js/mygallery.js"></script>

@@ -63,7 +63,7 @@
     text-decoration: none;
     cursor: pointer;
   }
-  #save_on_computer, #delete_from_gallery{
+  #save_on_computer, #delete_from_gallery, #edit_from_gallery{
     border: none;
     color: white;
     padding: 15px 32px;
@@ -73,8 +73,6 @@
     cursor: pointer;
     background: gray;
     font-weight: bold;
-    transition: 0.3s;
-    width: 10%;
   }
   
   /* 100% Image Width on Smaller Screens */
