@@ -491,3 +491,14 @@ function resetCurrentStyles(){
     ctx.lineWidth = currWidth;
     ctx.strokeStyle = currStyle;
 }
+
+document.getElementById('logout-button').addEventListener('click',function (e){
+    let options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    const response =  fetch('/logout',options);
+    console.log("successfully logged out")
+})

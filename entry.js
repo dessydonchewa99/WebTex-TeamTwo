@@ -231,3 +231,26 @@ app.get('/usergallery', (req, res) => {
     });
 });
 
+app.delete('/mygallery/delete-paint/:id',  (request, response) => {
+    console.log(request.params.id);
+    Paint.findOneAndDelete({'id': request.params.id}, (err, data) => {
+        if (err) {
+            console.log(err);
+            return response.status(500).send();
+        } else {
+            console.log(data);
+            return response.json({data});
+
+        }
+    });
+});
+
+app.get('/logout', function(req, res) {
+    console.log("I am Logout")
+    req.logout();
+    res.json({
+        status: "logout",
+        msg:"Please Log In again"
+    });
+    res.redirect('/login')
+});

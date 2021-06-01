@@ -1,8 +1,33 @@
-#myImg {
+html{
+  background: none;
+}
+#back-to-paint{
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: white;
+}
+.gallery-header{
+  color: white; font-family: 'Trocchi', serif; font-size: 50px; font-weight: normal; line-height: 48px; margin: 0;
+  text-align: center;
+}
+#galery-container{
+  background: darkcyan;
+  padding: 10px;
+
+}
+
+
+.img-gallery {
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
+    transition: all .2s ease-in-out;
   }
+.img-gallery:hover {
+  transform: scale(1.1);
+  border: 2px solid gray
+}
   
   #myImg:hover {opacity: 0.7;}
   
@@ -23,9 +48,9 @@
   .modal-content {
     margin: auto;
     display: block;
-    width: 80%;
-    height: 80%;
-    max-width: 700px;
+    width: 90%;
+    height: auto;
+    max-width: 900px;
   }
   
   /* Add Animation */
