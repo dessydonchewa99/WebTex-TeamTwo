@@ -48,8 +48,8 @@ button {
   display: block;
   font-size: 4px;
   background-color: white;
-  margin: 4px 2px;
-  padding: 7px;
+  margin: 1px 0.25px;
+  padding: 2px;
 }
 
 #tools_container {
@@ -342,4 +342,36 @@ input[type='color'] {
   border-radius: 50%;
   box-shadow: 1px 1px 3px 0px grey;
   margin: 1em;
+}
+.help {
+  width: 40px;
+}
+.help .question {
+  background: transparent;
+  font-size: 25px;
+  line-height: 40px;
+  text-align:start;
+  cursor: pointer;
+  text-shadow: 1px 1px grey;
+}
+.help .popup {
+  width: 560px;
+  height: 0px;
+  text-align: left;
+  overflow: hidden;
+  position: relative;
+  background: white;
+  opacity: 0;
+  transition: 1s;
+}
+.help .popup {
+  left: -260px;
+  top: 10px;
+}
+.help:hover .popup {
+  opacity: 1;
+  height: 60px;
+  width: 300px;
+  font-size: small;
+  text-shadow: 0.66px 0.66px grey;
 }

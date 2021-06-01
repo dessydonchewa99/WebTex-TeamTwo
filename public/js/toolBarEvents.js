@@ -17,6 +17,15 @@ document.getElementById('freehand_draw_button').addEventListener("click",functio
     }
     canvas.addEventListener("mouseup", stopFreeHandLine);
 })
+// curve button
+document.getElementById('curve_line_button').addEventListener("click",function (r){
+    removeListeners();
+    canvas.addEventListener("mousedown", startCurveLine)
+    {
+        console.log("CURVE LINE BUTTON");
+    }
+    canvas.addEventListener("mouseup", stopCurveLine);
+})
 // line button
 document.getElementById('line_button').addEventListener("click",function (r){
     removeListeners();
@@ -102,6 +111,9 @@ function removeListeners(){
 
     canvas.removeEventListener("mousedown", startFreeHandLine);
     canvas.removeEventListener("mouseup", stopFreeHandLine);
+
+    canvas.removeEventListener("mousedown", startCurveLine);
+    canvas.removeEventListener("mouseup", stopCurveLine);
 
     canvas.removeEventListener("mousedown", startStraightLine);
     canvas.removeEventListener("mouseup", stopStraightLine);
@@ -312,6 +324,26 @@ function drawFreeHandLine(event) {
     ctx.lineTo(coord.x, coord.y);
     ctx.stroke();
 }
+// CURVE FUNCTIONS
+function startCurveLine(event) {
+    console.log(100)
+    document.addEventListener("mousemove", drawCurveLine);
+    reposition(event);
+}
+function stopCurveLine() {
+    document.removeEventListener("mousemove", drawCurveLine);
+    newRecord();
+    console.log(101)
+}
+function drawCurveLine(event) {
+    ctx.beginPath();
+    ctx.moveTo(coord.x, coord.y);
+    let x1 = coord.x, y1 = coord.y;
+    reposition(event);
+    let x2 = coord.x, y2 = coord.y;
+    ctx.bezierCurveTo(x1, Math.abs(y1 + (y2-y1) + (x2-x1)), x2, Math.abs(y2+ (y2-y1) + (x2-x1)), x2, y2);
+    ctx.stroke();
+}
 // spray functions
 function startSpray(event) {
     document.addEventListener("mousemove", drawSpray);
@@ -336,11 +368,39 @@ function drawSpray(event) {
     ctx.fill();
 }
 // text box
+/*
 function addText(event){
     var xText = event.clientX;
     var yText = event.clientY;
     ctx.font = "50px Arial";
     ctx.strokeText("Hello", xText, yText);
+}
+*/
+function addText(){
+    var input = document.createElement('input');
+    input.type = 'text';
+    input.style.position = 'relative';
+    input.style.height = "5%";
+    input.style.width = "20%";
+    input.onkeydown = handleEnter;
+    document.body.appendChild(input);
+    input.focus();
+}
+function handleEnter(event) {
+    var keyCode = event.keyCode;
+    if (keyCode === 13) { // 13 = enter
+        drawText(this.value, event);
+        document.body.removeChild(this);
+    }
+}
+function drawText(txt, event) {
+    ctx.fillStyle = ctx.strokeStyle;
+    let str = "";
+    str += ctx.lineWidth * 10 + "px" + " " + "sans-serif";
+    console.log(str);
+    ctx.font = str;
+    //reposition(event);
+    ctx.fillText(txt, 35, 35);
 }
 document.getElementById("#bottom").addEventListener('click',function (e){
     console.log("hi")
@@ -383,6 +443,7 @@ function stopNonFillCircle(event){
     ctx.closePath();
     document.removeEventListener("mousemove", drawNonFillCircle);
     saveLastShape(circleStartX, circleStartY, coord.x-circleStartX, 0, ctx.strokeStyle, 'c', ctx.lineWidth);
+    newRecord();
 }
 function drawNonFillCircle(){
     ctx.beginPath();
@@ -405,6 +466,7 @@ function stopCircle(event){
     ctx.fill();
     document.removeEventListener("mousemove", drawCircle);
     saveLastShape(circleStartX, circleStartY, coord.x-circleStartX, 0, ctx.strokeStyle, 'c', ctx.lineWidth);
+    newRecord();
 }
 function drawCircle(){
     ctx.beginPath();
