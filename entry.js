@@ -205,18 +205,23 @@ app.get('/usergallery', (req, res) => {
         res.redirect('/login');
         return;
     }
-    Paint.find({'createdBy': req.query.username}, 'id title content createdBy isPublic allowedUsers', function(err, result) {
+    //createdBy: req.query.username, allowedUsers: {"$in": [req.session.username]}
+    Paint.find(
+        {
+            $and: [
+                {createdBy: req.query.username},
+                { $or: [
+                    {isPublic: true},
+                    {allowedUsers: {$in: [req.session.username]}}
+                ]}
+            ]
+        }, 
+        'id title content createdBy isPublic allowedUsers', function(err, result) {
         if(result == null) {
             res.render('mygallery');
             return;
         }
-        var allowedImages = [];
-        result.forEach(element => {
-            if(element.isPublic || element.allowedUsers.includes(req.session.userId)) {
-                allowedImages.push(element);
-            }
-        });
 
-        res.render('mygallery', {images: allowedImages});
+        res.render('mygallery', {images: result});
     });
 });
