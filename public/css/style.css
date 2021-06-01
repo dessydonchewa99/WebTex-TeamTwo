@@ -189,7 +189,7 @@ img {
 #size_field[type=number]{
 }
 #size_field{
-  width: 3%;
+  width: 50px;
   font-size: 20px;
   color: #035858;
 }
@@ -206,11 +206,12 @@ input[type=text] {
 #size_up_button,#size_down_button
 {
   font-size: 20px;
+  width: 50px;
   background: gray;
   color: white;
 }
 .upload-btn {
-    margin-left: 20px;
+  margin-left: 20px;
   font-size: 20px;
 }
 .form-container {

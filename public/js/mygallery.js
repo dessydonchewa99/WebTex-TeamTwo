@@ -15,8 +15,33 @@ const span = document.getElementsByClassName("close")[0];
         modalgallery.style.display = "none";
 });
 function download(){
+    document.getElementById('download-a').download = modalImg.title;
   document.getElementById('download-a').href = modalImg.src;
+
 }
 function toEdit(){
 
 }
+
+ document.getElementById("delete_from_gallery").addEventListener('click',function (e){
+     let options = {
+         method: 'DELETE',
+         headers: {
+             'Content-Type': 'application/json'
+         }
+     };
+     const response =  fetch('/mygallery/delete-paint/' + modalImg.dataset.id, options);
+     Swal.fire({
+         title: 'Your paint was successfully deleted',
+         showClass: {
+             popup: 'animate__animated animate__fadeInDown'
+         },
+         hideClass: {
+             popup: 'animate__animated animate__fadeOutUp'
+         },
+         timer: 5000,
+         icon: "success"
+     })
+     modalgallery.style.display = "none";
+     location.reload();
+ });
