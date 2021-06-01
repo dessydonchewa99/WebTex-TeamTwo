@@ -9,14 +9,14 @@
 <div class="container">
     <div class="screen">
         <div class="screen__content">
-            <form class="login" method="post" action="/register" enctype="multipart/form-data">
+            <form class="login" method="post" name="registerform" action="/register" enctype="multipart/form-data" onsubmit="validate()">
                 <div class="login__field">
                     <i class="login__icon fas fa-user"></i>
-                    <input type="text" class="login__input" name="username" placeholder="User name / Email">
+                    <input type="text" class="login__input" name="regUsername" placeholder="User name / Email">
                 </div>
                 <div class="login__field">
                     <i class="login__icon fas fa-lock"></i>
-                    <input type="password" class="login__input" name="password" placeholder="Password">
+                    <input type="password" class="login__input" name="regPassword" placeholder="Password">
                 </div>
                 <div class="login__field">
                     <i class="login__icon fas fa-lock"></i>
@@ -53,4 +53,5 @@
 </div>
 
 </body>
+<script src="js/validate.js"></script>
 </html>

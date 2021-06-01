@@ -16,11 +16,11 @@ const span = document.getElementsByClassName("close")[0];
 });
 function download(){
     document.getElementById('download-a').download = modalImg.title;
-  document.getElementById('download-a').href = modalImg.src;
+    document.getElementById('download-a').href = modalImg.src;
 
 }
 function toEdit(){
-
+    window.location = '/?id='+modalImg.dataset.id;
 }
 
  document.getElementById("delete_from_gallery").addEventListener('click',function (e){

@@ -245,7 +245,7 @@ app.delete('/mygallery/delete-paint/:id',  (request, response) => {
     });
 });
 
-app.get('/logout', function(req, res) {
+app.post('/logout', function(req, res) {
     console.log("I am Logout")
     req.logout();
     res.json({
@@ -253,4 +253,15 @@ app.get('/logout', function(req, res) {
         msg:"Please Log In again"
     });
     res.redirect('/login')
+});
+
+app.get('/:id', (req, res) => {
+     Paint.findOne({'id':req.params.id}, function(err, result) {
+        if (err) {
+            res.send(err);
+        } else {
+            console.log(result)
+            res.json(result);
+        }
+    });
 });

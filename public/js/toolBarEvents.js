@@ -564,3 +564,24 @@ document.getElementById('logout-button').addEventListener('click',function (e){
     const response =  fetch('/logout',options);
     console.log("successfully logged out")
 })
+const queryString = window.location.search;
+console.log(queryString);
+const urlParams = new URLSearchParams(queryString);
+const id = urlParams.get('id')
+console.log(id);
+if (id != undefined)
+{
+    window.addEventListener("load",function (e){
+      const resp = fetch('/' + id).then(response => response.json())
+            .then(data => {
+
+                const imgBg = new Image();
+                imgBg.src = data.content.data;
+                ctx.drawImage(imgBg,100,100);
+                console.log(data.content);
+                
+            });
+
+        //ctx.drawImage(response, 0, 0, currentWidth, currentHeight);
+    })
+}
