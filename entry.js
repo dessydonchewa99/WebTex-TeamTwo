@@ -5,6 +5,7 @@ const User = require('./models/users');
 const multer = require('multer');
 const session = require('express-session');
 const crypto = require('crypto');
+const { exception } = require('console');
 
 const app = express();
 
@@ -29,7 +30,10 @@ app.use(express.static(__dirname + '/public'));
 app.use(session({
 	secret: 'secret',
 	resave: true,
-	saveUninitialized: true
+	saveUninitialized: true,
+    cookie: {
+        maxAge: 604800000 // ExpiresAt: 7 days
+    }
 }));
 
 app.post('/add-paint', (req, res) => {

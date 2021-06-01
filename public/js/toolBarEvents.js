@@ -301,6 +301,7 @@ function startFreeHandLine(event) {
 }
 function stopFreeHandLine() {
     document.removeEventListener("mousemove", drawFreeHandLine);
+    newRecord();
     console.log(101)
 }
 function drawFreeHandLine(event) {
@@ -318,6 +319,7 @@ function startSpray(event) {
 }
 function stopSpray() {
     document.removeEventListener("mousemove", drawSpray);
+    newRecord();
 }
 function drawSpray(event) {
     ctx.beginPath();
@@ -353,6 +355,7 @@ function stopStraightLine(event) {
     ctx.lineTo(coord.x, coord.y);
     ctx.stroke();
     document.removeEventListener("mousemove", drawStraightLine);
+    newRecord();
 }
 function drawStraightLine() {
     ctx.beginPath();
@@ -423,6 +426,7 @@ function stopNonFillRect(event){
     ctx.strokeRect(rectStartX, rectStartY, coord.x-rectStartX, coord.y-rectStartY);
     document.removeEventListener("mousemove", drawNonFillRect);
     saveLastShape(rectStartX, rectStartY, coord.x-rectStartX, coord.y-rectStartY, ctx.strokeStyle, 'r', ctx.lineWidth);
+    newRecord();
 }
 function drawNonFillRect(){
     ctx.moveTo(coord.x, coord.y);
@@ -444,6 +448,7 @@ function stopRectangle(event) {
     ctx.fillRect(rectStartX, rectStartY, coord.x-rectStartX, coord.y-rectStartY);
     document.removeEventListener("mousemove", drawRectangle);
     saveLastShape(rectStartX, rectStartY, coord.x-rectStartX, coord.y-rectStartY, ctx.strokeStyle, 'r', ctx.lineWidth);
+    newRecord();
 }
 // FILL LAST SHAPE FUNCTIONS
 var currWidth, currStyle;
