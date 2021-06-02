@@ -106,6 +106,15 @@ app.get('/register', (req, res) => {
     res.render('register', {errorMessage: null});
 });
 
+app.get('/changepassword', (req, res) => {
+    if(req.session.loggedin) {
+        res.redirect('/');
+        return;
+    }
+
+    res.render('changepassword', {errorMessage: null});
+});
+
 app.post('/register', upload.single(), (req, res) => {
     const formData = req.body;
     var user = new User({
@@ -132,6 +141,24 @@ app.post('/register', upload.single(), (req, res) => {
                     console.log(err);
                 });
         }
+    });
+});
+
+app.post('/changepassword', upload.single(), (req, res) => {
+    console.log(2222222);
+    const formData = req.body;
+    var user = new User({
+        username: req.body["username"]
+    });
+    if(req.body["password"] != req.body["confirmPassword"]) {
+        res.render('changepassword', {errorMessage: "Passwords should match!"});
+        return;
+    }
+    var newPass = crypto.createHash('sha256').update(req.body["password"]).digest('base64');
+    var hashedPassword = crypto.createHash('sha256').update(req.body["oldPassword"]).digest('base64');
+    User.updateOne({username: user.username, password: hashedPassword}, { $set: {password: newPass}}).exec(function(err, dbUser){
+        res.redirect('/');
+            return;
     });
 });
 
