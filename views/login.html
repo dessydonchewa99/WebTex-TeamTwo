@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="css/login.css" type="text/css">
+    <link rel="stylesheet" href="css/sweetalert2.min.css" type="text/css">
 </head>
 <body>
 <div class="container">
     <div class="screen">
         <div class="screen__content">
-            <form class="login" name="loginform" method="POST" enctype="multipart/form-data">
+            <form class="login" name="loginform" method="POST" enctype="multipart/form-data" id="login-form">
                 <div class="login__field">
                     <i class="login__icon fas fa-user"></i>
                     <input type="text" id="#username" name="username" class="login__input" placeholder="User name / Email">
@@ -18,14 +19,17 @@
                     <i class="login__icon fas fa-lock"></i>
                     <input type="password" name="password" class="login__input" placeholder="Password">
                 </div>
-                <button class="button login__submit" type="submit" >Log In Now
+
+                <button class="button login__submit" type="submit" onclick="validate()">Log In Now
                     <i class="button__icon fas fa-chevron-right"></i>
                 </button>
+                <span id="message"></span>
 
                 <button class="button login__submit" ><a href="/register"> Register In Now</a>
                     <i class="button__icon fas fa-chevron-right"></i>
                 </button>
             </form>
+
             <div class="social-login">
                 <div class="social-icons">
                     <a href="#" class="social-login__icon fab fa-instagram"></a>
@@ -45,4 +49,6 @@
 
 </body>
 <script src="js/login.js"></script>
+<script src="js/validate.js"></script>
+<script src="js/sweetalert2.min.js"></script>
 </html>

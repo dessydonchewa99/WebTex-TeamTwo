@@ -138,17 +138,20 @@ app.post('/register', upload.single(), (req, res) => {
 app.post('/login', upload.single(), (req, res) => {
 
     const hashedPassword = crypto.createHash('sha256').update(req.body["password"]).digest('base64');
-
     User.findOne({username: req.body["username"], password: hashedPassword}, '_id username', function(err, dbUser) {
         if (dbUser != null) {
             req.session.loggedin = true;
             req.session.username = dbUser.username;
             req.session.userId = dbUser._id;
-            
             res.redirect('/');
-            return;
+            return ;
         }
-        res.redirect('/login');
+        else
+        {
+            return (dbUser);
+        }
+
+        //res.redirect('/login');
     });
     
 });

@@ -1,6 +1,17 @@
-let username = document.forms["registerform"]["regUsername"].value;
-let password = document.forms["registerform"]["regPassword"].value;
-let confirm  = document.forms["registerform"]["confirmPassword"].value;
+function validate()
+{
+    const username = document.loginform.username.value;
+    const password = document.loginform.password.value;
 
-const validate = () => {
+    const resp = fetch('/login').then(response => response.text())
+        .then(data => {
+            if (data.content === undefined) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Wrong password or username'
+
+                })
+            }
+        });
 }
