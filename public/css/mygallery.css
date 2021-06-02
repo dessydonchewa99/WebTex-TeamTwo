@@ -88,7 +88,7 @@ html{
     text-decoration: none;
     cursor: pointer;
   }
-  #save_on_computer, #delete_from_gallery, #edit_from_gallery{
+  #save_on_computer, #delete_from_gallery, #edit_painting{
     border: none;
     color: white;
     padding: 15px 32px;

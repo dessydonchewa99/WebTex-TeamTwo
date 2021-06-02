@@ -165,17 +165,20 @@ app.post('/changepassword', upload.single(), (req, res) => {
 app.post('/login', upload.single(), (req, res) => {
 
     const hashedPassword = crypto.createHash('sha256').update(req.body["password"]).digest('base64');
-
     User.findOne({username: req.body["username"], password: hashedPassword}, '_id username', function(err, dbUser) {
         if (dbUser != null) {
             req.session.loggedin = true;
             req.session.username = dbUser.username;
             req.session.userId = dbUser._id;
-            
             res.redirect('/');
-            return;
+            return ;
         }
-        res.redirect('/login');
+        else
+        {
+            return (dbUser);
+        }
+
+        //res.redirect('/login');
     });
     
 });
@@ -272,7 +275,7 @@ app.delete('/mygallery/delete-paint/:id',  (request, response) => {
     });
 });
 
-app.get('/logout', function(req, res) {
+app.post('/logout', function(req, res) {
     console.log("I am Logout")
     req.logout();
     res.json({
@@ -280,4 +283,15 @@ app.get('/logout', function(req, res) {
         msg:"Please Log In again"
     });
     res.redirect('/login')
+});
+
+app.get('/:id', (req, res) => {
+     Paint.findOne({'id':req.params.id}, function(err, result) {
+        if (err) {
+            res.send(err);
+        } else {
+            console.log(result)
+            res.json(result);
+        }
+    });
 });
