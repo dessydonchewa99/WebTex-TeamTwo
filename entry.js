@@ -217,7 +217,6 @@ app.get('/mygallery', (req, res) => {
         }
 
         res.render('mygallery', {images: result});
-        console.log(result)
     });
 });
 
