@@ -586,7 +586,7 @@ if (id != undefined)
                 message();
                 const imgBg = new Image();
                 imgBg.src = data.content.data;
-                ctx.drawImage(imgBg,100,100);
+                ctx.drawImage(imgBg, 0, 0,canvas.width,canvas.height);
             });
 
     })
