@@ -170,12 +170,12 @@ app.post('/login', upload.single(), (req, res) => {
             req.session.loggedin = true;
             req.session.username = dbUser.username;
             req.session.userId = dbUser._id;
-            res.redirect('/');
-            return ;
+            res.sendStatus(200);
+            return;
         }
         else
         {
-            return (dbUser);
+            res.sendStatus(401);
         }
 
         //res.redirect('/login');
