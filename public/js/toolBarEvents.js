@@ -564,6 +564,15 @@ document.getElementById('logout-button').addEventListener('click',function (e){
     const response =  fetch('/logout',options);
     console.log("successfully logged out")
 })
+
+let message = async ()=>{
+    Swal.fire({
+        title: 'Loaging painting',
+        icon: "info",
+        showConfirmButton:false,
+        timer: 1500
+    })
+}
 const queryString = window.location.search;
 console.log(queryString);
 const urlParams = new URLSearchParams(queryString);
@@ -574,14 +583,11 @@ if (id != undefined)
     window.addEventListener("load",function (e){
       const resp = fetch('/' + id).then(response => response.json())
             .then(data => {
-
+                message();
                 const imgBg = new Image();
                 imgBg.src = data.content.data;
                 ctx.drawImage(imgBg,100,100);
-                console.log(data.content);
-                
             });
 
-        //ctx.drawImage(response, 0, 0, currentWidth, currentHeight);
     })
 }
