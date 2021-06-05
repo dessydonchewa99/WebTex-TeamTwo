@@ -5,9 +5,9 @@ const User = require('./models/users');
 const multer = require('multer');
 const session = require('express-session');
 const crypto = require('crypto');
-const { exception } = require('console');
 
 const app = express();
+const port = 8081;
 
 app.set('view engine', 'ejs');
 
@@ -21,7 +21,10 @@ const upload = multer();
 const dbUrl = 'mongodb+srv://admin:2BL2kSe8DJNNI52u@cluster0.f5ven.mongodb.net/cloudpaintdb?retryWrites=true&w=majority';
 
 mongoose.connect(dbUrl, {useNewUrlParser: true, useUnifiedTopology: true})
-    .then((result) => app.listen(8081))
+    .then((result) => {
+        app.listen(port);
+        console.log("Application listen on https://localhost:" + port);
+    })
     .catch((err) => console.log(err));
 
 
@@ -36,32 +39,9 @@ app.use(session({
     }
 }));
 
-app.post('/add-paint', (req, res) => {
-    const guid = `${req.body["fileName"]}-${new Date().toISOString()}`;
-    const paint = new Paint({
-        id: guid,
-        title: req.body["fileName"],
-        isPublic: req.body['isPublic'],
-        allowedUsers: req.body['allowedUsers']
-    })
+app.use(require('./controllers/paintController'));
+app.use(require('./controllers/usersController'));
 
-    paint.content = {
-        data: req.body["imageUrl"],
-        contentType: "image/png"
-    };
-
-    if(req.session.loggedin) {
-        paint.createdBy = req.session.username;
-    }
-
-    paint.save()
-        .then((result) => {
-            res.send('Ok');
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-});
 
 app.get('/show-paint/:title', (req, res) => {
     Paint.findOne({'title': req.params.title}, 'title content', function(err, image) {
@@ -80,14 +60,6 @@ app.get('/show-paint/:title', (req, res) => {
     });
 })
 
-app.get('/login', (req, res) => {
-    if(req.session.loggedin) {
-        res.redirect('/');
-        return;
-    }
-    
-    res.sendFile('./views/login.html',  {root: __dirname});
-});
 
 app.get('/', (req, res) => {
     if(!req.session.loggedin) {
@@ -95,99 +67,6 @@ app.get('/', (req, res) => {
         return;
     }
     res.render('index', {username: req.session.username});
-});
-
-app.get('/register', (req, res) => {
-    if(req.session.loggedin) {
-        res.redirect('/');
-        return;
-    }
-
-    res.render('register', {errorMessage: null});
-});
-
-app.get('/changepassword', (req, res) => {
-    if(req.session.loggedin) {
-        res.redirect('/');
-        return;
-    }
-
-    res.render('changepassword', {errorMessage: null});
-});
-
-app.post('/register', upload.single(), (req, res) => {
-    const formData = req.body;
-    var user = new User({
-        username: req.body["username"]
-    });
-
-    if(req.body["password"] != req.body["confirmPassword"]) {
-        res.render('register', {errorMessage: "Passwords should match!"});
-        return;
-    }
-    
-    User.findOne({username: user.username}, 'username', function(err, dbUser) {
-        
-        if(dbUser == null) {
-
-            user.password = crypto.createHash('sha256').update(req.body["password"]).digest('base64');
-
-            user.save()
-                .then((result) => {
-                    
-                    res.redirect('/');
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        }
-    });
-});
-
-app.post('/changepassword', upload.single(), (req, res) => {
-    console.log(2222222);
-    const formData = req.body;
-    var user = new User({
-        username: req.body["username"]
-    });
-    if(req.body["password"] != req.body["confirmPassword"]) {
-        res.render('changepassword', {errorMessage: "Passwords should match!"});
-        return;
-    }
-    var newPass = crypto.createHash('sha256').update(req.body["password"]).digest('base64');
-    var hashedPassword = crypto.createHash('sha256').update(req.body["oldPassword"]).digest('base64');
-    User.updateOne({username: user.username, password: hashedPassword}, { $set: {password: newPass}}).exec(function(err, dbUser){
-        res.redirect('/');
-            return;
-    });
-});
-
-app.post('/login', upload.single(), (req, res) => {
-
-    const hashedPassword = crypto.createHash('sha256').update(req.body["password"]).digest('base64');
-    User.findOne({username: req.body["username"], password: hashedPassword}, '_id username', function(err, dbUser) {
-        if (dbUser != null) {
-            req.session.loggedin = true;
-            req.session.username = dbUser.username;
-            req.session.userId = dbUser._id;
-            res.sendStatus(200);
-            return;
-        }
-        else
-        {
-            res.sendStatus(401);
-        }
-
-        //res.redirect('/login');
-    });
-    
-});
-
-app.get('/logout', (req, res) => {
-    req.session.loggedin = false;
-    req.session.username = null;
-    req.session.userId = null;
-    res.redirect('/');
 });
 
 app.get('/gallery', (req, res) => {
@@ -274,22 +153,13 @@ app.delete('/mygallery/delete-paint/:id',  (request, response) => {
     });
 });
 
-app.post('/logout', function(req, res) {
-    console.log("I am Logout")
-    req.logout();
-    res.json({
-        status: "logout",
-        msg:"Please Log In again"
-    });
-    res.redirect('/login')
-});
 
 app.get('/:id', (req, res) => {
      Paint.findOne({'id':req.params.id}, function(err, result) {
         if (err) {
             res.send(err);
         } else {
-            console.log(result)
+            //console.log(result)
             res.json(result);
         }
     });
