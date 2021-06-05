@@ -1,7 +1,6 @@
 const express = require('express');
 const usersService = require('../services/usersService');
 const multer = require('multer');
-const e = require('express');
 
 const router = express.Router();
 const upload = multer();

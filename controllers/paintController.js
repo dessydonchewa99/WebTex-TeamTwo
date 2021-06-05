@@ -18,4 +18,28 @@ router.post('/add-paint', async (req, res) => {
     }
 });
 
+router.get('/get-paint', async (req, res) => {
+    const paint = await paintService.getPaintById(req.query.id);
+
+    if (paint) {
+        res.json(paint);
+    } else {
+        res.sendStatus(404);
+    }
+    
+});
+
+
+router.delete('/delete-paint/:id', async (request, response) => {
+    
+    const isDeleted = await paintService.deletePaintById(request.params.id);
+
+    if (isDeleted) {
+        response.sendStatus(200);
+        return;
+    }
+
+    response.sendStatus(400);
+    
+});
 module.exports = router;

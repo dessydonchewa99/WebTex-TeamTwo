@@ -17,7 +17,6 @@ app.use(express.json({
 
 
 const upload = multer();
-
 const dbUrl = 'mongodb+srv://admin:2BL2kSe8DJNNI52u@cluster0.f5ven.mongodb.net/cloudpaintdb?retryWrites=true&w=majority';
 
 mongoose.connect(dbUrl, {useNewUrlParser: true, useUnifiedTopology: true})
@@ -39,6 +38,7 @@ app.use(session({
     }
 }));
 
+app.use(require('./controllers/homeController'));
 app.use(require('./controllers/paintController'));
 app.use(require('./controllers/usersController'));
 
@@ -58,16 +58,9 @@ app.get('/show-paint/:title', (req, res) => {
         });
         res.end(img);
     });
-})
-
-
-app.get('/', (req, res) => {
-    if(!req.session.loggedin) {
-        res.redirect('/login');
-        return;
-    }
-    res.render('index', {username: req.session.username});
 });
+
+
 
 app.get('/gallery', (req, res) => {
     if(!req.session.loggedin) {
@@ -139,28 +132,3 @@ app.get('/usergallery', (req, res) => {
     });
 });
 
-app.delete('/mygallery/delete-paint/:id',  (request, response) => {
-    console.log(request.params.id);
-    Paint.findOneAndDelete({'id': request.params.id}, (err, data) => {
-        if (err) {
-            console.log(err);
-            return response.status(500).send();
-        } else {
-            console.log(data);
-            return response.json({data});
-
-        }
-    });
-});
-
-
-app.get('/:id', (req, res) => {
-     Paint.findOne({'id':req.params.id}, function(err, result) {
-        if (err) {
-            res.send(err);
-        } else {
-            //console.log(result)
-            res.json(result);
-        }
-    });
-});

@@ -574,19 +574,18 @@ let message = async ()=>{
     })
 }
 const queryString = window.location.search;
-console.log(queryString);
 const urlParams = new URLSearchParams(queryString);
-const id = urlParams.get('id')
-console.log(id);
+const id = urlParams.get('id');
 if (id != undefined)
 {
-    window.addEventListener("load",function (e){
-      const resp = fetch('/' + id).then(response => response.json())
+    window.addEventListener("load",function (e) {
+        fetch('/get-paint?id=' + id).then(response => response.json())
             .then(data => {
                 message();
+                
                 const imgBg = new Image();
                 imgBg.src = data.content.data;
-                ctx.drawImage(imgBg, 0, 0,canvas.width,canvas.height);
+                ctx.drawImage(imgBg, 0, 0, canvas.width, canvas.height);
             });
 
     })
