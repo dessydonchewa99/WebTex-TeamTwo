@@ -1,8 +1,12 @@
-var store = new Array();
+var store = [];
 var index = -1;
+const maxLength = 5; // History Length
 
 function newRecord () {
-
+    if(store.length > maxLength) {
+        store.shift();
+        index--;
+    }
     index++;
     if (index < store.length) {
         store.length = index; 
@@ -13,11 +17,7 @@ function newRecord () {
 document.getElementById('undo_button').addEventListener('click', function(e){
     const currentWidth = Number(canvas.width);
     const currentHeight = Number(canvas.height);
-    if (index == 0) {
-        index--;
-        ctx.clearRect(0, 0, currentWidth, currentHeight);
-    }
-    else if (index > 0) {
+    if (index > 0) {
         index--;
         var image = new Image();
         image.crossOrigin = "anonymous";
