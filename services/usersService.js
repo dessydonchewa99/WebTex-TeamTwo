@@ -41,8 +41,22 @@ async function updateUserPassword(username, newPassword) {
 
     return isSuccessful;
 }
+
+async function getUsers() {
+    var users = null;
+    await User.find({}, {username: 1}, function (err, result) {
+        
+        if(err) {
+            console.log(err);
+        }
+        users = result;
+    });
+
+    return users;
+}
 module.exports = {
     checkUserCredentials,
     createUser,
-    updateUserPassword
+    updateUserPassword,
+    getUsers
 };

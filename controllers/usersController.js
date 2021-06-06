@@ -98,4 +98,12 @@ router.post('/changepassword', upload.single(), async (req, res) => {
     }
 });
 
+
+router.get("/users", async (req, res) => {
+    const users = await usersService.getUsers();
+    
+    res.send(users);
+});
+
+
 module.exports = router;

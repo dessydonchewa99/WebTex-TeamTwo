@@ -53,8 +53,42 @@ async function deletePaintById(id) {
 
     return isDeleted;
 }
+
+async function getAllowedPaintsByUser(owner, currentUser) {
+    var paints = null;
+    await Paint.find(
+        {
+            $and: [
+                {createdBy: owner},
+                { $or: [
+                    {isPublic: true},
+                    {allowedUsers: {$in: [currentUser]}}
+                ]}
+            ]
+        }, 
+        'id title content createdBy isPublic allowedUsers', function(err, result) {
+            if (err) {
+                console.log(err);
+            }
+            paints = result;
+    });
+
+    return paints;
+}
+
+async function getPaintsByUser(owner) {
+    var paints = null;
+    await Paint.find({createdBy: owner}, 'id title content createdBy', function(err, result) {
+        
+        paints = result;
+    });
+    
+    return paints;
+}
 module.exports = {
     addPaint,
     getPaintById,
-    deletePaintById
+    deletePaintById,
+    getAllowedPaintsByUser,
+    getPaintsByUser
 };
