@@ -2,7 +2,7 @@ const Paint = require('../models/paints');
 
 async function addPaint(title, isPublic, allowedUsers, content, createdBy) {
     const guid = `${title}-${new Date().toISOString()}`;
-
+    
     const paint = new Paint({
         id: guid,
         title: title,
@@ -15,14 +15,17 @@ async function addPaint(title, isPublic, allowedUsers, content, createdBy) {
         data: content,
         contentType: "image/png"
     };
+    let result = {isSuccessful: false};
+    await paint.save()
+        .then(x => {
+            result.isSuccessful = true;
+        }).catch(err => {
+            
+            result.errorMessage = Object.values(err.errors)[0].message;
+            result.isSuccessful = false;
+        });
     
-    try {
-        await paint.save();
-    } catch (error) {
-        console.log(error);
-        return false;
-    }
-    return true;
+    return result;
 }
 
 async function getPaintById(id) {

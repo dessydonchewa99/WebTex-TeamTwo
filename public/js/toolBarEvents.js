@@ -271,16 +271,28 @@ document.getElementById('save_file_button').addEventListener('click', function(e
             },
             body: JSON.stringify({imageUrl: dataUrl, fileName: fileName, isPublic: isPublic, allowedUsers: allowedUsers})
         })
-        .then(res => res.text())
-        .then(data => {
-            Swal.fire({
-                title: 'Success!',
-                text: 'You saved your painting successfully!',
-                icon: 'success',
-                showConfirmButton: false,
-                timer: 1500
-              });
-        });
+        .then(async (res) => 
+            {
+                if(res.status == 200) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'You saved your painting successfully!',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                }
+                else {
+                    const errorMessage = await res.text();
+                    Swal.fire({
+                        title: 'Error!',
+                        text: errorMessage,
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                }
+            });
 
         fileName.value = '';
         saveModal.style.display = 'none';

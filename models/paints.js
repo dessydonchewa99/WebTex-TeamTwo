@@ -3,18 +3,25 @@ const Schema = mongoose.Schema;
 
 const paintSchema = new Schema({
     id: {
-        type: String
+        type: String,
+        required: [true, 'Id is required']
     },
     title: {
-        type: String
+        type: String,
+        required: [true, 'Title is required'],
+        minLength: [3, 'Title must contain at least 3 letters']
     },
     content:
     {
-        data: String,
+        data: {
+            type: String,
+            required: [true, 'Content data is required']
+        },
         contentType: String
     },
     createdBy: { // Username
-        type: String
+        type: String,
+        required: [true, 'Paints requires creator']
     },
     isPublic: {
         type: Boolean

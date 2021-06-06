@@ -10,11 +10,11 @@ router.post('/add-paint', async (req, res) => {
 
     const result = await paintService.addPaint(fileName, isPublic, allowedUsers, imageUrl, req.session.username);
     
-    if(result) {
+    if(result.isSuccessful) {
         res.send('Ok');
     }
     else {
-        res.sendStatus(400);
+        res.status(400).send(result.errorMessage);
     }
 });
 
