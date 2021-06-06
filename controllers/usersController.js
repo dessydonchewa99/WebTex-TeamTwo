@@ -100,7 +100,8 @@ router.post('/changepassword', upload.single(), async (req, res) => {
 
 
 router.get("/users", async (req, res) => {
-    const users = await usersService.getUsers();
+    var users = await usersService.getUsers();
+    users = users.filter(x => x.username != req.session.username);
     
     res.send(users);
 });
