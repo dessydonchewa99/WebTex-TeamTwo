@@ -42,4 +42,22 @@ router.delete('/delete-paint/:id', async (request, response) => {
     response.sendStatus(400);
     
 });
+
+router.get('/show-paint/:id', async (req, res) => {
+    const result = await paintService.getPaintById(req.params.id);
+    
+    if(result == null) {
+        res.redirect('/');
+        return;
+    }
+
+    var base64Data = result.content.data.replace(/^data:image\/(png|jpeg|jpg);base64,/, '');
+    var img = Buffer.from(base64Data, 'base64');
+
+    res.writeHead(200, {
+        'Content-Type': 'image/png',
+        'Content-Length': img.length
+    });
+    res.end(img);
+});
 module.exports = router;

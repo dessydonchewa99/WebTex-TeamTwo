@@ -43,25 +43,6 @@ app.use(require('./controllers/paintController'));
 app.use(require('./controllers/usersController'));
 
 
-app.get('/show-paint/:title', (req, res) => {
-    Paint.findOne({'title': req.params.title}, 'title content', function(err, image) {
-        if(image == null) {
-            res.redirect('/');
-            return;
-        }
-        var base64Data = image.content.data.replace(/^data:image\/(png|jpeg|jpg);base64,/, '');
-        var img = Buffer.from(base64Data, 'base64');
-
-        res.writeHead(200, {
-            'Content-Type': 'image/png',
-            'Content-Length': img.length
-        });
-        res.end(img);
-    });
-});
-
-
-
 app.get('/gallery', (req, res) => {
     if(!req.session.loggedin) {
         res.redirect('/login');
