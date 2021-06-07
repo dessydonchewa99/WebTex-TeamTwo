@@ -1,20 +1,23 @@
 body, html {
   background: darkcyan;
+  margin: 0;
+  padding: 0;
+  font-family: Raleway, sans-serif;
+  text-align: center;
+  left: 0;
 
 }
-html {
-  height:100%;
-}
 
-body {
-  margin:0;
-}
-#logo{
-  position:fixed; top:0; left:0;
+#title_paint{
   color: #cccccc;
-  margin: 20px;
-font-size: 20px;
-  font-family: "Arial Narrow";
+  font-size: 50px;
+  text-align: center;
+  font-weight: bolder;
+}
+#greeting{
+  font-size: 30px;
+  text-align: center;
+  font-weight: bolder;
 }
 .bg {
   animation:slide 3s ease-in-out infinite alternate;
@@ -58,16 +61,9 @@ button {
   align-items: center;
 }
 
-
-/* canvas {
-  border: 1px solid black;
-
-  position: absolute;
-} */
-
 .resizable {
   background: white;
-  height: 60%;
+  height: 40%;
   position: absolute;
   margin: 20px;
 }
@@ -374,4 +370,12 @@ input[type='color'] {
   width: 300px;
   font-size: small;
   text-shadow: 0.66px 0.66px grey;
+}
+@media screen and (max-width: 200px){
+  body{
+    width: 75%;
+    height: auto;
+    font-size: 10px;
+
+  }
 }
