@@ -59,11 +59,13 @@ async function deletePaintById(id) {
 
 async function getAllowedPaintsByUser(currentUser) {
     var paints = null;
+    
     await Paint.find(
         {
             $or: [
                 {isPublic: true},
-                {allowedUsers: {$in: [currentUser]}}
+                {allowedUsers: {$in: [currentUser]}},
+                {createdBy: currentUser}
             ]
         }, 
         'id title content createdBy isPublic allowedUsers', function(err, result) {
@@ -72,14 +74,13 @@ async function getAllowedPaintsByUser(currentUser) {
             }
             paints = result;
     });
-
+    
     return paints;
 }
 
 async function getPaintsByUser(owner) {
     var paints = null;
     await Paint.find({createdBy: owner}, 'id title content createdBy', function(err, result) {
-        
         paints = result;
     });
     
