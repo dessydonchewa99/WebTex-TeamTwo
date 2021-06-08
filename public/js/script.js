@@ -34,6 +34,26 @@ document.getElementById("gallery_button").addEventListener('click',function (e){
        window.location = '/mygallery';
    }
 })
+document.getElementById("public_gallery_button").addEventListener('click',function (e){
+    const blank = isCanvasBlank(document.getElementById('drawing_canvas'));
+   if (!blank){
+       Swal.fire({
+           title: 'Do you want to save the changes?',
+           showDenyButton: true,
+           confirmButtonText: `Save`,
+           denyButtonText: `Don't save`,
+           timer: 5000
+       }).then((result) => {
+           if (result.isConfirmed) {
+               document.getElementById('save_file_button').click();
+           } else if (result.isDenied) {
+               window.location = '/public_gallery';
+           }
+       })
+   }else{
+       window.location = '/public_gallery';
+   }
+})
 document.getElementById("uploadButton").addEventListener('click',function (e){
     const blank = isCanvasBlank(document.getElementById('drawing_canvas'));
     if (!blank){

@@ -36,22 +36,39 @@ router.get('/mygallery', async (req, res) => {
 
 });
 
-router.get('/usergallery', async (req, res) => {
+router.get('/public_gallery', async (req, res) => {
     if(!req.session.loggedin) {
         res.redirect('/login');
         return;
     }
-    
-    const result = await paintService.getAllowedPaintsByUser(req.query.username, req.session.username);
+    const result = await paintService.getAllowedPaintsByUser(req.session.username);
 
     if(result == null) {
         res.render('mygallery');
         return;
     }
+    console.log(result);
 
     res.render('mygallery', {images: result});
 
 });
+
+// router.get('/usergallery', async (req, res) => {
+//     if(!req.session.loggedin) {
+//         res.redirect('/login');
+//         return;
+//     }
+    
+//     const result = await paintService.getAllowedPaintsByUser(req.query.username, req.session.username);
+
+//     if(result == null) {
+//         res.render('mygallery');
+//         return;
+//     }
+
+//     res.render('mygallery', {images: result});
+
+// });
 
 
 module.exports = router;

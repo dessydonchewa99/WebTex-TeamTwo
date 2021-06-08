@@ -7,7 +7,9 @@ function makeResizableDiv(div) {
   const maxWidth = window.innerWidth;
  // debugger;
   const line = document.getElementById('borderLine');
+  const footer = document.getElementById('footer');
   const maxheightLine = line.getBoundingClientRect();
+  const footerUpperLine = footer.getBoundingClientRect();
   let original_width = 0;
   let original_height = 0;
   let original_x = 0;
@@ -33,6 +35,14 @@ function makeResizableDiv(div) {
       {
         stopResize();
         return;
+      }
+      if(e.pageY > footerUpperLine.y)
+      {
+        footer.style.display = 'none';
+      }
+      if(e.pageY < footerUpperLine.y)
+      {
+        footer.style.display = 'block';
       }
       if (currentResizer.classList.contains('bottom-right')) {
         const width = original_width + (e.pageX - original_mouse_x);
