@@ -2,32 +2,28 @@
 <html>
 
 <head>
+  <title>My Paint Cloud | Drawing</title>
   <link rel="stylesheet" href="css/style.css" type="text/css">
   <link rel="stylesheet" href="css/sweetalert2.min.css" type="text/css">
   <link rel="stylesheet" href="css/virtual-select.min.css" />
+  <link rel="icon" href="images/plog.png">
   <meta charset="utf-8">  
 
 </head>
   <body onload="startDraw()" id="body">
+  <span id="title_paint">MY PAINT CLOUD</span><br>
+ <% if(username != undefined) { %>
+     <span id="greeting">Hello, <%= username %><% } %></span>
   <div class="bg"></div>
   <div class="bg bg2"></div>
   <div class="bg bg3"></div>
-<!--
-  <div id="logo">
-    <% if(username != undefined) { %>
-      <h5>Hello <%= username %></h5>
-    <% } %>
-    My Cloud <strong>PAINT</strong><br>
-    DRAW YOUR FUTURE
-  </div>
--->
+<hr>
     <div id="container">
-      
       <div id="tools_container">
-
         <button id="gallery_button" title="Gallery">
-          <a href="/mygallery"> <img src="images/gallery.png" /></a>
+            <img src="images/gallery.png" />
         </button>
+
         <button id="open_file_button" title="Open">
           <img src="images/file.png" />
         </button>
@@ -71,23 +67,7 @@
         <button id="filled_circle_button" title="Filled circle">
           <img src="images/circle2.jpg" />
         </button>
-        <button id="triangle_button" title="triangle">
-          <img src="images/triangle.png" />
-        </button>
-        <button id="select_button" title="select">
-          <img src="images/select.png" />
-        </button>
 
-
-
-
-        <!--
-          <button id="stroke_color_button" title="Color picker" >
-            <img src="images/color-picker.png" />
-          </button>
-        -->
-
-        
         <button id="fill_color_button" title="Fill">
           <img src="images/fill-color.png" />
         </button>
@@ -102,6 +82,10 @@
 
         <button id="erase_button" title="Erase">
           <img src="images/eraser.png" />
+        </button>
+
+        <button id="clearAll" title="Clear whole canvas">
+          <img src="images/clear.png" />
         </button>
 
         <div class="vertical-line"></div>
@@ -141,7 +125,13 @@
         <button id="logout-button" title="logout">
           <a href="/login"><img src="images/logout.png" /></a>
         </button>
+
       </div>
+    </div>
+  <br>
+  <button id="hide"><img src="images/up.png"> </button>
+  <button id="show"><img src="images/down.png"> </button>
+
    <hr id="borderLine"/>
       <div id="canvas_container">
 
@@ -159,7 +149,7 @@
 
     </div>
 
-  </div>
+
 
   <div id="uploadModal" class="modal">
 
@@ -193,8 +183,6 @@
     </div>
   
   </div>
-
-
 <footer>
   SOFIA UNIVERSITY - INFORMATION SYSTEMS, COURSE 3
   WEB TECHNOLOGIES <br>
@@ -205,6 +193,7 @@
     <script src="js/toolBarEvents.js"></script>
     <script src="js/virtual-select.min.js"></script>
     <script src="js/history.js"></script>
+    <script src="js/script.js"></script>
     <!-- <script src="rectangle.js"></script> -->
     <!-- <script src="toolevents.js"></script> -->
     <!-- <script src="app.js"></script> -->

@@ -1,24 +1,27 @@
 body, html {
-  background: darkcyan;
+  margin: 0;
+  padding: 0;
+  font-family: Raleway, sans-serif;
+  text-align: center;
+  left: 0;
 
 }
-html {
-  height:100%;
-}
 
-body {
-  margin:0;
+#title_paint{
+  color: #1E1C5F;
+  font-size: 50px;
+  text-align: center;
+  font-weight: bolder;
 }
-#logo{
-  position:fixed; top:0; left:0;
-  color: #cccccc;
-  margin: 20px;
-font-size: 20px;
-  font-family: "Arial Narrow";
+#greeting{
+  font-size: 30px;
+  text-align: center;
+  font-weight: bolder;
+  color: #2da6d7;
 }
 .bg {
   animation:slide 3s ease-in-out infinite alternate;
-  background: linear-gradient(to bottom left, cyan 50%, palegoldenrod 50%);
+  background: linear-gradient(to bottom left, #184c4c 50%, palegoldenrod 50%);
   bottom:0;
   left:-50%;
   opacity:.5;
@@ -51,6 +54,19 @@ button {
   margin: 1px 0.25px;
   padding: 2px;
 }
+.container{
+  letter-spacing: 2px;
+  padding-top: 10px;
+  position: fixed;
+  font-size: 20px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: darkcyan;
+  color: white;
+  text-align: center;
+  height: 10%;
+}
 
 #tools_container {
   display: flex;
@@ -58,16 +74,9 @@ button {
   align-items: center;
 }
 
-
-/* canvas {
-  border: 1px solid black;
-
-  position: absolute;
-} */
-
 .resizable {
   background: white;
-  height: 60%;
+  height: 40%;
   position: absolute;
   margin: 20px;
 }
@@ -374,4 +383,20 @@ input[type='color'] {
   width: 300px;
   font-size: small;
   text-shadow: 0.66px 0.66px grey;
+}
+@media screen and (max-width: 200px){
+  body{
+    width: 75%;
+    height: auto;
+    font-size: 10px;
+
+  }
+}
+#show,#hide {
+  background: none;
+  border: none;
+  display: inline-grid;
+}
+img{
+  background: none;
 }

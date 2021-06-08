@@ -2,36 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="css/login.css" type="text/css">
+    <title>My Paint Cloud | Login</title>
+    <link rel="stylesheet" href="css/login-registration.css" type="text/css">
     <link rel="stylesheet" href="css/sweetalert2.min.css" type="text/css">
+    <link rel="icon" href="images/plog.png">
 </head>
 <body>
+<span id="title_paint">MY PAINT CLOUD</span>
 <div class="container">
     <div class="screen">
         <div class="screen__content">
             <form class="login" name="loginform" method="POST" enctype="multipart/form-data" id="login-form">
+                <span id="login_title">LOGIN</span>
+
                 <div class="login__field">
-                    <i class="login__icon fas fa-user"></i>
                     <input type="text" id="username" name="username" class="login__input" placeholder="User name / Email">
                 </div>
+
                 <div class="login__field">
-                    <i class="login__icon fas fa-lock"></i>
                     <input id="password" type="password" name="password" class="login__input" placeholder="Password">
                 </div>
 
-                <button class="button login__submit" type="button" id="loginButton">Log In Now
-                    <i class="button__icon fas fa-chevron-right"></i>
-                </button>
-                <span id="message"></span>
+                <button class="button login__submit" type="submit" id="loginButton">Log In Now</button>
 
-                <button class="button login__submit" ><a href="/register"> Register In Now</a>
-                    <i class="button__icon fas fa-chevron-right"></i>
-                </button>
+                <button class="button login__submit" ><a href="/register"> Register In Now</a></button>
 
-                <button class="button login__submit" ><a href="/changepassword"> Change password</a>
-                    <i class="button__icon fas fa-chevron-right"></i>
-                </button>
+                <button class="button login__submit" ><a href="/changepassword"> Change password</a></button>
             </form>
 
             <div class="social-login">
