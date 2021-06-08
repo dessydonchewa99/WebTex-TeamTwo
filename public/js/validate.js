@@ -1,5 +1,4 @@
-document.getElementById('loginButton').addEventListener('click', function(e)
-{
+function submitLogin(e)  {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
@@ -21,4 +20,13 @@ document.getElementById('loginButton').addEventListener('click', function(e)
             });
         }
     });
+}
+
+document.getElementById('loginButton').addEventListener('click', submitLogin);
+
+document.getElementById('login-form').addEventListener('keypress', function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        submitLogin();
+    }
 });
