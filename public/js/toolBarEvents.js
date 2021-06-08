@@ -602,3 +602,23 @@ if (id != undefined)
 
     })
 }
+
+document.getElementById("clearAll").addEventListener('click',function (e){
+    const blank = isCanvasBlank(document.getElementById('drawing_canvas'));
+    if (!blank){
+        Swal.fire({
+            title: 'Do you want to save the changes?',
+            showDenyButton: true,
+            confirmButtonText: `Save`,
+            denyButtonText: `Don't save`,
+            timer: 5000
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+             document.getElementById('save_file_button').click();
+            } else if (result.isDenied) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        })
+    }
+})

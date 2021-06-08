@@ -1,5 +1,12 @@
 html{
-  background: none;
+  background: #87927e;
+  text-align: center;
+
+
+}
+body{
+  align-items: center;
+  overflow:hidden;
 }
 #back-to-paint{
   text-decoration: none;
@@ -11,22 +18,27 @@ html{
   color: white; font-family: 'Trocchi', serif; font-size: 50px; font-weight: normal; line-height: 48px; margin: 0;
   text-align: center;
 }
-#galery-container{
-  background: darkcyan;
-  padding: 10px;
-
+#gallery{
+  text-align: center;
 }
-
-
+#galery-container{
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  border:1px solid black;
+}
 .img-gallery {
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
     transition: all .2s ease-in-out;
+    background: white;
+     margin: 10px;
   }
 .img-gallery:hover {
   transform: scale(1.1);
-  border: 2px solid gray
+  -webkit-box-shadow: 5px 5px 16px 5px #000000;
+  box-shadow: 5px 5px 16px 5px #000000;
 }
   
   #myImg:hover {opacity: 0.7;}

@@ -49,6 +49,10 @@ function toEdit(){
             
         }
      });
-     
-     
  });
+document.getElementById("title_paint").addEventListener('click',function (e){
+    window.location = '/';
+})
+document.getElementById("title_paint").addEventListener('mouseover',function (e){
+    document.getElementById("title_paint").style.cursor = "pointer";
+})

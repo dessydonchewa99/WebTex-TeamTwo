@@ -1,5 +1,4 @@
 body, html {
-  background: darkcyan;
   margin: 0;
   padding: 0;
   font-family: Raleway, sans-serif;
@@ -9,7 +8,7 @@ body, html {
 }
 
 #title_paint{
-  color: #cccccc;
+  color: #1E1C5F;
   font-size: 50px;
   text-align: center;
   font-weight: bolder;
@@ -18,10 +17,11 @@ body, html {
   font-size: 30px;
   text-align: center;
   font-weight: bolder;
+  color: #2da6d7;
 }
 .bg {
   animation:slide 3s ease-in-out infinite alternate;
-  background: linear-gradient(to bottom left, cyan 50%, palegoldenrod 50%);
+  background: linear-gradient(to bottom left, #184c4c 50%, palegoldenrod 50%);
   bottom:0;
   left:-50%;
   opacity:.5;
@@ -53,6 +53,19 @@ button {
   background-color: white;
   margin: 1px 0.25px;
   padding: 2px;
+}
+.container{
+  letter-spacing: 2px;
+  padding-top: 10px;
+  position: fixed;
+  font-size: 20px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: darkcyan;
+  color: white;
+  text-align: center;
+  height: 10%;
 }
 
 #tools_container {
@@ -378,4 +391,12 @@ input[type='color'] {
     font-size: 10px;
 
   }
+}
+#show,#hide {
+  background: none;
+  border: none;
+  display: inline-grid;
+}
+img{
+  background: none;
 }
