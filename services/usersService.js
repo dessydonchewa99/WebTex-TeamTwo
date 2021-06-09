@@ -14,10 +14,11 @@ async function checkUserCredentials(username, password) {
     return isFound;
 }
 
-async function createUser(username, password) {
+async function createUser(username, email, password) {
 
     var user = new User({
-        username: username
+        username: username,
+        email: email
     });
     var isCreated = false;
     await User.findOne({username: user.username}, 'username', async function(err, dbUser) {

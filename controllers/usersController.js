@@ -50,7 +50,7 @@ router.post('/register', upload.single(), async (req, res) => {
         return;
     }
     
-    const result = await usersService.createUser(req.body["username"], req.body["password"]);
+    const result = await usersService.createUser(req.body["username"], req.body["email"], req.body["password"]);
     
     if (result) {
         res.redirect('/');

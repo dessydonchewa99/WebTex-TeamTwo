@@ -15,7 +15,10 @@
             <form class="login" method="post" name="registerform" action="/register" enctype="multipart/form-data" onsubmit="validate()">
                 <span id="login_title">REGISTER</span>
                 <div class="login__field">
-                    <input type="text" class="login__input" name="username" placeholder="User name / Email">
+                    <input type="text" class="login__input" name="username" placeholder="Username">
+                </div>
+                <div class="login__field">
+                    <input type="email" class="login__input" name="email" placeholder="Email">
                 </div>
                 <div class="login__field">
                     <input type="password" class="login__input" name="password" placeholder="Password">
@@ -49,5 +52,4 @@
 </div>
 
 </body>
-<script src="js/validate.js"></script>
 </html>
