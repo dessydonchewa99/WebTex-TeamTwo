@@ -68,3 +68,53 @@ document.getElementById("my_gallery").addEventListener('click',function (e){
 document.getElementById("public_gallery").addEventListener('click',function (e){
     window.location = '/public_gallery';
 })
+
+document.getElementById("load_images").addEventListener("click",function(e){
+    
+    var images_container = document.getElementById("gallery");
+    var images = images_container.getElementsByTagName("img");
+    document.getElementById("load_images").style.display = 'none';
+
+    var images_count = images.length;
+    var page = document.getElementsByClassName("pagination")[0].getElementsByClassName("active")[0].innerHTML;
+    var start_form = (page - 1) * 18;                   //18 for regular 15.6 screen.
+
+    for(let i = 0; i < 18 && start_form <= images_count; i++)
+    {
+        images[start_form].style.display = 'inline';
+        start_form++;
+    }
+
+})
+
+for (let i = 0; i < 6; i++) {
+    
+    document.getElementsByClassName("page")[i].addEventListener("click", function(e){
+        console.log("change");
+
+        var last_page = document.getElementsByClassName("pagination")[0].getElementsByClassName("active")[0];
+        last_page.classList.remove("active");
+
+        e.currentTarget.className += " active";      
+        var images_container = document.getElementById("gallery");
+        var images = images_container.getElementsByTagName("img");
+        
+        var images_count = images.length;
+
+        for (let i = 0; i < images_count; i++) {
+            
+            images[i].style.display = 'none';
+        }
+    
+        var page = document.getElementsByClassName("pagination")[0].getElementsByClassName("active")[0].innerHTML;
+        var start_form = (page - 1) * 18;                   //18 for regular 15.6 screen.
+    
+        for(let i = 0; i < 18 && start_form <= images_count; i++)
+        {
+            images[start_form].style.display = 'inline';
+            start_form++;
+        }
+    
+    })
+    
+}

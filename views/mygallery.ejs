@@ -19,15 +19,24 @@
   <button id="back">Home</button>
   <button id="my_gallery">My photos</button>
   <button id="public_gallery">All photos</button>
-
+  
   <h1 id="greeting">Gallery</h1>
+  <button id="load_images">Show images</button>
     <div id="galery-container">
         <div class="gallery" id="gallery">
             <% images.forEach(element => { %>
                 <img src="<%= element.content.data %>"
                      data-id="<%=element.id%>"
-                     style="width: auto; height:100px;" class="img-gallery">
+                     style="width: auto; height:100px; display: none;" class="img-gallery">
             <% }); %>
+            <div class="pagination">
+              <a href="#" class="page active">1</a>
+              <a href="#" class="page">2</a>
+              <a href="#" class="page">3</a>
+              <a href="#" class="page">4</a>
+              <a href="#" class="page">5</a>
+              <a href="#" class="page">6</a>
+            </div>
         </div>
     </div>
   </div>
