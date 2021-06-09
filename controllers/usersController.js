@@ -83,18 +83,22 @@ router.post('/changepassword', upload.single(), async (req, res) => {
         res.render('changepassword', {errorMessage: "Passwords should match!"});
         return;
     }
+    
     const validation = await usersService.checkUserCredentials(req.body["username"], req.body["oldPassword"]);
     if(!validation) {
         res.render('changepassword', {errorMessage: "Invalid username or old password!"});
+        return;
     }
 
     const result = await usersService.updateUserPassword(req.body["username"], req.body["password"]);
-    
+
     if (result) {
         res.redirect('/');
+        return;
     }
     else {
         res.render('changepassword', {errorMessage: null});
+        return;
     }
 });
 
