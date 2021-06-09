@@ -134,3 +134,19 @@ body{
     top:0;
     left: 0;
   }
+
+  #my_gallery,#public_gallery {
+    background-color: rgb(233, 231, 199); 
+    border: none;
+    color: black;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 23px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    top:0;
+    left: 0;
+  }
