@@ -60,3 +60,11 @@ document.getElementById("title_paint").addEventListener('mouseover',function (e)
 document.getElementById("back").addEventListener('click',function (e){
     window.location = '/';
 })
+
+document.getElementById("my_gallery").addEventListener('click',function (e){
+    window.location = '/mygallery';
+})
+
+document.getElementById("public_gallery").addEventListener('click',function (e){
+    window.location = '/public_gallery';
+})
