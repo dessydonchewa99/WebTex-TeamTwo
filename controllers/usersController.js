@@ -68,10 +68,6 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/changepassword', (req, res) => {
-    if(req.session.loggedin) {
-        res.redirect('/');
-        return;
-    }
 
     res.render('changepassword', {errorMessage: null});
 });
