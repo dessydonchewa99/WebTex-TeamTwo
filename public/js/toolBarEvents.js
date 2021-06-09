@@ -380,39 +380,37 @@ function drawSpray(event) {
     ctx.fill();
 }
 // text box
-/*
-function addText(event){
-    var xText = event.clientX;
-    var yText = event.clientY;
-    ctx.font = "50px Arial";
-    ctx.strokeText("Hello", xText, yText);
-}
-*/
+
+let tracking = {x: 30.0, y: 30.0};
 function addText(){
     var input = document.createElement('input');
     input.type = 'text';
     input.style.position = 'relative';
     input.style.height = "5%";
     input.style.width = "20%";
+    document.onmousemove = handleMouseMove;
     input.onkeydown = handleEnter;
     document.body.appendChild(input);
     input.focus();
 }
+function handleMouseMove(event){
+    tracking.x = event.pageX;
+    tracking.y = event.pageY;
+}
 function handleEnter(event) {
     var keyCode = event.keyCode;
     if (keyCode === 13) { // 13 = enter
-        drawText(this.value, event);
+        drawText(this.value);
         document.body.removeChild(this);
     }
 }
-function drawText(txt, event) {
+function drawText(txt) {
     ctx.fillStyle = ctx.strokeStyle;
     let str = "";
     str += ctx.lineWidth * 10 + "px" + " " + "sans-serif";
     console.log(str);
     ctx.font = str;
-    //reposition(event);
-    ctx.fillText(txt, 35, 35);
+    ctx.fillText(txt, tracking.x, tracking.y);
 }
 document.getElementById("#bottom").addEventListener('click',function (e){
     console.log("hi")
