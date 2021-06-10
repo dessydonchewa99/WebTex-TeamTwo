@@ -1,5 +1,6 @@
 Swal.fire({
-    title: 'BAD GETAWAY. PAGE NOT FOUND. PLEASE RETURN TO HOME PAGE',
+    title: 'PAGE NOT FOUND',
+    text: 'Please return to homepage.',
     icon: 'warning',
     width: 800,
     padding: '3em',
@@ -12,6 +13,6 @@ Swal.fire({
   `
 }).then((result) => {
     if (result.isConfirmed) {
-       // window.location = '/login';
+        window.location = '/';
     }
 })
