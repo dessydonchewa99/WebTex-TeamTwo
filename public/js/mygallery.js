@@ -74,8 +74,17 @@ document.getElementById("load_images").addEventListener("click",function(e){
     var images_container = document.getElementById("gallery");
     var images = images_container.getElementsByTagName("img");
     document.getElementById("load_images").style.display = 'none';
-
+    document.getElementsByClassName("pagination")[0].style.display = 'inline-block';
+    
+    
     var images_count = images.length;
+    var hidePages = Math.ceil(images_count / 18);
+
+    var pages = document.getElementsByClassName("page");
+    for (let i = hidePages; i < 6; i++) {
+        pages[i].style.display = 'none';
+    }
+
     var page = document.getElementsByClassName("pagination")[0].getElementsByClassName("active")[0].innerHTML;
     var start_form = (page - 1) * 18;                   //18 for regular 15.6 screen.
 
@@ -90,7 +99,6 @@ document.getElementById("load_images").addEventListener("click",function(e){
 for (let i = 0; i < 6; i++) {
     
     document.getElementsByClassName("page")[i].addEventListener("click", function(e){
-        console.log("change");
 
         var last_page = document.getElementsByClassName("pagination")[0].getElementsByClassName("active")[0];
         last_page.classList.remove("active");
