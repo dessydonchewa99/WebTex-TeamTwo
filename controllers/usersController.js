@@ -5,12 +5,15 @@ const multer = require('multer');
 const router = express.Router();
 const upload = multer();
 
+const regexUsername = /[a-zA-Z0-9._]{3,30}/ // letters and numbers
+const regexPassword = /[a-zA-Z0-9._]{5,30}/ // letters and numbers
+const regexEmail = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/ // valid email
+
 router.get('/login', async (req, res) => {
     if(req.session.loggedin) {
         res.redirect('/');
         return;
     }
-    
     res.render('login');
 });
 
@@ -20,18 +23,18 @@ router.post('/login', async (req, res) => {
     const password = req.body["password"];
 
     const result = await usersService.checkUserCredentials(username, password);
-    
+
     if (result) {
         req.session.loggedin = true;
         req.session.username = username;
-        
+
         res.sendStatus(200);
         return;
-    } 
+    }
     else {
         res.sendStatus(401);
     }
-    
+
 });
 
 router.get('/register', async (req, res) => {
@@ -44,12 +47,27 @@ router.get('/register', async (req, res) => {
 });
 
 router.post('/register', upload.single(), async (req, res) => {
-    
+
+    const validUsername = regexUsername.test(req.body["username"]);
+    const validPassword = regexPassword.test(req.body["password"]);
+    const validEmail = regexEmail.test(req.body["email"]);
+
     if(req.body["password"] != req.body["confirmPassword"]) {
         res.render('register', {errorMessage: "Passwords should match!"});
         return;
     }
-    
+    if (!validPassword){
+        res.render('register', {errorMessage: "Invalid password! Password should be at least 6 characters containing only upper/lowercase letters"});
+        return;
+    }
+    if (!validUsername){
+        res.render('register', {errorMessage: "Invalid username! Username should be at least 6 characters containing only upper/lowercase letters"});
+        return;
+    }
+    if (!validEmail){
+        res.render('register', {errorMessage: "Invalid email!"});
+        return;
+    }
     const result = await usersService.createUser(req.body["username"], req.body["email"], req.body["password"]);
     
     if (result) {
@@ -105,6 +123,4 @@ router.get("/users", async (req, res) => {
     
     res.send(users);
 });
-
-
 module.exports = router;
