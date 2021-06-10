@@ -36,3 +36,7 @@ app.use(session({
 app.use(require('./controllers/homeController'));
 app.use(require('./controllers/paintController'));
 app.use(require('./controllers/usersController'));
+
+app.use(function (req, res) {
+    res.status(404).render('page404');
+});
