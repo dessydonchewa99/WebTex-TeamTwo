@@ -4,10 +4,9 @@ Swal.fire({
     icon: 'warning',
     width: 800,
     padding: '3em',
-    background: '#fff url(/images/trees.png)',
     backdrop: `
     rgba(255, 0, 0, 0.4)
-    url("/images/nyan-cat.gif")
+    url("/images/brush.gif")
     left top
     no-repeat
   `
