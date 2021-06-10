@@ -5,6 +5,10 @@ const multer = require('multer');
 const router = express.Router();
 const upload = multer();
 
+const regexUsername = /[a-zA-Z0-9._]{3,30}/ // letters and numbers
+const regexPassword = /[a-zA-Z0-9._]{5,30}/ // letters and numbers
+const regexEmail = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/ // valid email
+
 router.get('/login', async (req, res) => {
     if(req.session.loggedin) {
         res.redirect('/');
@@ -49,7 +53,18 @@ router.post('/register', upload.single(), async (req, res) => {
         res.render('register', {errorMessage: "Passwords should match!"});
         return;
     }
-    
+    if (!validPassword){
+        res.render('register', {errorMessage: "Invalid password! Password should be at least 6 characters containing only upper/lowercase letters"});
+        return;
+    }
+    if (!validUsername){
+        res.render('register', {errorMessage: "Invalid username! Username should be at least 6 characters containing only upper/lowercase letters"});
+        return;
+    }
+    if (!validEmail){
+        res.render('register', {errorMessage: "Invalid email!"});
+        return;
+    }
     const result = await usersService.createUser(req.body["username"], req.body["email"], req.body["password"]);
     
     if (result) {
