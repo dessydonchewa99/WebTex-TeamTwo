@@ -14,7 +14,6 @@ router.get('/login', async (req, res) => {
         res.redirect('/');
         return;
     }
-    
     res.render('login');
 });
 
@@ -24,18 +23,18 @@ router.post('/login', async (req, res) => {
     const password = req.body["password"];
 
     const result = await usersService.checkUserCredentials(username, password);
-    
+
     if (result) {
         req.session.loggedin = true;
         req.session.username = username;
-        
+
         res.sendStatus(200);
         return;
-    } 
+    }
     else {
         res.sendStatus(401);
     }
-    
+
 });
 
 router.get('/register', async (req, res) => {
@@ -48,7 +47,11 @@ router.get('/register', async (req, res) => {
 });
 
 router.post('/register', upload.single(), async (req, res) => {
-    
+
+    const validUsername = regexUsername.test(req.body["username"]);
+    const validPassword = regexPassword.test(req.body["password"]);
+    const validEmail = regexEmail.test(req.body["email"]);
+
     if(req.body["password"] != req.body["confirmPassword"]) {
         res.render('register', {errorMessage: "Passwords should match!"});
         return;
