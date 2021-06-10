@@ -126,3 +126,8 @@ for (let i = 0; i < 6; i++) {
     })
     
 }
+const footer = document.getElementsByTagName('footer')[0];
+
+window.addEventListener('resize', function(event) {
+    footer.style.display = 'none';
+});
