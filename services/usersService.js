@@ -44,14 +44,7 @@ async function updateUserPassword(username, newPassword) {
 }
 
 async function getUsers() {
-    var users = null;
-    await User.find({}, {username: 1}, function (err, result) {
-        
-        if(err) {
-            console.log(err);
-        }
-        users = result;
-    });
+    var users = await User.find({}, {username: 1});
 
     return users;
 }

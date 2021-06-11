@@ -247,60 +247,57 @@ document.getElementById('save_file_button').addEventListener('click', function(e
             multiple: true
           });
     });
-
-    document.getElementById('saveButton').addEventListener('click', function(e) {
-        var fileName = document.getElementById('saveFile').value;
-        var isPublic = document.getElementById("public").checked;
-        var allowedUsers = [];
-        if(isPublic === false)
-        {
-            allowedUsers = document.querySelector('#users-select').value;
-        }
-        console.log(allowedUsers);
-
-
-        var dataUrl = canvas.toDataURL();
-        var isPublic = !document.getElementById('private').checked;
-        var usersSelect = document.getElementById('users-select');
-        var allowedUserIds = usersSelect.getElementsByTagName('input')[0].value.split(',');
-        
-        fetch('/add-paint', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({imageUrl: dataUrl, fileName: fileName, isPublic: isPublic, allowedUsers: allowedUsers})
-        })
-        .then(async (res) => 
-            {
-                if(res.status == 200) {
-                    Swal.fire({
-                        title: 'Success!',
-                        text: 'You saved your painting successfully!',
-                        icon: 'success',
-                        showConfirmButton: false,
-                        timer: 1500
-                      });
-                }
-                else {
-                    const errorMessage = await res.text();
-                    Swal.fire({
-                        title: 'Error!',
-                        text: errorMessage,
-                        icon: 'error',
-                        showConfirmButton: false,
-                        timer: 1500
-                      });
-                }
-            });
-
-        fileName.value = '';
-        saveModal.style.display = 'none';
-    });
-
     
 });
+document.getElementById('saveButton').addEventListener('click', function(e) {
+    var fileName = document.getElementById('saveFile').value;
+    var isPublic = document.getElementById("public").checked;
+    var allowedUsers = [];
+    if(isPublic === false)
+    {
+        allowedUsers = document.querySelector('#users-select').value;
+    }
+    console.log(allowedUsers);
 
+
+    var dataUrl = canvas.toDataURL();
+    var isPublic = !document.getElementById('private').checked;
+    var usersSelect = document.getElementById('users-select');
+    var allowedUserIds = usersSelect.getElementsByTagName('input')[0].value.split(',');
+    
+    fetch('/add-paint', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({imageUrl: dataUrl, fileName: fileName, isPublic: isPublic, allowedUsers: allowedUsers})
+    })
+    .then(async (res) => 
+        {
+            if(res.status == 200) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'You saved your painting successfully!',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+            }
+            else {
+                const errorMessage = await res.text();
+                Swal.fire({
+                    title: 'Error!',
+                    text: errorMessage,
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+            }
+        });
+
+    fileName.value = '';
+    saveModal.style.display = 'none';
+});
 
 function picker(){
     var col = document.getElementById('color-input').value;
