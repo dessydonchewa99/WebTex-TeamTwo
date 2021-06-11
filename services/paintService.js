@@ -50,7 +50,7 @@ async function deletePaintById(id) {
     return isDeleted;
 }
 
-async function getAllowedPaintsByUser(currentUser) {
+async function getAllowedPaintsByUser(currentUser, properties) {
     const paints = await Paint.find(
         {
             $or: [
@@ -59,7 +59,7 @@ async function getAllowedPaintsByUser(currentUser) {
                 {createdBy: currentUser}
             ]
         }, 
-        'id title content createdBy isPublic allowedUsers').exec();
+        properties).exec();
     
     return paints;
 }
