@@ -69,7 +69,7 @@ document.getElementById("public_gallery").addEventListener('click',function (e){
     window.location = '/public_gallery';
 })
 
-document.getElementById("load_images").addEventListener("click",function(e){
+document.addEventListener('DOMContentLoaded', function(e){
     
     var images_container = document.getElementById("gallery");
     var images = images_container.getElementsByTagName("img");
