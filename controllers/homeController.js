@@ -25,7 +25,7 @@ router.get('/mygallery', async (req, res) => {
         res.redirect('/login');
         return;
     }
-    const result = await paintService.getPaintsByUser(req.session.username);
+    const result = await paintService.getPaintsByUser(req.session.username, 'id');
 
     if(result == null) {
         res.render('mygallery', {images: []});

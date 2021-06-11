@@ -1,7 +1,8 @@
 const Paint = require('../models/paints');
+const Guids = require('js-guid');
 
 async function addPaint(title, isPublic, allowedUsers, content, createdBy) {
-    const guid = `${title}-${new Date().toISOString()}`;
+    const guid = Guids.Guid.newGuid();
     
     const paint = new Paint({
         id: guid,
@@ -30,15 +31,7 @@ async function addPaint(title, isPublic, allowedUsers, content, createdBy) {
 
 async function getPaintById(id) {
 
-    var paint = null;
-    await Paint.findOne({id: id}, function(err, result) {
-        if (err) {
-            console.log(err);
-        } else {
-            //console.log(result)
-            paint = result;
-        }
-    });
+    var paint = await Paint.findOne({id: id});
 
     return paint;
 }
@@ -58,9 +51,7 @@ async function deletePaintById(id) {
 }
 
 async function getAllowedPaintsByUser(currentUser) {
-    var paints = null;
-    
-    await Paint.find(
+    const paints = await Paint.find(
         {
             $or: [
                 {isPublic: true},
@@ -68,21 +59,13 @@ async function getAllowedPaintsByUser(currentUser) {
                 {createdBy: currentUser}
             ]
         }, 
-        'id title content createdBy isPublic allowedUsers', function(err, result) {
-            if (err) {
-                console.log(err);
-            }
-            paints = result;
-    });
+        'id title content createdBy isPublic allowedUsers').exec();
     
     return paints;
 }
 
-async function getPaintsByUser(owner) {
-    var paints = null;
-    await Paint.find({createdBy: owner}, 'id title content createdBy', function(err, result) {
-        paints = result;
-    });
+async function getPaintsByUser(owner, properties) {
+    const paints = await Paint.find({createdBy: owner}, properties).exec();
     
     return paints;
 }

@@ -25,8 +25,7 @@
     <div id="galery-container">
         <div class="gallery" id="gallery">
             <% images.forEach(element => { %>
-                <img src="<%= element.content.data %>"
-                     data-id="<%=element.id%>"
+                <img data-id="<%=element.id%>"
                      style="width: auto; height:100px; display: none;" class="img-gallery">
             <% }); %>
           </div>

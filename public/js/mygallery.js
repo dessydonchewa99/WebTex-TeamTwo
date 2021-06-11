@@ -90,17 +90,20 @@ document.getElementById("load_images").addEventListener("click",function(e){
 
     for(let i = 0; i < 18 && start_form <= images_count; i++)
     {
-        images[start_form].style.display = 'inline';
+        const currentImg = images[start_form];
+        fetch('/get-paint?id=' + currentImg.dataset.id)
+            .then(x => x.json())
+            .then(result => {
+                currentImg.src = result.content.data;
+            });
+        currentImg.style.display = 'inline';
         start_form++;
     }
 
-})
+});
 
-for (let i = 0; i < 6; i++) {
-    
-    document.getElementsByClassName("page")[i].addEventListener("click", function(e){
-
-        var last_page = document.getElementsByClassName("pagination")[0].getElementsByClassName("active")[0];
+function switchPage(e) {
+    var last_page = document.getElementsByClassName("pagination")[0].getElementsByClassName("active")[0];
         last_page.classList.remove("active");
 
         e.currentTarget.className += " active";      
@@ -117,13 +120,23 @@ for (let i = 0; i < 6; i++) {
         var page = document.getElementsByClassName("pagination")[0].getElementsByClassName("active")[0].innerHTML;
         var start_form = (page - 1) * 18;                   //18 for regular 15.6 screen.
     
-        for(let i = 0; i < 18 && start_form <= images_count; i++)
+        for(let i = 0; i < 18 && start_form < images_count; i++)
         {
-            images[start_form].style.display = 'inline';
+            const currentImg = images[start_form];
+            
+            fetch('/get-paint?id=' + currentImg.dataset.id)
+                .then(x => x.json())
+                .then(result => {
+                    currentImg.src = result.content.data;
+                });
+            currentImg.style.display = 'inline';
             start_form++;
         }
+}
+
+for (let i = 0; i < 6; i++) {
     
-    })
+    document.getElementsByClassName("page")[i].addEventListener("click", switchPage);
     
 }
 const footer = document.getElementsByTagName('footer')[0];
