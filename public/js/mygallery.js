@@ -73,7 +73,6 @@ document.addEventListener('DOMContentLoaded', function(e){
     
     var images_container = document.getElementById("gallery");
     var images = images_container.getElementsByTagName("img");
-    document.getElementById("load_images").style.display = 'none';
     document.getElementsByClassName("pagination")[0].style.display = 'inline-block';
     
     
