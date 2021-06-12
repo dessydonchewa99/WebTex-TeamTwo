@@ -54,18 +54,18 @@ button {
   margin: 1px 0.25px;
   padding: 2px;
 }
-.container{
-  letter-spacing: 2px;
-  padding-top: 10px;
-  position: fixed;
-  font-size: 20px;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: darkcyan;
-  color: white;
-  text-align: center;
-  height: 10%;
+
+#tools_container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+}
+
+#tools{
+  display: flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+  margin: 5px;
 }
 
 #tools_container {
