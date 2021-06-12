@@ -31,22 +31,16 @@ async function addPaint(title, isPublic, allowedUsers, content, createdBy) {
 
 async function getPaintById(id) {
 
-    var paint = await Paint.findOne({id: id});
+    var paint = await Paint.findOne({id: id}).exec();
 
     return paint;
 }
-async function deletePaintById(id) {
+async function deletePaintById(id, username) {
     var isDeleted = false;
-    await Paint.findOneAndDelete({'id': id}, (err, data) => {
-        if (err) {
-            console.log(err);
-        } else {
-            
-            isDeleted = true;
-
-        }
-    });
-
+    const result = await Paint.findOneAndDelete({'id': id, 'createdBy': username}).exec();
+    if (result) {
+        isDeleted = true;
+    }
     return isDeleted;
 }
 

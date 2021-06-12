@@ -28,11 +28,11 @@ router.get('/mygallery', async (req, res) => {
     const result = await paintService.getPaintsByUser(req.session.username, 'id');
 
     if(result == null) {
-        res.render('mygallery', {images: []});
+        res.render('mygallery', {images: [], buttonsEnabled: true});
         return;
     }
 
-    res.render('mygallery', {images: result});
+    res.render('mygallery', {images: result, buttonsEnabled: true});
 
 });
 
@@ -44,11 +44,11 @@ router.get('/public_gallery', async (req, res) => {
     const result = await paintService.getAllowedPaintsByUser(req.session.username, 'id');
 
     if(result == null) {
-        res.render('mygallery', {images: []});
+        res.render('mygallery', {images: [], buttonsEnabled: false});
         return;
     }
 
-    res.render('mygallery', {images: result});
+    res.render('mygallery', {images: result, buttonsEnabled: false});
 
 });
 

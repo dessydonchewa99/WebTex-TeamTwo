@@ -46,9 +46,11 @@
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
-    <a id="edit"> <button id="edit_painting" onclick="toEdit()"> Edit </button></a>
-    <a href="" id="download-a" download=""><button id="save_on_computer" onclick="download()">Save on my computer </button></a>
+  <% if(buttonsEnabled) { %>
+    <a id="edit"> <button id="edit_painting"> Edit </button></a>
     <button id="delete_from_gallery" >Delete from gallery </button>
+  <% } %>
+    <a href="" id="download-a" download=""><button id="save_on_computer" onclick="download()">Save on my computer </button></a>
     <span class="close">&times;</span>
     <img class="modal-content" id="img01" data-id="">
 </div>

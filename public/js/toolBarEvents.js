@@ -282,6 +282,7 @@ document.getElementById('saveButton').addEventListener('click', function(e) {
                     showConfirmButton: false,
                     timer: 1500
                   });
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
             }
             else {
                 const errorMessage = await res.text();

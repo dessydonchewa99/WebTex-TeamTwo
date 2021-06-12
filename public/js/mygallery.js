@@ -19,11 +19,11 @@ function download(){
     document.getElementById('download-a').href = modalImg.src;
 
 }
-function toEdit(){
+document.getElementById('edit_painting')?.addEventListener('click', function(e){
     window.location = '/edit-paint?id='+ modalImg.dataset.id;
-}
+});
 
- document.getElementById("delete_from_gallery").addEventListener('click',function (e){
+ document.getElementById("delete_from_gallery")?.addEventListener('click',function (e){
      let options = {
          method: 'DELETE',
          headers: {
