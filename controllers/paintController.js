@@ -3,6 +3,11 @@ const paintService = require('../services/paintService');
 const router = express.Router();
 
 router.post('/add-paint', async (req, res) => {
+    if (!req.session.loggedin) {
+        res.sendStatus(401);
+        return;
+    }
+
     const fileName = req.body['fileName'];
     const isPublic = req.body['isPublic'];
     const allowedUsers = req.body['allowedUsers'];
@@ -32,7 +37,12 @@ router.get('/get-paint', async (req, res) => {
 
 router.delete('/delete-paint/:id', async (request, response) => {
     
-    const isDeleted = await paintService.deletePaintById(request.params.id);
+    if (!request.session.loggedin) {
+        response.sendStatus(401);
+        return;
+    }
+
+    const isDeleted = await paintService.deletePaintById(request.params.id, request.session.username);
 
     if (isDeleted) {
         response.sendStatus(200);

@@ -5,12 +5,10 @@ async function checkUserCredentials(username, password) {
     
     const hashedPassword = crypto.createHash('sha256').update(password).digest('base64');
     var isFound = false;
-    await User.findOne({username: username, password: hashedPassword}, 'username', function(err, user) {
-        if(user != null) {
-            isFound = true;
-        }
-    });
-
+    const user = await User.findOne({username: username, password: hashedPassword}, 'username').exec();
+    if (user) {
+        isFound = true;
+    }
     return isFound;
 }
 
@@ -21,15 +19,13 @@ async function createUser(username, email, password) {
         email: email
     });
     var isCreated = false;
-    await User.findOne({username: user.username}, 'username', async function(err, dbUser) {
-        
-        if(dbUser == null) {
-            user.password = crypto.createHash('sha256').update(password).digest('base64');
+    const dbUser = await User.findOne({username: user.username}, 'username').exec();
+    if(dbUser == null) {
+        user.password = crypto.createHash('sha256').update(password).digest('base64');
 
-            isCreated = true;
-            await user.save();
-        }
-    });
+        isCreated = true;
+        await user.save();
+    }
     return isCreated;
 }
 
@@ -44,7 +40,7 @@ async function updateUserPassword(username, newPassword) {
 }
 
 async function getUsers() {
-    var users = await User.find({}, {username: 1});
+    var users = await User.find({}, {username: 1}).exec();
 
     return users;
 }
