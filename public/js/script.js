@@ -60,26 +60,6 @@ document.getElementById("gallery_button").addEventListener('click',function (e){
         window.location = '/mygallery';
     }
 })
-document.getElementById("uploadButton").addEventListener('click',function (e){
-    const blank = isCanvasBlank(document.getElementById('drawing_canvas'));
-    if (!blank){
-        Swal.fire({
-            title: 'Do you want to save the changes?',
-            showDenyButton: true,
-            confirmButtonText: `Save`,
-            denyButtonText: `Don't save`,
-            timer: 5000
-        }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-                document.getElementById('save_file_button').click();
-            } else if (result.isDenied) {
-                document.getElementById('uploadButton').click();
-            }
-        })
-    }
-})
-
 document.getElementById("public_gallery_button").addEventListener('click',function (e){
     const blank = isCanvasBlank(document.getElementById('drawing_canvas'));
     if (!blank){
