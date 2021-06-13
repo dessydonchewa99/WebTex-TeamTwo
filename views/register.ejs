@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>My Paint Cloud | Register</title>
     <link rel="stylesheet" href="css/login-registration.css" type="text/css">
+    <link rel="stylesheet" href="css/sweetalert2.min.css" type="text/css">
     <link rel="icon" href="images/plog.png">
 </head>
 
@@ -12,24 +13,21 @@
     <div class="container">
         <div class="screen">
             <div class="screen__content">
-                <form class="login" method="post" name="registerform" action="/register" enctype="multipart/form-data">
+                <form class="login" method="post" id="register-form" name="registerform" action="/register" enctype="multipart/form-data">
                     <span id="login_title">REGISTER</span>
                     <div class="login__field">
-                        <input type="text" class="login__input" name="username" placeholder="Username">
+                        <input type="text" id="usernameField" class="login__input" name="username" placeholder="Username">
                     </div>
                     <div class="login__field">
-                        <input type="email" class="login__input" name="email" placeholder="Email">
+                        <input type="email" id="emailField" class="login__input" name="email" placeholder="Email">
                     </div>
                     <div class="login__field">
-                        <input type="password" class="login__input" name="password" placeholder="Password">
+                        <input type="password" id="passwordField" class="login__input" name="password" placeholder="Password">
                     </div>
                     <div class="login__field">
-                        <input type="password" class="login__input" name="confirmPassword" placeholder="Confirm Password">
+                        <input type="password" id="confirmPasswordField" class="login__input" name="confirmPassword" placeholder="Confirm Password">
                     </div>
-                    <% if(errorMessage) { %>
-                        <div class="validations"><%= errorMessage %></div>
-                    <% } %>
-                    <button class="button login__submit" type="submit" ><a> Register In Now</a></button>
+                    <button id="register-button" class="button login__submit" type="button" ><a> Register In Now</a></button>
                     <button class="button login__submit" ><a href="/login"> Log In Now</a></button>
                 </form>
             </div>
@@ -41,5 +39,7 @@
             </div>
         </div>
     </div>
+    <script src="js/register.js"></script>
+    <script src="js/sweetalert2.min.js"></script>
 </body>
 </html>

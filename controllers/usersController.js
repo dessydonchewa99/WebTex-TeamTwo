@@ -47,34 +47,34 @@ router.get('/register', async (req, res) => {
     res.render('register', {errorMessage: null});
 });
 
-router.post('/register', upload.single(), async (req, res) => {
+router.post('/register', async (req, res) => {
 
     const validUsername = regexUsername.test(req.body["username"]);
     const validPassword = regexPassword.test(req.body["password"]);
     const validEmail = regexEmail.test(req.body["email"]);
 
     if(req.body["password"] != req.body["confirmPassword"]) {
-        res.render('register', {errorMessage: "Passwords should match!"});
+        res.status(401).send("Passwords should match!");
         return;
     }
     if (!validPassword){
-        res.render('register', {errorMessage: "Invalid password! Password should be at least 6 characters containing only upper/lowercase letters"});
+        res.status(401).send("Invalid password! Password should be at least 6 characters containing only upper/lowercase letters");
         return;
     }
     if (!validUsername){
-        res.render('register', {errorMessage: "Invalid username! Username should be at least 6 characters containing only upper/lowercase letters"});
+        res.status(401).send("Invalid username! Username should be at least 6 characters containing only upper/lowercase letters");
         return;
     }
     if (!validEmail){
-        res.render('register', {errorMessage: "Invalid email!"});
+        res.status(401).send("Invalid email!");
         return;
     }
     const result = await usersService.createUser(req.body["username"], req.body["email"], req.body["password"]);
     
     if (result) {
-        res.redirect('/');
+        res.sendStatus(200);
     } else {
-        res.render('register', {errorMessage: "Username already exist."});
+        res.status(401).send("Username already exist.");
     }
     
 });
