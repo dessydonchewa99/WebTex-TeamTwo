@@ -71,11 +71,11 @@ document.getElementById("public_gallery").addEventListener('click',function (e){
     window.location = '/public_gallery';
 })
 
+//loading all images and hiding the ones that are not on active page.
 document.addEventListener('DOMContentLoaded', function(e){
     
     var images_container = document.getElementById("gallery");
     var images = images_container.getElementsByTagName("img");
-    document.getElementsByClassName("pagination")[0].style.display = 'inline-block';
     
     
     var images_count = images.length;
@@ -103,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function(e){
 
 });
 
+//loading images when switching active page
 function switchPage(e) {
     var last_page = document.getElementsByClassName("pagination")[0].getElementsByClassName("active")[0];
         last_page.classList.remove("active");
@@ -121,7 +122,7 @@ function switchPage(e) {
         var page = document.getElementsByClassName("pagination")[0].getElementsByClassName("active")[0].innerHTML;
         var start_form = (page - 1) * 18;                   //18 for regular 15.6 screen.
     
-        for(let i = 0; i < 18 && start_form < images_count; i++)
+        for(let i = 0; i < 18 && start_form <= images_count; i++)
         {
             const currentImg = images[start_form];
             
@@ -140,6 +141,7 @@ for (let i = 0; i < 6; i++) {
     document.getElementsByClassName("page")[i].addEventListener("click", switchPage);
     
 }
+//when resizing - hiding footer because the pictures go behind it
 const footer = document.getElementsByTagName('footer')[0];
 
 window.addEventListener('resize', function(event) {

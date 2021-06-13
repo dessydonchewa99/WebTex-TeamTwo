@@ -5,7 +5,8 @@ function makeResizableDiv(div) {
   const minimum_size = 200;
   const maxHeight = window.innerHeight;
   const maxWidth = window.innerWidth;
- // debugger;
+
+  //top and right borders for resizing
   const line = document.getElementById('borderLine');
   const footer = document.getElementById('footer');
   const maxheightLine = line.getBoundingClientRect();
@@ -36,14 +37,15 @@ function makeResizableDiv(div) {
         stopResize();
         return;
       }
-      if(e.pageY > footerUpperLine.y)
+      if(e.pageY > footerUpperLine.y && (currentResizer.classList.contains('bottom-right') || currentResizer.classList.contains('bottom-left')))
       {
         footer.style.display = 'none';
       }
-      if(e.pageY < footerUpperLine.y)
+      if(e.pageY < footerUpperLine.y && (currentResizer.classList.contains('bottom-right') || currentResizer.classList.contains('bottom-left')))
       {
         footer.style.display = 'block';
       }
+      //if we resize more than maxHeight or maxWidth - we set it to maxHeight/maxWidth. And if we try to resize less than minimum - we don't resize
       if (currentResizer.classList.contains('bottom-right')) {
         const width = original_width + (e.pageX - original_mouse_x);
         const height = original_height + (e.pageY - original_mouse_y)
@@ -100,26 +102,6 @@ function makeResizableDiv(div) {
             element.style.width = maxWidth + 'px'
         }
       }
-      else {
-        const width = original_width - (e.pageX - original_mouse_x)
-        const height = original_height - (e.pageY - original_mouse_y)
-        if (width > minimum_size) {
-          element.style.width = width + 'px'
-          element.style.left = original_x + (e.pageX - original_mouse_x) + 'px'
-        }
-        if (height > minimum_size) {
-          element.style.height = height + 'px'
-          element.style.top = original_y - 20 + (e.pageY - original_mouse_y) + 'px'
-        }
-        if(height > maxHeight)
-        {
-            element.style.height = maxHeight + 'px'
-        }
-        if(width > maxWidth)
-        {
-            element.style.width = maxWidth + 'px'
-        }
-      }
     }
     
     function stopResize() {
@@ -142,3 +124,10 @@ function handle_change(radio) {
     multi_select.style.display = "none";
   }
 }
+
+//when resizing - hiding footer because the canvas gets behind the footer
+const footer = document.getElementsByTagName('footer')[0];
+
+window.addEventListener('resize', function(event) {
+    footer.style.display = 'none';
+});
