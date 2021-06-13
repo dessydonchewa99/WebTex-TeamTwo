@@ -122,7 +122,7 @@ function switchPage(e) {
         var page = document.getElementsByClassName("pagination")[0].getElementsByClassName("active")[0].innerHTML;
         var start_form = (page - 1) * 18;                   //18 for regular 15.6 screen.
     
-        for(let i = 0; i < 18 && start_form <= images_count; i++)
+        for(let i = 0; i < 18 && start_form < images_count; i++)
         {
             const currentImg = images[start_form];
             
