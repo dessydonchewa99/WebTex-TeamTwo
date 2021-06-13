@@ -73,7 +73,7 @@ router.post('/register', upload.single(), async (req, res) => {
     if (result) {
         res.redirect('/');
     } else {
-        res.render('register', {errorMessage: null});
+        res.render('register', {errorMessage: "Username already exist."});
     }
     
 });

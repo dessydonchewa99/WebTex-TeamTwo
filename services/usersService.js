@@ -2,7 +2,9 @@ const User = require('../models/users');
 const crypto = require('crypto');
 
 async function checkUserCredentials(username, password) {
-    
+    if (!username || !password) {
+        return false;
+    }
     const hashedPassword = crypto.createHash('sha256').update(password).digest('base64');
     var isFound = false;
     const user = await User.findOne({username: username, password: hashedPassword}, 'username').exec();
