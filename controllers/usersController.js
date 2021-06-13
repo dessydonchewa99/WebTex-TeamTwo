@@ -15,6 +15,7 @@ router.get('/login', async (req, res) => {
         return;
     }
     res.render('login');
+    return;
 });
 
 router.post('/login', async (req, res) => {
@@ -93,8 +94,15 @@ router.get('/changepassword', (req, res) => {
 
 router.post('/changepassword', upload.single(), async (req, res) => {
 
+    const validPassword = regexPassword.test(req.body["password"]);
+
     if(req.body["password"] != req.body["confirmPassword"]) {
         res.render('changepassword', {errorMessage: "Passwords should match!"});
+        return;
+    }
+
+    if (!validPassword){
+        res.render('changepassword', {errorMessage: "Invalid password! Password should be at least 6 characters containing only upper/lowercase letters"});
         return;
     }
     
