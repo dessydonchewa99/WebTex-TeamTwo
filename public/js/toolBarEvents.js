@@ -363,7 +363,7 @@ function handleEnter(event) {
 function drawText(txt) {
     ctx.fillStyle = ctx.strokeStyle;
     let str = "";
-    str += ctx.lineWidth * 10 + "px" + " " + "sans-serif";
+    str += ctx.lineWidth * 20 + "px" + " " + "sans-serif";
     ctx.font = str;
     ctx.fillText(txt, tracking.x, tracking.y);
 }
