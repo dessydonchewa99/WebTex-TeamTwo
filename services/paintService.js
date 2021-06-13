@@ -30,9 +30,7 @@ async function addPaint(title, isPublic, allowedUsers, content, createdBy) {
 }
 
 async function getPaintById(id) {
-
     var paint = await Paint.findOne({id: id}).exec();
-
     return paint;
 }
 async function deletePaintById(id, username) {

@@ -10,198 +10,179 @@
   <meta charset="utf-8">  
 
 </head>
-  <body onload="startDraw()" id="body">
-  <span id="title_paint">MY PAINT CLOUD</span><br>
- <% if(username != undefined) { %>
-     <span id="greeting">Hello, <%= username %><% } %></span>
-  <div class="bg"></div>
-  <div class="bg bg2"></div>
-  <div class="bg bg3"></div>
-<hr>
-    <div id="container">
-      <div id="tools_container">
-        <div id="tools">
+<body onload="startDraw()" id="body">
+    <span id="title_paint">MY PAINT CLOUD</span><br>
+   <% if(username != undefined) { %>
+       <span id="greeting">Hello, <%= username %><% } %></span>
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+    <hr>
+      <div id="container">
+        <div id="tools_container">
+          <div id="tools">
+          <button id="public_gallery_button" title="Gallery">
+            <img src="images/gallery.png" />
+          </button>
+          <button id="gallery_button" title="My Gallery">
+              <img src="images/my_gallery.png" />
+          </button>
 
+          <button id="open_file_button" title="Open">
+            <img src="images/file.png" />
+          </button>
 
-        <button id="public_gallery_button" title="Gallery">
-          <img src="images/gallery.png" />
-        </button>
-        <button id="gallery_button" title="My Gallery">
-            <img src="images/my_gallery.png" />
-        </button>
+          <button id="save_file_button" title="Save">
+            <img src="images/save.png" />
+          </button>
 
-        <button id="open_file_button" title="Open">
-          <img src="images/file.png" />
-        </button>
+          <button id="undo_button" title="Undo">
+            <img src="images/undo.png" />
+          </button>
 
-        <button id="save_file_button" title="Save">
-          <img src="images/save.png" />
-        </button>
+          <button id="redo_button" title="Redo">
+            <img src="images/redo.png" />
+          </button>
 
-        <button id="undo_button" title="Undo">
-          <img src="images/undo.png" />
-        </button>
+          <button id="freehand_draw_button" title="Pencil">
+            <img src="images/pen.png" />
+          </button>
 
-        <button id="redo_button" title="Redo">
-          <img src="images/redo.png" />
-        </button>
+          <button id="line_button" title="Line">
+            <img src="images/line.png" />
+          </button>
 
-        <button id="freehand_draw_button" title="Pencil">
-          <img src="images/pen.png" />
-        </button>
+          <button id="curve_line_button" title="Curve">
+            <img src="images/curve.png" />
+          </button>
 
-        <button id="line_button" title="Line">
-          <img src="images/line.png" />
-        </button>
+          <button id="rectangle_button" title="Rectangle">
+            <img src="images/rectangle.png" />
+          </button>
 
-        <button id="curve_line_button" title="Curve">
-          <img src="images/curve.png" />
-        </button>
+          <button id="filled_rectangle_button" title="Filled rectangle">
+            <img src="images/rectangle2.jpeg" />
+          </button>
 
-        <button id="rectangle_button" title="Rectangle">
-          <img src="images/rectangle.png" />
-        </button>
-        
-        <button id="filled_rectangle_button" title="Filled rectangle">
-          <img src="images/rectangle2.jpeg" />
-        </button>
-        
-        <button id="circle_button" title="Circle">
-          <img src="images/circle.png" />
-        </button>
-        
-        <button id="filled_circle_button" title="Filled circle">
-          <img src="images/circle2.jpg" />
-        </button>
+          <button id="circle_button" title="Circle">
+            <img src="images/circle.png" />
+          </button>
 
-        <button id="fill_color_button" title="Fill">
-          <img src="images/fill-color.png" />
-        </button>
+          <button id="filled_circle_button" title="Filled circle">
+            <img src="images/circle2.jpg" />
+          </button>
 
-        <button id="airbrush_button" title="Airbrush">
-          <img src="images/airbrush.png" />
-        </button>
-        
-        <button id="text_button" title="Text">
-          <img src="images/text.png" />
-        </button>
+          <button id="fill_color_button" title="Fill">
+            <img src="images/fill-color.png" />
+          </button>
 
-        <button id="erase_button" title="Erase">
-          <img src="images/eraser.png" />
-        </button>
+          <button id="airbrush_button" title="Airbrush">
+            <img src="images/airbrush.png" />
+          </button>
 
-        <button id="clearAll" title="Clear whole canvas">
-          <img src="images/clear.png" />
-        </button>
-      </div>
+          <button id="text_button" title="Text">
+            <img src="images/text.png" />
+          </button>
 
-        <div class="vertical-line"></div>
+          <button id="erase_button" title="Erase">
+            <img src="images/eraser.png" />
+          </button>
 
-        <input id="size_field" value="1" maxlength="3" size="8" />
-
-        <button id="size_up_button" title="Size up">+</button>
-        <button id="size_down_button" title="Size down">-</button> 
-
-        <div class="vertical-line"></div>
-        
-        <table>
-          <tr>
-            <td><button id = "black" title="Black"></button></td>
-            <td><button id = "white" title="White"></button></td>
-            <td><button id = "blue" title="Blue"></button></td>
-            <td><button id = "green" title="Green"></button></td>
-            <td><button id = "aqua" title="Aqua"></button></td>
-            <td><button id = "empty-color" title="Free color plot"></button></td>
-          </tr>
-
-          <tr>
-            <td><button id = "red" title="Red"></button></td>
-            <td><button id = "yellow" title="Yellow"></button></td>
-            <td><button id = "purple" title="Purple"></button></td>
-            <td><button id = "orange" title="Orange"></button></td>
-            <td><button id = "pink" title="Pink"></button></td>
-          </tr>
-        </table>
-        <div class="color-wrapper">
-          <input id="color-input" type="color"></input>
+          <button id="clearAll" title="Clear whole canvas">
+            <img src="images/clear.png" />
+          </button>
         </div>
-        <div class="help">
-          <div class="question">?</div>
-          <div class="popup"><p>1. Select the color picker <br>2. Customize your color <br> 3. Click on the last color holder to save your color</p></div>
-        </div>
-        <button id="logout-button" title="logout">
-          <a href="/login"><img src="images/logout.png" /></a>
-        </button>
 
-      </div>
-    </div>
-  <br>
-  <button id="hide"><img src="images/up.png"> </button>
-  <button id="show"><img src="images/down.png"> </button>
-
-   <hr id="borderLine"/>
-      <div class="resizable">
-        <div class="resizers">
-          <div class='resizer top-right'></div>
-          <div class='resizer bottom-left'></div>
-          <div class='resizer bottom-right' id ='#bottom'></div>
-          <canvas id="drawing_canvas">
-          </canvas>
+          <div class="vertical-line"></div>
+          <input id="size_field" value="1" maxlength="3" size="8" />
+          <button id="size_up_button" title="Size up">+</button>
+          <button id="size_down_button" title="Size down">-</button>
+          <div class="vertical-line"></div>
+          <table>
+            <tr>
+              <td><button id = "black" title="Black"></button></td>
+              <td><button id = "white" title="White"></button></td>
+              <td><button id = "blue" title="Blue"></button></td>
+              <td><button id = "green" title="Green"></button></td>
+              <td><button id = "aqua" title="Aqua"></button></td>
+              <td><button id = "empty-color" title="Free color plot"></button></td>
+            </tr>
+            <tr>
+              <td><button id = "red" title="Red"></button></td>
+              <td><button id = "yellow" title="Yellow"></button></td>
+              <td><button id = "purple" title="Purple"></button></td>
+              <td><button id = "orange" title="Orange"></button></td>
+              <td><button id = "pink" title="Pink"></button></td>
+            </tr>
+          </table>
+          <div class="color-wrapper">
+            <input id="color-input" type="color"></input>
+          </div>
+          <div class="help">
+            <div class="question">?</div>
+            <div class="popup"><p>1. Select the color picker <br>2. Customize your color <br> 3. Click on the last color holder to save your color</p></div>
+          </div>
+          <button id="logout-button" title="logout">
+            <a href="/login"><img src="images/logout.png" /></a>
+          </button>
 
         </div>
       </div>
-      <footer id="footer">
-        SOFIA UNIVERSITY - INFORMATION SYSTEMS, COURSE 3
-        WEB TECHNOLOGIES <br>
-        Project by <br> Desislava - If - Petya - Boyan
-      </footer>
+    <br>
+    <button id="hide"><img src="images/up.png"> </button>
+    <button id="show"><img src="images/down.png"> </button>
 
+     <hr id="borderLine"/>
+        <div class="resizable">
+          <div class="resizers">
+            <div class='resizer top-right'></div>
+            <div class='resizer bottom-left'></div>
+            <div class='resizer bottom-right' id ='#bottom'></div>
+            <canvas id="drawing_canvas"></canvas>
+          </div>
+        </div>
+        <footer id="footer">
+          SOFIA UNIVERSITY - INFORMATION SYSTEMS, COURSE 3
+          WEB TECHNOLOGIES <br>
+          Project by <br> Desislava - If - Petya - Boyan
+        </footer>
+    <div id="uploadModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Upload Image</h3>
+        <div class="form-container">
+          <input type="text" id="uploadFile" placeholder="Enter image url..." />
+          <button class="upload-btn" id="uploadButton"> Upload </button>
+        </div>
+      </div>
 
-
-
-
-  <div id="uploadModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h3>Upload Image</h3>
-      <div class="form-container">
-        <input type="text" id="uploadFile" placeholder="Enter image url..." />
-        <button class="upload-btn" id="uploadButton"> Upload </button>
+    </div>
+    <div id="saveModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Save Image</h3>
+        <div class="form-container">
+          <input type="text" id="saveFile" placeholder="Enter Image Title.." />
+          <input type="radio" id="private" name="state" value="private" onchange="handle_change(this)" checked>
+          <label for="private">Private</label><br/>
+          <input type="radio" id="public" name="state" value="public" onchange="handle_change(this)">
+          <label for="public">Public</label><br/>
+          <div id="users-select" name="user-select"></div>
+          <button class="upload-btn" id="saveButton"> Save </button>
+        </div>
       </div>
     </div>
-  
-  </div>
 
-  <div id="saveModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h3>Save Image</h3>
-      <div class="form-container">
-        <input type="text" id="saveFile" placeholder="Enter Image Title.." />
-        <input type="radio" id="private" name="state" value="private" onchange="handle_change(this)" checked>
-        <label for="private">Private</label><br/>
-        <input type="radio" id="public" name="state" value="public" onchange="handle_change(this)">
-        <label for="public">Public</label><br/>
-        <div id="users-select" name="user-select"></div>
-        <button class="upload-btn" id="saveButton"> Save </button>
-      </div>
-    </div>
-  
-  </div>
-
-    <script src="js/events.js"></script>
-    <script src="js/sweetalert2.min.js"></script>
-    <script src="js/toolBarEvents.js"></script>
-    <script src="js/virtual-select.min.js"></script>
-    <script src="js/history.js"></script>
-    <script src="js/script.js"></script>
-    <!-- <script src="rectangle.js"></script> -->
-    <!-- <script src="toolevents.js"></script> -->
-    <!-- <script src="app.js"></script> -->
- </body> 
-  
+      <script src="js/events.js"></script>
+      <script src="js/sweetalert2.min.js"></script>
+      <script src="js/toolBarEvents.js"></script>
+      <script src="js/virtual-select.min.js"></script>
+      <script src="js/history.js"></script>
+      <script src="js/script.js"></script>
+      <!-- <script src="rectangle.js"></script> -->
+      <!-- <script src="toolevents.js"></script> -->
+      <!-- <script src="app.js"></script> -->
+ </body>
 </html>

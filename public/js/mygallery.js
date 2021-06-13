@@ -2,7 +2,7 @@ const modalgallery = document.getElementById("myModal");
 const modalImg = document.getElementById("img01");
 
 document.getElementById('gallery').addEventListener('click', function(e) {
-    if(e.target.tagName == 'IMG') {
+    if(e.target.tagName === 'IMG') {
         modalImg.setAttribute('data-id', e.target.dataset.id)
         modalgallery.style.display = "block";
         modalImg.src = e.target.src;
@@ -19,6 +19,8 @@ function download(){
     document.getElementById('download-a').href = modalImg.src;
 
 }
+document.getElementById('save_on_computer').addEventListener('click',download);
+
 document.getElementById('edit_painting')?.addEventListener('click', function(e){
     window.location = '/edit-paint?id='+ modalImg.dataset.id;
 });
@@ -31,7 +33,7 @@ document.getElementById('edit_painting')?.addEventListener('click', function(e){
          }
      };
      fetch('/delete-paint/' + modalImg.dataset.id, options).then(response => {
-        if (response.status == 200) {
+        if (response.status === 200) {
             Swal.fire({
                 title: 'Your paint was successfully deleted',
                 showClass: {

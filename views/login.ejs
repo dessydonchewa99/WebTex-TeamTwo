@@ -8,47 +8,33 @@
     <link rel="icon" href="images/plog.png">
 </head>
 <body>
-<span id="title_paint">MY PAINT CLOUD</span>
-<div class="container">
-    <div class="screen">
-        <div class="screen__content">
-            <form class="login" name="loginform" method="POST" enctype="multipart/form-data" id="login-form">
-                <span id="login_title">LOGIN</span>
-
-                <div class="login__field">
-                    <input type="text" id="username" name="username" class="login__input" placeholder="User name / Email">
-                </div>
-
-                <div class="login__field">
-                    <input id="password" type="password" name="password" class="login__input" placeholder="Password">
-                </div>
-
-                <button class="button login__submit" type="button" id="loginButton">Log In Now</button>
-
-                <button class="button login__submit" ><a href="/register"> Register In Now</a></button>
-
-                <button class="button login__submit" ><a href="/changepassword"> Change password</a></button>
-            </form>
-
-            <div class="social-login">
-                <div class="social-icons">
-                    <a href="#" class="social-login__icon fab fa-instagram"></a>
-                    <a href="#" class="social-login__icon fab fa-facebook"></a>
-                    <a href="#" class="social-login__icon fab fa-twitter"></a>
-                </div>
+    <span id="title_paint">MY PAINT CLOUD</span>
+    <div class="container">
+        <div class="screen">
+            <div class="screen__content">
+                <form class="login" name="loginform" method="POST" enctype="multipart/form-data" id="login-form">
+                    <span id="login_title">LOGIN</span>
+                    <div class="login__field">
+                        <input type="text" id="username" name="username" class="login__input" placeholder="User name">
+                    </div>
+                    <div class="login__field">
+                        <input id="password" type="password" name="password" class="login__input" placeholder="Password">
+                    </div>
+                    <button class="button login__submit" type="button" id="loginButton">Log In Now</button>
+                    <button class="button login__submit" ><a href="/register"> Register In Now</a></button>
+                    <button class="button login__submit" ><a href="/changepassword"> Change password</a></button>
+                </form>
+            </div>
+            <div class="screen__background">
+                <span class="screen__background__shape screen__background__shape4"></span>
+                <span class="screen__background__shape screen__background__shape3"></span>
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span>
             </div>
         </div>
-        <div class="screen__background">
-            <span class="screen__background__shape screen__background__shape4"></span>
-            <span class="screen__background__shape screen__background__shape3"></span>
-            <span class="screen__background__shape screen__background__shape2"></span>
-            <span class="screen__background__shape screen__background__shape1"></span>
-        </div>
     </div>
-</div>
-
 </body>
-<script src="js/login.js"></script>
-<script src="js/validate.js"></script>
-<script src="js/sweetalert2.min.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/validate.js"></script>
+    <script src="js/sweetalert2.min.js"></script>
 </html>

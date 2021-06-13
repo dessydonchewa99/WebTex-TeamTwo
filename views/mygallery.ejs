@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>My Paint Cloud | Gallery</title>
-  <link rel="stylesheet" href="css/style.css" type="text/css">
-  <link rel="stylesheet" href="css/mygallery.css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/mygallery.css">
     <link rel="stylesheet" href="css/sweetalert2.min.css" type="text/css">
     <link rel="icon" href="images/plog.png">
-  <meta charset="utf-8">  
-
+    <meta charset="utf-8">
 </head>
-  <body>
-  <span id="title_paint">MY PAINT CLOUD</span><br>
-  <div class="bg"></div>
-  <div class="bg bg2"></div>
-  <div class="bg bg3"></div>
+<body>
+      <span id="title_paint">MY PAINT CLOUD</span><br>
+      <div class="bg"></div>
+      <div class="bg bg2"></div>
+      <div class="bg bg3"></div>
 
-  <button id="back">Home</button>
-  <button id="my_gallery">My photos</button>
-  <button id="public_gallery">All photos</button>
-  
-  <h1 id="greeting">Gallery</h1>
-    <div id="galery-container">
-        <div class="gallery" id="gallery">
-            <% images.forEach(element => { %>
-                <img data-id="<%=element.id%>"
-                     style="width: auto; height:100px; display: none;" class="img-gallery">
-            <% }); %>
-          </div>
+      <button id="back">Home</button>
+      <button id="my_gallery">My photos</button>
+      <button id="public_gallery">All photos</button>
+
+      <h1 id="greeting">Gallery</h1>
+        <div id="galery-container">
+            <div class="gallery" id="gallery">
+                <% images.forEach(element => { %>
+                    <img data-id="<%=element.id%>"
+                         style="width: auto; height:100px; display: none;" class="img-gallery">
+                <% }); %>
+            </div>
           <div class="pagination" style="display: none;">
             <a href="#" class="page active">1</a>
             <a href="#" class="page">2</a>
@@ -36,25 +34,24 @@
             <a href="#" class="page">5</a>
             <a href="#" class="page">6</a>
           </div>
-    </div>
-  </div>
-<footer>
-  SOFIA UNIVERSITY - INFORMATION SYSTEMS, COURSE 3
-  WEB TECHNOLOGIES <br>
-  Project by <br> Desislava - If - Petya - Boyan
-</footer>
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-  <% if(buttonsEnabled) { %>
-    <a id="edit"> <button id="edit_painting"> Edit </button></a>
-    <button id="delete_from_gallery" >Delete from gallery </button>
-  <% } %>
-    <a href="" id="download-a" download=""><button id="save_on_computer" onclick="download()">Save on my computer </button></a>
-    <span class="close">&times;</span>
-    <img class="modal-content" id="img01" data-id="">
-</div>
-  <script src="js/sweetalert2.min.js"></script>
-  <script  src="js/mygallery.js"></script>
+        </div>
+      </div>
+    <footer>
+      SOFIA UNIVERSITY - INFORMATION SYSTEMS, COURSE 3
+      WEB TECHNOLOGIES <br>
+      Project by <br> Desislava - If - Petya - Boyan
+    </footer>
+    <!-- The Modal -->
+        <div id="myModal" class="modal">
+          <% if(buttonsEnabled) { %>
+            <a id="edit"> <button id="edit_painting"> Edit </button></a>
+            <button id="delete_from_gallery" >Delete from gallery </button>
+          <% } %>
+            <a href="" id="download-a" download=""><button id="save_on_computer" >Save on my computer </button></a>
+            <span class="close">&times;</span>
+            <img class="modal-content" id="img01" data-id="">
+        </div>
+      <script src="js/sweetalert2.min.js"></script>
+      <script  src="js/mygallery.js"></script>
  </body>
 </html>
