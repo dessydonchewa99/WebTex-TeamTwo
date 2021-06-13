@@ -23,7 +23,6 @@ function submitLogin(e)  {
 }
 
 document.getElementById('loginButton').addEventListener('click', submitLogin);
-
 document.getElementById('login-form').addEventListener('keypress', function(event) {
     if (event.key === "Enter") {
         event.preventDefault();

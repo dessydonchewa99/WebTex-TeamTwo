@@ -12,36 +12,24 @@ function startDraw()
 document.getElementById('freehand_draw_button').addEventListener("click",function (r){
     removeListeners();
     canvas.addEventListener("mousedown", startFreeHandLine)
-    {
-        console.log("FREE HAND BUTTON");
-    }
     canvas.addEventListener("mouseup", stopFreeHandLine);
 })
 // curve button
 document.getElementById('curve_line_button').addEventListener("click",function (r){
     removeListeners();
     canvas.addEventListener("mousedown", startCurveLine)
-    {
-        console.log("CURVE LINE BUTTON");
-    }
     canvas.addEventListener("mouseup", stopCurveLine);
 })
 // line button
-document.getElementById('line_button').addEventListener("click",function (r){
+document.getElementById('line_button').addEventListener("click",function (e){
     removeListeners();
     canvas.addEventListener("mousedown", startStraightLine)
-    {
-        console.log("LINE BUTTON")
-    }
     canvas.addEventListener("mouseup", stopStraightLine);
 })
 // non-filled rectangle
 document.getElementById('rectangle_button').addEventListener("click",function (r){
     removeListeners();
     canvas.addEventListener("mousedown", startNonFillRect)
-    {
-        console.log("RECTANGLE BUTTON")
-    }
     canvas.addEventListener("mouseup", stopNonFillRect);
 })
 
@@ -49,9 +37,6 @@ document.getElementById('rectangle_button').addEventListener("click",function (r
 document.getElementById('filled_rectangle_button').addEventListener("click",function (r){
     removeListeners();
     canvas.addEventListener("mousedown", startRectangle)
-    {
-        console.log("FILLED RECTANGLE BUTTON")
-    }
     canvas.addEventListener("mouseup", stopRectangle);
 })
 
@@ -59,18 +44,13 @@ document.getElementById('filled_rectangle_button').addEventListener("click",func
 document.getElementById('circle_button').addEventListener("click",function (r){
     removeListeners();
     canvas.addEventListener("mousedown", startNonFillCircle)
-    {
-        console.log(" CIRCLE BUTTON")
-    }
+
     canvas.addEventListener("mouseup", stopNonFillCircle);
 })
 //filled circle
 document.getElementById('filled_circle_button').addEventListener("click",function (r){
     removeListeners();
     canvas.addEventListener("mousedown", startCircle)
-    {
-        console.log(" FILLED CIRCLE BUTTON");
-    }
     canvas.addEventListener("mouseup", stopCircle);
 })
 // erase drawing
@@ -78,30 +58,22 @@ document.getElementById('erase_button').addEventListener("click",function (r){
     removeListeners();
     changeColor('white');
     canvas.addEventListener("mousedown", startFreeHandLine)
-    {
-        console.log(" ERASE BUTTON");
-    }
     canvas.addEventListener("mouseup", stopFreeHandLine);
 })
 // airbrush drawing
 document.getElementById('airbrush_button').addEventListener("click",function (r){
     removeListeners();
     canvas.addEventListener("mousedown", startSpray)
-    {
-        console.log(" SPRAY BUTTON");
-    }
     canvas.addEventListener("mouseup", stopSpray);
 })
 // text box
 document.getElementById('text_button').addEventListener("click",function (r){
     removeListeners();
-    console.log(" TEXT BUTTON");
     canvas.addEventListener("click", addText);
     addText();
 })
 document.getElementById('fill_color_button').addEventListener("click",function (r){
     removeListeners();
-    console.log(" FILL BUTTON");
     canvas.addEventListener("click", fillLastShape);
     fillLastShape();
     canvas.removeEventListener("click", fillLastShape);
@@ -149,8 +121,8 @@ document.getElementById('size_down_button').addEventListener('click', function(e
     updateSizeField();
 });
 // colors
-function changeColor(color) { 
-    ctx.strokeStyle = color; 
+function changeColor(color) {
+    ctx.strokeStyle = color;
 }
 document.getElementById('black').addEventListener('click', function(e) {
   changeColor('black');
@@ -185,13 +157,7 @@ document.getElementById('pink').addEventListener('click', function(e) {
 //color picker functions
 document.getElementById('empty-color').addEventListener('click', function(e) {
     picker();
-    console.log(1111)
-    console.log(document.getElementById('empty-color').style.background)
-    console.log(document.getElementById('color-input').value)
     document.getElementById('empty-color').style.background = document.getElementById('color-input').value;
-    console.log(2222)
-    console.log(document.getElementById('empty-color').style.background)
-    console.log(document.getElementById('color-input').value)
   });
 
 
@@ -229,8 +195,6 @@ document.getElementById('save_file_button').addEventListener('click', function(e
     const saveModal = document.getElementById('saveModal');
     saveModal.style.display = 'block';
 
-    //console.log(document.querySelector('#users-select').value);   Will use that to get selected values from dropdown :)
-
     fetch('/users')
     .then(res => res.json())
     .then(json => {
@@ -247,7 +211,7 @@ document.getElementById('save_file_button').addEventListener('click', function(e
             multiple: true
           });
     });
-    
+
 });
 document.getElementById('saveButton').addEventListener('click', function(e) {
     var fileName = document.getElementById('saveFile').value;
@@ -257,14 +221,12 @@ document.getElementById('saveButton').addEventListener('click', function(e) {
     {
         allowedUsers = document.querySelector('#users-select').value;
     }
-    console.log(allowedUsers);
-
 
     var dataUrl = canvas.toDataURL();
     var isPublic = !document.getElementById('private').checked;
     var usersSelect = document.getElementById('users-select');
     var allowedUserIds = usersSelect.getElementsByTagName('input')[0].value.split(',');
-    
+
     fetch('/add-paint', {
         method: 'POST',
         headers: {
@@ -272,7 +234,7 @@ document.getElementById('saveButton').addEventListener('click', function(e) {
         },
         body: JSON.stringify({imageUrl: dataUrl, fileName: fileName, isPublic: isPublic, allowedUsers: allowedUsers})
     })
-    .then(async (res) => 
+    .then(async (res) =>
         {
             if(res.status == 200) {
                 Swal.fire({
@@ -317,14 +279,12 @@ function reposition(event) {
     coord.y = event.clientY - canvas.offsetTop;
 }
 function startFreeHandLine(event) {
-    console.log(100)
     document.addEventListener("mousemove", drawFreeHandLine);
     reposition(event);
 }
 function stopFreeHandLine() {
     document.removeEventListener("mousemove", drawFreeHandLine);
     newRecord();
-    console.log(101)
 }
 function drawFreeHandLine(event) {
     ctx.beginPath();
@@ -336,14 +296,12 @@ function drawFreeHandLine(event) {
 }
 // CURVE FUNCTIONS
 function startCurveLine(event) {
-    console.log(100)
     document.addEventListener("mousemove", drawCurveLine);
     reposition(event);
 }
 function stopCurveLine() {
     document.removeEventListener("mousemove", drawCurveLine);
     newRecord();
-    console.log(101)
 }
 function drawCurveLine(event) {
     ctx.beginPath();
@@ -406,13 +364,9 @@ function drawText(txt) {
     ctx.fillStyle = ctx.strokeStyle;
     let str = "";
     str += ctx.lineWidth * 10 + "px" + " " + "sans-serif";
-    console.log(str);
     ctx.font = str;
     ctx.fillText(txt, tracking.x, tracking.y);
 }
-document.getElementById("#bottom").addEventListener('click',function (e){
-    console.log("hi")
-})
 //line function
 function startStraightLine(event) {
     document.addEventListener("mousemove", drawStraightLine);
@@ -521,7 +475,7 @@ function stopRectangle(event) {
     newRecord();
 }
 // FILL LAST SHAPE FUNCTIONS
-var currWidth, currStyle;
+let currWidth, currStyle;
 function fillLastShape(){
     getCurrentStyles();
     if(lastShape.shape === 'r'){
@@ -570,7 +524,6 @@ document.getElementById('logout-button').addEventListener('click',function (e){
         }
     };
     const response =  fetch('/logout',options);
-    console.log("successfully logged out")
 })
 
 let message = async ()=>{
@@ -599,22 +552,4 @@ if (id != undefined)
     })
 }
 
-document.getElementById("clearAll").addEventListener('click',function (e){
-    const blank = isCanvasBlank(document.getElementById('drawing_canvas'));
-    if (!blank){
-        Swal.fire({
-            title: 'Do you want to save the changes?',
-            showDenyButton: true,
-            confirmButtonText: `Save`,
-            denyButtonText: `Don't save`,
-            timer: 5000
-        }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-             document.getElementById('save_file_button').click();
-            } else if (result.isDenied) {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-            }
-        })
-    }
-})
+

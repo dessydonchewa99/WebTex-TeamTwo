@@ -41,14 +41,11 @@ router.delete('/delete-paint/:id', async (request, response) => {
         response.sendStatus(401);
         return;
     }
-
     const isDeleted = await paintService.deletePaintById(request.params.id, request.session.username);
-
     if (isDeleted) {
         response.sendStatus(200);
         return;
     }
-
     response.sendStatus(400);
     
 });

@@ -5,51 +5,41 @@
     <title>My Paint Cloud | Register</title>
     <link rel="stylesheet" href="css/login-registration.css" type="text/css">
     <link rel="icon" href="images/plog.png">
-
 </head>
+
 <body>
-<span id="title_paint">MY PAINT CLOUD</span>
-<div class="container">
-    <div class="screen">
-        <div class="screen__content">
-            <form class="login" method="post" name="registerform" action="/register" enctype="multipart/form-data" onsubmit="validate()">
-                <span id="login_title">REGISTER</span>
-                <div class="login__field">
-                    <input type="text" class="login__input" name="username" placeholder="Username">
-                </div>
-                <div class="login__field">
-                    <input type="email" class="login__input" name="email" placeholder="Email">
-                </div>
-                <div class="login__field">
-                    <input type="password" class="login__input" name="password" placeholder="Password">
-                </div>
-                <div class="login__field">
-                    <input type="password" class="login__input" name="confirmPassword" placeholder="Confirm Password">
-                </div>
-
-                <% if(errorMessage) { %>
-                    <div class="validations"><%= errorMessage %></div>
-                <% } %>
-
-                <button class="button login__submit" type="submit" ><a> Register In Now</a></button>
-                <button class="button login__submit" ><a href="/login"> Log In Now</a></button>
-            </form>
-            <div class="social-login">
-                <div class="social-icons">
-                    <a href="#" class="social-login__icon fab fa-instagram"></a>
-                    <a href="#" class="social-login__icon fab fa-facebook"></a>
-                    <a href="#" class="social-login__icon fab fa-twitter"></a>
-                </div>
+    <span id="title_paint">MY PAINT CLOUD</span>
+    <div class="container">
+        <div class="screen">
+            <div class="screen__content">
+                <form class="login" method="post" name="registerform" action="/register" enctype="multipart/form-data">
+                    <span id="login_title">REGISTER</span>
+                    <div class="login__field">
+                        <input type="text" class="login__input" name="username" placeholder="Username">
+                    </div>
+                    <div class="login__field">
+                        <input type="email" class="login__input" name="email" placeholder="Email">
+                    </div>
+                    <div class="login__field">
+                        <input type="password" class="login__input" name="password" placeholder="Password">
+                    </div>
+                    <div class="login__field">
+                        <input type="password" class="login__input" name="confirmPassword" placeholder="Confirm Password">
+                    </div>
+                    <% if(errorMessage) { %>
+                        <div class="validations"><%= errorMessage %></div>
+                    <% } %>
+                    <button class="button login__submit" type="submit" ><a> Register In Now</a></button>
+                    <button class="button login__submit" ><a href="/login"> Log In Now</a></button>
+                </form>
+            </div>
+            <div class="screen__background">
+                <span class="screen__background__shape screen__background__shape4"></span>
+                <span class="screen__background__shape screen__background__shape3"></span>
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span>
             </div>
         </div>
-        <div class="screen__background">
-            <span class="screen__background__shape screen__background__shape4"></span>
-            <span class="screen__background__shape screen__background__shape3"></span>
-            <span class="screen__background__shape screen__background__shape2"></span>
-            <span class="screen__background__shape screen__background__shape1"></span>
-        </div>
     </div>
-</div>
-
 </body>
 </html>
